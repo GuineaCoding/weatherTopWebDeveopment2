@@ -8,4 +8,3 @@ router.get("/", dashboardController.index);
 router.get("/dashboard", dashboardController.index);
 router.post("/dashboard/add-station", dashboardController.addStation);
 router.get("/about", aboutController.index);
-    
