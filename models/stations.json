@@ -1,17 +1,52 @@
 {
   "file": "./models/stations.json",
   "stations": [
-    {
-      "title": "rr",
-      "_id": "6f568827-f25e-43c7-95af-29588c1b21ae"
-    },
-    {
-      "title": "test",
-      "_id": "c260cba5-2a46-4632-9d86-3f63f0acecbd"
-    },
-    {
-      "title": "rre",
-      "_id": "496c2854-1e5c-402c-a9bf-2ad6f392eb46"
-    }
+  {
+  "id" : "01",
+  "name": "Tramore",
+  "readings": [
+  {
+  "id" : "02",
+  "code": 800,
+  "temperature": 0.5,
+  "windSpeed": 3.5,
+  "pressure": 1002
+  },
+  {
+  "id" : "03",
+  "code": 600,
+  "temperature": 6,
+  "windSpeed": 2,
+  "pressure": 1004
+  },
+  {
+  "id" : "04",
+  "code": 700,
+  "temperature": 8,
+  "windSpeed": 1,
+  "pressure": 1005
+  }
   ]
-}
+  },
+  {
+  "id" : "05",
+  "name": "Dunmore",
+  "readings": [
+  {
+  "id" : "06",
+  "code": 700,
+  "temperature": 8,
+  "windSpeed": 1,
+  "pressure": 999
+  },
+  {
+  "id" : "07",
+  "code": 200,
+  "temperature": 0.5,
+  "windSpeed": 3.5,
+  "pressure": 1000
+  }
+  ]
+  }
+  ]
+ }

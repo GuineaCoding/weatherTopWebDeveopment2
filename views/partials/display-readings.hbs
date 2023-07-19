@@ -1,10 +1,20 @@
 <table class="table  is-narrow is-hoverable is-fullwidth">
   <thead>
     <tr>
-      <th><abbr title="Position">Code</abbr></th>
-      <th><abbr title="Played">Temp</abbr></th>
-      <th><abbr title="Won">Wind Speed</abbr></th>
-      <th><abbr title="Drawn">Pressure</abbr></th>
+      <th><abbr title="Code">Code</abbr></th>
+      <th><abbr title="Temp">Temp</abbr></th>
+      <th><abbr title="Wind Speed">Wind Speed</abbr></th>
+      <th><abbr title="Pressure">Pressure</abbr></th>
     </tr>
   </thead>
+  <tbody>
+    {{#each stations.readings}}
+    <tr>
+      <th><abbr title="Code">{{code}}</abbr></th>
+      <th><abbr title="Temp">{{temperature}}</abbr></th>
+      <th><abbr title="Wind Speed">{{windSpeed}}</abbr></th>
+      <th><abbr title="Pressure">{{pressure}}</abbr></th>
+    </tr>
+    {{/each}}
+  </tbody>
 </table>

@@ -1,9 +1,10 @@
 {{#each stations}}
 <div class="box box-link-hover-shadow">
   <h2 class="title">
-    {{title}}
+    {{name}}
   </h2>
   {{> display-last-reading}}
+  {{> display-readings}}
 </div>
 
 {{/each}}
