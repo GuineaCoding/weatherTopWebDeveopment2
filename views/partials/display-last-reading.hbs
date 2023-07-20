@@ -1,49 +1,66 @@
-<div class="columns is-multiline">
-  <div class="column is-one-fifth ">
-    <div class="box is-fullheight">
+<div id="last-readings" class="columns is-multiline">
+  {{#each lastReadings}}
+  <div class="column is-3">
+    <div class="box hero has-text-white">
       <div class="field">
         <label class="label">{{name}}</label>
       </div>
     </div>
   </div>
-  <div class="column is-one-fifth">
-    <div class="box">
+  <div class="column is-3">
+    <div class="weather-box">
       <div class="field">
         <label class="label">Weather</label>
+      </div>
+      <div class="field">
+        <span class="icon is-large has-text-primary">
+          <i class="fas fa-sun"></i>
+        </span>
       </div>
       <div class="field">
         <label class="label"></label>
       </div>
     </div>
   </div>
-  <div class="column is-one-fifth">
-    <div class="box">
+  <div class="column is-2">
+    <div class="temp-box">
       <div class="field">
         <label class="label">Temp</label>
       </div>
       <div class="field">
-        <label class="label">{{temperature}}</label>
+        <span class="icon is-large has-text-white">
+          <i class="fas fa-thermometer-half"></i>
+        </span>
+        <p class="has-text-white-bis is-size-4">{{lastReading.temperature}}°C</p>
+        <p class="has-text-white-bis is-size-4">{{cToFahr}}°C</p>
       </div>
     </div>
   </div>
-  <div class="column is-one-fifth">
-    <div class="box">
+  <div class="column is-2">
+    <div class="wind-box">
       <div class="field">
         <label class="label">Wind</label>
       </div>
       <div class="field">
-        <label class="label">{{windSpeed}}</label>
+        <span class="icon is-large has-text-white">
+          <i class="fas fa-wind"></i>
+        </span>
+        <p class="has-text-white-bis is-size-4">{{lastReading.windSpeed}} m/s</p>
       </div>
     </div>
   </div>
-    <div class="column is-one-fifth">
-    <div class="box">
+  <div class="column is-2">
+    <div class="pressure-box">
       <div class="field">
         <label class="label">Pressure</label>
       </div>
       <div class="field">
-        <label class="label">{{pressure}}</label>
+        <span class="icon is-large has-text-white">
+          <i class="fas fa-tachometer-alt"></i>
+        </span>
+        <p class="has-text-white-bis is-size-4">{{lastReading.pressure}} hPa</p>
       </div>
     </div>
   </div>
+  {{/each}}
 </div>

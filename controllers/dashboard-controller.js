@@ -3,12 +3,19 @@ import { readingStore } from "../models/reading-store.js";
 
 export const dashboardController = {
   async index(request, response) {
-    const viewData = {
-      title: "Station Dashboard",
-      stations: await stationStore.getAllStations(),
-    };
-    console.log("dashboard rendering");
-    response.render("dashboard-view", viewData);
+    try {
+      const viewData = {
+        title: "Station Dashboard",
+        stations: await stationStore.getAllStations(),
+        lastReadings: await readingStore.getLastReading(),
+        fromCtoF: await readingStore.fromCtoF(),
+      };
+      console.log("dashboard rendering");
+      // console.log("Last readings array:", viewData.lastReadings);
+      response.render("dashboard-view", viewData);
+    } catch (error) {
+      console.error("Error rendering dashboard:", error);
+      response.status(500).send("Internal Server Error");
+    }
   },
-  
 };
