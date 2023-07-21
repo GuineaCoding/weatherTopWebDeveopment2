@@ -3,56 +3,56 @@
   <div class="column is-3">
     <div class="box hero has-text-white">
       <div class="field">
-        <label class="label">{{name}}</label>
+        <label class="label has-text-white">{{name}}</label>
       </div>
     </div>
   </div>
   <div class="column is-3">
     <div class="weather-box">
       <div class="field">
-        <label class="label">Weather</label>
+        <label class="label has-text-white">Weather</label>
       </div>
       <div class="field">
-        <span class="icon is-large has-text-primary">
-          <i class="fas fa-sun"></i>
+        <span class="icon is-large">
+          <i class="fa-solid fa-cloud-meatball"></i>
         </span>
       </div>
       <div class="field">
-        <label class="label"></label>
+        <label class="label has-text-white">{{beaufortDescription}}</label>
       </div>
     </div>
   </div>
   <div class="column is-2">
     <div class="temp-box">
       <div class="field">
-        <label class="label">Temp</label>
+        <label class="label has-text-white">Temperature</label>
       </div>
       <div class="field">
         <span class="icon is-large has-text-white">
           <i class="fas fa-thermometer-half"></i>
         </span>
         <p class="has-text-white-bis is-size-4">{{lastReading.temperature}}°C</p>
-        <p class="has-text-white-bis is-size-4">{{cToFahr}}°C</p>
+        <p class="has-text-white-bis is-size-4">{{temperatureFahrenheit}}°F</p>
       </div>
     </div>
   </div>
   <div class="column is-2">
     <div class="wind-box">
       <div class="field">
-        <label class="label">Wind</label>
+        <label class="label has-text-white">Wind Speed</label>
       </div>
       <div class="field">
         <span class="icon is-large has-text-white">
           <i class="fas fa-wind"></i>
         </span>
-        <p class="has-text-white-bis is-size-4">{{lastReading.windSpeed}} m/s</p>
+        <p class="has-text-white-bis is-size-4">{{beaufortLevel}} Bft</p>
       </div>
     </div>
   </div>
   <div class="column is-2">
     <div class="pressure-box">
       <div class="field">
-        <label class="label">Pressure</label>
+        <label class="label has-text-white">Pressure</label>
       </div>
       <div class="field">
         <span class="icon is-large has-text-white">

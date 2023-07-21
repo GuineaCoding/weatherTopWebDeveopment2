@@ -1,11 +1,16 @@
 import { v4 } from "uuid";
+// Import the 'initStore' function from the '../utils/store-utils.js' file
 import { initStore } from "../utils/store-utils.js";
 
+// Call the 'initStore' function with the argument "stations" and store the returned data in the constant 'db'
 const db = initStore("stations");
 
+// Define the 'stationStore' object
 export const stationStore = {
+  // Define the 'getAllStations' function to retrieve all stations from the database
   async getAllStations() {
     await db.read();
+     // Return the array of stations from the 'db.data.stations'
     return db.data.stations;
   },
 

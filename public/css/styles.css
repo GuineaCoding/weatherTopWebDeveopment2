@@ -5,6 +5,7 @@
 .button.is-primary {
   background: linear-gradient(to right, #026635, #00371b);
   color: #fff;
+  font-weight: bold;
 }
 
 .box {
@@ -12,92 +13,78 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.weather-box {
+.weather-box,
+.temp-box,
+.wind-box,
+.pressure-box {
   background: linear-gradient(to right, #005c27, #002e13);
   color: #fff;
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.temp-box {
-  background: linear-gradient(to right, #996b00, #663e00);
-  color: #fff;
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.wind-box {
-  background: linear-gradient(to right, #3a0080, #1a003f);
-  color: #fff;
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.pressure-box {
-  background: linear-gradient(to right, #993d00, #661f00);
-  color: #fff;
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .table {
-  background-color: #fff;
+  background-color: #21692a;
+  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
 }
 
-.title svg {
-  fill: #026635;
-}
-
-.section {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.box .field .label {
+.table thead th {
   color: #fff;
   font-weight: bold;
+  font-size: 18px;
+  padding: 16px;
+}
+#logo {
+  color: #1b8145;
 }
 
-.icon.is-large {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
+.table tbody tr {
+  background-color: #ffffff;
 }
 
-.box.has-background-white-bis .field .label.is-size-3 {
-  padding: 5px;
-  background-color: #f0f0f0;
-  border-radius: 50%;
+.table tbody td {
+  color: #333;
+  font-weight: bold;
+  padding: 12px;
 }
 
-.has-background-primary {
-  background-color: #026635;
+.table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
-.has-background-link {
-  background-color: #003c80;
+.table tbody tr:hover {
+  background-color: #cce5ff;
 }
 
-.has-background-info {
-  background-color: #2d00b3;
+.custom-table {
+  height: 50px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
 }
 
-.has-background-warning {
-  background-color: #994d00;
+.custom-table tbody tr:last-child {
+  border-bottom: none;
 }
 
-.box.has-background-link .field .label,
-.box.has-background-info .field .label,
-.box.has-background-warning .field .label {
-  color: #fff;
+.custom-table thead th {
+  font-size: 20px;
 }
+
+.custom-table {
+  border-radius: 15px;
+}
+
+.custom-table td {
+  font-size: 18px;
+}
+
+
 #last-readings > div > div {
   height: 100%;
 }
+
