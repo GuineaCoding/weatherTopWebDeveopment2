@@ -1,5 +1,4 @@
 import { stationStore } from "../models/station-store.js";
-import { readingStore } from "../models/reading-store.js";
 
 // Define the dashboardController object with an async function called "index"
 export const dashboardController = {
@@ -9,7 +8,6 @@ export const dashboardController = {
       const viewData = {
         title: "Station Dashboard",
         stations: await stationStore.getAllStations(),
-        lastReadings: await readingStore.getLastReading(),
       };
        // Render the "dashboard-view" using the prepared data (viewData)
       response.render("dashboard-view", viewData);
@@ -17,5 +15,13 @@ export const dashboardController = {
       console.error("Error rendering dashboard:", error);
       response.status(500).send("Internal Server Error");
     }
+  },
+  async addStation(request, response) {
+    const newStation = {
+      name: request.body.name,
+    };
+    console.log(`adding Station ${newStation.name}`);
+    await stationStore.addStation(newStation);
+    response.redirect("/dashboard");
   },
 };

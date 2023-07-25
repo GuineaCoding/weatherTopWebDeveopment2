@@ -10,7 +10,7 @@ export const stationStore = {
   // Define the 'getAllStations' function to retrieve all stations from the database
   async getAllStations() {
     await db.read();
-     // Return the array of stations from the 'db.data.stations'
+    // Return the array of stations from the 'db.data.stations'
     return db.data.stations;
   },
 
@@ -18,6 +18,14 @@ export const stationStore = {
     await db.read();
     const list = db.data.stations.find((station) => station._id === id);
     return list;
+  },
+  async addStation(station) {
+    await db.read();
+    station.id = v4();
+    station.name = station.name;
+    db.data.stations.push(station);
+    await db.write();
+    return station;
   },
 
 };

@@ -90,8 +90,8 @@ export const readingStore = {
         beaufortLevel: beaufortLevel,
         beaufortDescription: beaufortDescription,
       };
-    }); 
+    });
     return lastReadings;
   },
-  
+
 };
