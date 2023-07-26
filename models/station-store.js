@@ -22,7 +22,6 @@ export const stationStore = {
   async addStation(station) {
     await db.read();
     station.id = v4();
-    station.name = station.name;
     db.data.stations.push(station);
     await db.write();
     return station;
