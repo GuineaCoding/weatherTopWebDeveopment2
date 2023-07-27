@@ -1,6 +1,7 @@
 import { v4 } from "uuid";
 // Import the 'initStore' function from the '../utils/store-utils.js' file
 import { initStore } from "../utils/store-utils.js";
+import { readingStore } from "./reading-store.js";
 
 // Call the 'initStore' function with the argument "stations" and store the returned data in the constant 'db'
 const db = initStore("stations");
@@ -16,9 +17,12 @@ export const stationStore = {
 
   async getStationById(id) {
     await db.read();
-    const list = db.data.stations.find((station) => station._id === id);
+    const list = db.data.stations.find((station) => station.id === id);
+    list.readings = await readingStore.getReadingByStationId(list.id);
+    console.log(list.readings, "test")
     return list;
   },
+
   async addStation(station) {
     await db.read();
     station.id = v4();

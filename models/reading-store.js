@@ -69,6 +69,11 @@ export const readingStore = {
     await db.read();
     return db.data.readings;
   },
+  async getReadingByStationId(id) {
+    await db.read();
+    const station = db.data.stations.find((station) => station.id === id);
+    return station.readings;
+  },
   // Export the readingStore object containing async functions to interact with the database
   async getLastReading() {
     await db.read();

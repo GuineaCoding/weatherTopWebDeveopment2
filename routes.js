@@ -9,5 +9,5 @@ export const router = express.Router();
 router.get("/", homeController.index);
 router.get("/dashboard", dashboardController.index);
 router.get("/about", aboutController.index);
+router.get("/station/:id", stationController.index);
 router.post("/dashboard/addStation", dashboardController.addStation);
-router.get("/playlist/:id", stationController.index);

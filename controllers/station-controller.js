@@ -7,9 +7,11 @@ export const stationController = {
         try {
             // Prepare the data to be passed to the view
             const viewData = {
-                title: "Station",
-                // lastReadings: await readingStore.getLastReading(),
+                name: station.name,
+                station: station,
+                lastReadings: await readingStore.getLastReading(),
             };
+            console.log(viewData, 'wewe')
             // Render the "station-view" using the prepared data (viewData)
             response.render("station-view", viewData);
         } catch (error) {
@@ -17,5 +19,4 @@ export const stationController = {
             response.status(500).send("Internal Server Error");
         }
     }
-
 }

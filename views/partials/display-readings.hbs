@@ -10,17 +10,21 @@
       <th>
         <p title="Wind Speed">Wind Speed</p>
       </th>
+            <th>
+        <p title="Wind Direction">Wind Direction</p>
+      </th>
       <th>
         <p title="Pressure">Pressure</p>
       </th>
     </tr>
   </thead>
   <tbody>
-    {{#each readings}}
+    {{#each station.readings}}
     <tr>
       <td>{{code}}</td>
       <td>{{temperature}}</td>
       <td>{{windSpeed}}</td>
+      <td>{{windDirection}}</td>
       <td>{{pressure}}</td>
     </tr>
     {{/each}}
