@@ -33,6 +33,37 @@ function getBeaufortLevel(windSpeed) {
     return 12;
   }
 }
+
+function calculateWindChill(temperatureCelsius, windSpeedMps) {
+  const windSpeedMph = windSpeedMps * 2.23694;
+  const windChillCelsius = 13.12 + 0.6215 * temperatureCelsius - 11.37 * Math.pow(windSpeedMph, 0.16) + 0.3965 * temperatureCelsius * Math.pow(windSpeedMph, 0.16);
+  return windChillCelsius.toFixed(1);
+}
+
+function getWindCompassDirection(windDirectionDegrees) {
+  const directions = [
+    "North",
+    "North-Northeast",
+    "Northeast",
+    "East-Northeast",
+    "East",
+    "East-Southeast",
+    "Southeast",
+    "South-Southeast",
+    "South",
+    "South-Southwest",
+    "Southwest",
+    "West-Southwest",
+    "West",
+    "West-Northwest",
+    "Northwest",
+    "North-Northwest",
+  ];
+  const index = Math.round((windDirectionDegrees % 360) / 22.5);
+  return directions[index % 16];
+}
+
+
 // Function to get the Beaufort level description based on wind speed
 function getBeaufortLevelDescription(windSpeed) {
   if (windSpeed < 0.3) {
@@ -87,6 +118,8 @@ export const readingStore = {
       const windSpeed = lastReading.windSpeed;
       const beaufortLevel = getBeaufortLevel(windSpeed);
       const beaufortDescription = getBeaufortLevelDescription(windSpeed);
+      const windChill = calculateWindChill(temperatureCelsius, windSpeed);
+      const windCompasDirection = getWindCompassDirection(lastReading.windDirection);
       return {
         id: station.id,
         name: station.name,
@@ -94,6 +127,8 @@ export const readingStore = {
         temperatureFahrenheit: temperatureFahrenheit,
         beaufortLevel: beaufortLevel,
         beaufortDescription: beaufortDescription,
+        windChill: windChill,
+        windCompasDirection: windCompasDirection,
       };
     });
     return lastReadings;

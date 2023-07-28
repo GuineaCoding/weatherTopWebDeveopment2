@@ -19,7 +19,6 @@ export const stationStore = {
     await db.read();
     const list = db.data.stations.find((station) => station.id === id);
     list.readings = await readingStore.getReadingByStationId(list.id);
-    console.log(list.readings, "test")
     return list;
   },
 

@@ -9,10 +9,10 @@ export const stationController = {
             const viewData = {
                 name: station.name,
                 station: station,
-                lastReadings: await readingStore.getLastReading(),
+                lastReadings: await readingStore.getLastReading(station),
             };
-            console.log(viewData, 'wewe')
             // Render the "station-view" using the prepared data (viewData)
+            console.log(station)
             response.render("station-view", viewData);
         } catch (error) {
             console.error("Error rendering station:", error);
