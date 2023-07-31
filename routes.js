@@ -11,3 +11,4 @@ router.get("/dashboard", dashboardController.index);
 router.get("/about", aboutController.index);
 router.get("/station/:id", stationController.index);
 router.post("/dashboard/addStation", dashboardController.addStation);
+router.post("/station/:id/addReading", stationController.addReading);

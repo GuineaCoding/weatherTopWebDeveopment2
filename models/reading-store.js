@@ -1,5 +1,6 @@
 import { v4 } from "uuid";
 import { initStore } from "../utils/store-utils.js";
+import { read } from "fs-extra";
 
 const db = initStore("stations");
 
@@ -106,32 +107,57 @@ export const readingStore = {
     return station.readings;
   },
   // Export the readingStore object containing async functions to interact with the database
-  async getLastReading() {
+  async getLastReading(id) {
     await db.read();
     const lastReadings = db.data.stations.map((station) => {
-      if (station.readings.length === 0) {
-        return null;
-      }
-      const lastReading = station.readings[station.readings.length - 1];
-      const temperatureCelsius = lastReading.temperature;
-      const temperatureFahrenheit = temperatureCelsius * 9 / 5 + 32;
-      const windSpeed = lastReading.windSpeed;
-      const beaufortLevel = getBeaufortLevel(windSpeed);
-      const beaufortDescription = getBeaufortLevelDescription(windSpeed);
-      const windChill = calculateWindChill(temperatureCelsius, windSpeed);
-      const windCompasDirection = getWindCompassDirection(lastReading.windDirection);
-      return {
-        id: station.id,
-        name: station.name,
-        lastReading: lastReading,
-        temperatureFahrenheit: temperatureFahrenheit,
-        beaufortLevel: beaufortLevel,
-        beaufortDescription: beaufortDescription,
-        windChill: windChill,
-        windCompasDirection: windCompasDirection,
-      };
+      return station.id === id && station.readings.length > 0
+        ? station.readings[station.readings.length - 1]
+        : null;
     });
-    return lastReadings;
-  },
 
+    const foundStation = db.data.stations.find((station) => station.id === id);
+    if (!foundStation || foundStation.readings.length === 0) {
+      return null;
+    }
+
+    const lastReading = lastReadings.find((reading) => reading !== null);
+    if (!lastReading) {
+      return null;
+    }
+
+    const temperatureCelsius = lastReading.temperature;
+    const temperatureFahrenheit = temperatureCelsius * 9 / 5 + 32;
+    const windSpeed = lastReading.windSpeed;
+    const beaufortLevel = getBeaufortLevel(windSpeed);
+    const beaufortDescription = getBeaufortLevelDescription(windSpeed);
+    const windChill = calculateWindChill(temperatureCelsius, windSpeed);
+    const windCompassDirection = getWindCompassDirection(lastReading.windDirection);
+
+    return {
+      id: foundStation.id,
+      name: foundStation.name,
+      lastReading: lastReading,
+      temperatureFahrenheit: temperatureFahrenheit,
+      beaufortLevel: beaufortLevel,
+      beaufortDescription: beaufortDescription,
+      windChill: windChill,
+      windCompassDirection: windCompassDirection,
+      
+    };
+  },
+  async addReading(stationId, reading) {
+    await db.read();
+    reading.id = v4();
+    reading.stationId = stationId;
+    const station = db.data.stations.find((station) => station.id === stationId);
+    if (!station) {
+      console.log("Station not found");
+    }
+    if (!station.readings) {
+      station.readings = [];
+    }
+    station.readings.push(reading); 
+    await db.write();
+    return reading;
+  },
 };

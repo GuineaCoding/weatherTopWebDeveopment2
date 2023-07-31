@@ -3,20 +3,48 @@ import { stationStore } from "../models/station-store.js";
 
 export const stationController = {
     async index(request, response) {
-        const station = await stationStore.getStationById(request.params.id);
-        try {
-            // Prepare the data to be passed to the view
-            const viewData = {
-                name: station.name,
-                station: station,
-                lastReadings: await readingStore.getLastReading(station),
-            };
-            // Render the "station-view" using the prepared data (viewData)
-            console.log(station)
-            response.render("station-view", viewData);
-        } catch (error) {
-            console.error("Error rendering station:", error);
-            response.status(500).send("Internal Server Error");
+      const stationId = request.params.id;
+      const station = await stationStore.getStationById(stationId);
+      const lastReading = await readingStore.getLastReading(stationId);
+  
+      try {
+        if (!station) {
+          response.status(404).send("Station not found");
+          return;
         }
-    }
-}
+  
+        const lastReadings = [lastReading]; // Convert the lastReading object into an array
+  
+        const viewData = {
+          name: station.name,
+          station: station,
+          lastReadings: lastReadings, 
+        };
+  
+        response.render("station-view", viewData);
+      } catch (error) {
+        console.error("Error rendering station:", error);
+        response.status(500).send("Internal Server Error");
+      }
+    },
+    async addReading(request, response) {
+        const station = await stationStore.getStationById(request.params.id);
+        const reading= {
+          code: Number(request.body.code),
+          temperature: Number(request.body.temperature),
+          windSpeed: Number(request.body.windSpeed),
+          Pressure: Number(request.body.Pressure),
+          windDirection: Number(request.body.windDirection),
+        };
+        // console.log(`adding reading ${newReading.code}`);
+        // console.log(`adding reading ${newReading.temperature}`);
+        // console.log(`adding reading ${newReading.windDirection}`);
+        // console.log(`adding reading ${newReading.windSpeed}`);
+        // console.log(`adding reading ${newReading.Pressure}`);
+        console.log(station.id)
+        await readingStore.addReading(station.id, reading);
+        
+        response.redirect("/station/" + station.id);
+      },
+  };
+  
