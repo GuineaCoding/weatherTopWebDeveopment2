@@ -33,27 +33,18 @@
           "code": 11,
           "temperature": 11,
           "windSpeed": 11,
-          "Pressure": null,
+          "pressure": 11,
           "windDirection": 11,
-          "id": "bdac4814-4dc4-476c-aa11-2856dbb934e6",
+          "id": "d88e4a47-e40a-4639-ac0c-54779264f2cc",
           "stationId": "01"
         },
         {
-          "code": 555,
-          "temperature": 111,
-          "windSpeed": 11,
-          "Pressure": null,
-          "windDirection": 11,
-          "id": "aff1ef56-4e0d-4a8f-810f-d20459023245",
-          "stationId": "01"
-        },
-        {
-          "code": 11,
+          "code": 111,
           "temperature": 11,
           "windSpeed": 11,
-          "Pressure": null,
+          "pressure": 11,
           "windDirection": 11,
-          "id": "20236e98-6901-45e6-a7b3-3d6bf071652b",
+          "id": "64edf123-c103-4b06-90cf-6dea5fafd92c",
           "stationId": "01"
         }
       ]
@@ -77,6 +68,15 @@
           "windSpeed": 3.5,
           "pressure": 1000,
           "windDirection": 102
+        },
+        {
+          "code": 11,
+          "temperature": 11,
+          "windSpeed": 11,
+          "pressure": 1,
+          "windDirection": 11,
+          "id": "a4c43339-54a7-473e-a481-0985f6178271",
+          "stationId": "05"
         }
       ]
     }

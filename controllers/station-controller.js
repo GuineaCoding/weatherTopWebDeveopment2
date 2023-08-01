@@ -33,7 +33,7 @@ export const stationController = {
           code: Number(request.body.code),
           temperature: Number(request.body.temperature),
           windSpeed: Number(request.body.windSpeed),
-          Pressure: Number(request.body.Pressure),
+          pressure: Number(request.body.pressure),
           windDirection: Number(request.body.windDirection),
         };
         // console.log(`adding reading ${newReading.code}`);
