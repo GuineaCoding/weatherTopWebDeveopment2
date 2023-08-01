@@ -6,7 +6,6 @@ export const stationController = {
       const stationId = request.params.id;
       const station = await stationStore.getStationById(stationId);
       const lastReading = await readingStore.getLastReading(stationId);
-  
       try {
         if (!station) {
           response.status(404).send("Station not found");
@@ -36,14 +35,7 @@ export const stationController = {
           pressure: Number(request.body.pressure),
           windDirection: Number(request.body.windDirection),
         };
-        // console.log(`adding reading ${newReading.code}`);
-        // console.log(`adding reading ${newReading.temperature}`);
-        // console.log(`adding reading ${newReading.windDirection}`);
-        // console.log(`adding reading ${newReading.windSpeed}`);
-        // console.log(`adding reading ${newReading.Pressure}`);
-        console.log(station.id)
         await readingStore.addReading(station.id, reading);
-        
         response.redirect("/station/" + station.id);
       },
   };

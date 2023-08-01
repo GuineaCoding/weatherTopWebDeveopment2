@@ -23,6 +23,10 @@ export const stationStore = {
   },
 
   async addStation(station) {
+    const existingStation = db.data.stations.find((s) => s.name === station.name);
+    if (existingStation) {
+      
+    }
     await db.read();
     station.id = v4();
     db.data.stations.push(station);

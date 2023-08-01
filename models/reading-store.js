@@ -110,13 +110,13 @@ export const readingStore = {
   async getLastReading(id) {
     await db.read();
     const lastReadings = db.data.stations.map((station) => {
-      return station.id === id && station.readings.length > 0
+      return station.id === id && Array.isArray(station.readings) && station.readings.length > 0
         ? station.readings[station.readings.length - 1]
         : null;
     });
 
     const foundStation = db.data.stations.find((station) => station.id === id);
-    if (!foundStation || foundStation.readings.length === 0) {
+    if (!foundStation || !foundStation.readings || foundStation.readings.length === 0) {
       return null;
     }
 
@@ -142,9 +142,9 @@ export const readingStore = {
       beaufortDescription: beaufortDescription,
       windChill: windChill,
       windCompassDirection: windCompassDirection,
-      
     };
   },
+  
   async addReading(stationId, reading) {
     await db.read();
     reading.id = v4();

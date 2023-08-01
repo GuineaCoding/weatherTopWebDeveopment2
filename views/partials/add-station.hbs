@@ -6,6 +6,11 @@
                 <input class="input" type="text" placeholder="Station Name" name="name" required>
             </p>
         </div>
+        {{#if existingStation}}
+        <div id="warning-sign" class="notification is-warning">
+            A station with the same name already exists!
+        </div>
+        {{/if}}
         <div class="field">
             <p class="control">
                 <button class="button is-success">

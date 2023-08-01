@@ -20,6 +20,7 @@ export const dashboardController = {
     const newStation = {
       name: request.body.name,
     };
+    
     console.log(`adding Station ${newStation.name}`);
     await stationStore.addStation(newStation);
     response.redirect("/dashboard");
