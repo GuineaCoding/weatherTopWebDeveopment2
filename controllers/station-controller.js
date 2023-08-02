@@ -1,42 +1,59 @@
 import { readingStore } from "../models/reading-store.js";
 import { stationStore } from "../models/station-store.js";
 
+// Define the stationController object
 export const stationController = {
-    async index(request, response) {
-      const stationId = request.params.id;
-      const station = await stationStore.getStationById(stationId);
-      const lastReading = await readingStore.getLastReading(stationId);
-      try {
-        if (!station) {
-          response.status(404).send("Station not found");
-          return;
-        }
-  
-        const lastReadings = [lastReading]; // Convert the lastReading object into an array
-  
-        const viewData = {
-          name: station.name,
-          station: station,
-          lastReadings: lastReadings, 
-        };
-  
-        response.render("station-view", viewData);
-      } catch (error) {
-        console.error("Error rendering station:", error);
-        response.status(500).send("Internal Server Error");
+  async index(request, response) {
+    // Get the station ID from the request parameters
+    const stationId = request.params.id;
+
+    // Fetch the station details using the stationStore's 'getStationById' function
+    const station = await stationStore.getStationById(stationId);
+
+    // Fetch the last reading associated with the station using the readingStore's 'getLastReading' function
+    const lastReading = await readingStore.getLastReading(stationId);
+
+    try {
+      // Check if the station is found in the database
+      if (!station) {
+        // If the station is not found, send a 404 Not Found response and return from the function
+        response.status(404).send("Station not found");
+        return;
       }
-    },
-    async addReading(request, response) {
-        const station = await stationStore.getStationById(request.params.id);
-        const reading= {
-          code: Number(request.body.code),
-          temperature: Number(request.body.temperature),
-          windSpeed: Number(request.body.windSpeed),
-          pressure: Number(request.body.pressure),
-          windDirection: Number(request.body.windDirection),
-        };
-        await readingStore.addReading(station.id, reading);
-        response.redirect("/station/" + station.id);
-      },
-  };
-  
+
+      // Convert the lastReading object into an array
+      const lastReadings = [lastReading];
+
+      // Prepare the data to be passed to the view
+      const viewData = {
+        name: station.name,
+        station: station,
+        lastReadings: lastReadings,
+      };
+
+      response.render("station-view", viewData);
+    } catch (error) {
+      console.error("Error rendering station:", error);
+      response.status(500).send("Internal Server Error");
+    }
+  },
+
+  async addReading(request, response) {
+    const station = await stationStore.getStationById(request.params.id);
+
+    // Extract the reading data from the request body
+    const reading = {
+      code: Number(request.body.code),
+      temperature: Number(request.body.temperature),
+      windSpeed: Number(request.body.windSpeed),
+      pressure: Number(request.body.pressure),
+      windDirection: Number(request.body.windDirection),
+    };
+
+    // Add the new reading to the station using the readingStore's 'addReading' function
+    await readingStore.addReading(station.id, reading);
+
+    // Redirect the user to the station's page after adding the reading
+    response.redirect("/station/" + station.id);
+  },
+};

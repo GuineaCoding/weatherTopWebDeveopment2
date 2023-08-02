@@ -18,17 +18,26 @@ export const stationStore = {
   async getStationById(id) {
     await db.read();
     const list = db.data.stations.find((station) => station.id === id);
+  
+    if (!list) {
+      // If the station with the specified ID is not found, return null or handle the error as per your application's logic
+      return null;
+    }
+  
+    // Fetch readings associated with the station using the readingStore
     list.readings = await readingStore.getReadingByStationId(list.id);
     return list;
   },
-
+  //Add station function
   async addStation(station) {
+    //Check if station name which is added already exist
     const existingStation = db.data.stations.find((s) => s.name === station.name);
     if (existingStation) {
-      
+      throw new Error("A station with the same name already exists.");
     }
     await db.read();
     station.id = v4();
+    //Push station into database
     db.data.stations.push(station);
     await db.write();
     return station;
