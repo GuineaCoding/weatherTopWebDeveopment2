@@ -108,6 +108,7 @@ function getBeaufortLevelDescription(windSpeed) {
   }
 }
 
+
 export const readingStore = {
   async getAllReadings() {
     await db.read();
@@ -134,6 +135,12 @@ export const readingStore = {
     // Find the station that matches the requested ID
     const foundStation = db.data.stations.find((station) => station.id === id);
 
+    // console.log(Math.min(foundStation.readings))
+
+    const min = Math.min.apply( null, db.data.foundStation.map((station) => station.readings.temperature));
+    console.log(db.data.stations.map((station) => station.readings))
+    
+
     // If the station is not found or the station's readings array is empty, return null
     if (!foundStation || !foundStation.readings || foundStation.readings.length === 0) {
       return null;
@@ -157,6 +164,8 @@ export const readingStore = {
     // Return the prepared object with the last reading and additional data
     return {
       id: foundStation.id,
+      latitude: foundStation.latitude,
+      longitude: foundStation.longitude,
       name: foundStation.name,
       lastReading: lastReading,
       temperatureFahrenheit: temperatureFahrenheit,
@@ -164,7 +173,9 @@ export const readingStore = {
       beaufortDescription: beaufortDescription,
       windChill: windChill,
       windCompassDirection: windCompassDirection,
+      // min: min,
     };
+    
   },
 
   // Function to add a new reading for the choosen station

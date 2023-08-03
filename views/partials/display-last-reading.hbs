@@ -1,87 +1,99 @@
 <div id="last-readings" class="columns is-multiline">
   {{#if lastReadings.length}}
-    {{#each lastReadings}}
-    <div class="column is-3">
-      <div class="box hero has-text-white">
-        <div class="field">
-          <label class="label has-text-white">{{name}}</label>
-        </div>
+  {{#each lastReadings}}
+  <div class="column is-3">
+    <div class="box hero has-text-white">
+      <div class="field">
+        <label class="label has-text-white">{{name}}</label>
+      </div>
+      <div class="field">
+        <label class="label has-text-white">Latitude: {{latitude}}</label>
+      </div>
+      <div class="field">
+        <label class="label has-text-white">Longitude: {{longitude}}</label>
       </div>
     </div>
-    <div class="column is-3">
-      <div class="weather-box">
-        <div class="field">
-          <label class="label has-text-white">Weather</label>
-        </div>
-        <div class="field">
-          <span class="icon is-large">
-            <i class="fa-solid fa-cloud-meatball"></i>
-          </span>
-        </div>
-        <div class="field">
-          <label class="label has-text-white">{{beaufortDescription}}</label>
-        </div>
+  </div>
+  <div class="column is-3">
+    <div class="weather-box">
+      <div class="field">
+        <label class="label has-text-white">Weather</label>
+      </div>
+      <div class="field">
+        <span class="icon is-large">
+          <i class="fa-solid fa-cloud-meatball"></i>
+        </span>
+      </div>
+      <div class="field">
+        <label class="label has-text-white">{{beaufortDescription}}</label>
       </div>
     </div>
-    <div class="column is-2">
-      <div class="temp-box">
-        <div class="field">
-          <label class="label has-text-white">Temperature</label>
-        </div>
-        <div class="field">
-          <span class="icon is-large has-text-white">
-            <i class="fas fa-thermometer-half"></i>
-          </span>
-          {{#if lastReading}}
-            <p class="has-text-white-bis is-size-4">{{lastReading.temperature}}°C</p>
-            <p class="has-text-white-bis is-size-4">{{temperatureFahrenheit}}°F</p>
-          {{else}}
-            <p class="has-text-white-bis">No Readings</p>
-          {{/if}}
-        </div>
+  </div>
+  <div class="column is-2">
+    <div class="temp-box">
+      <div class="field">
+        <label class="label has-text-white">Temperature</label>
+      </div>
+      <div class="field">
+        <span class="icon is-large has-text-white">
+          <i class="fas fa-thermometer-half"></i>
+        </span>
+        {{#if lastReading}}
+        <p class="has-text-white-bis is-size-4">{{lastReading.temperature}}°C</p>
+        <p class="has-text-white-bis is-size-4">{{temperatureFahrenheit}}°F</p>
+        <p class="has-text-white-bis is-size-4">Max: </p>
+        <p class="has-text-white-bis is-size-4">Min: </p>
+        {{else}}
+        <p class="has-text-white-bis">No Readings</p>
+        {{/if}}
       </div>
     </div>
-    <div class="column is-2">
-      <div class="wind-box">
-        <div class="field">
-          <label class="label has-text-white">Wind Speed</label>
-        </div>
-        <div class="field">
-          <span class="icon is-large has-text-white">
-            <i class="fas fa-wind"></i>
-          </span>
-          {{#if lastReading}}
-            <p class="has-text-white-bis is-size-4">{{beaufortLevel}} Bft</p>
-            <p class="has-text-white-bis is-size-4">{{windCompassDirection}}</p>
-            <p class="has-text-white-bis is-size-4">Feels Like</p>
-            <p class="has-text-white-bis is-size-4">{{windChill}}</p>
-          {{else}}
-            <p class="has-text-white-bis">No Readings</p>
-          {{/if}}
-        </div>
+  </div>
+  <div class="column is-2">
+    <div class="wind-box">
+      <div class="field">
+        <label class="label has-text-white">Wind Speed</label>
+      </div>
+      <div class="field">
+        <span class="icon is-large has-text-white">
+          <i class="fas fa-wind"></i>
+        </span>
+        {{#if lastReading}}
+        <p class="has-text-white-bis is-size-4">{{beaufortLevel}} Bft</p>
+        <p class="has-text-white-bis is-size-4">{{windCompassDirection}}</p>
+        <p class="has-text-white-bis is-size-4">Feels Like</p>
+        <p class="has-text-white-bis is-size-4">{{windChill}}</p>
+        <p class="has-text-white-bis is-size-4">Max: </p>
+        <p class="has-text-white-bis is-size-4">Min: </p>
+        {{else}}
+        <p class="has-text-white-bis">No Readings</p>
+        {{/if}}
       </div>
     </div>
-    <div class="column is-2">
-      <div class="pressure-box">
-        <div class="field">
-          <label class="label has-text-white">Pressure</label>
-        </div>
-        <div class="field">
-          <span class="icon is-large has-text-white">
-            <i class="fas fa-tachometer-alt"></i>
-          </span>
-          {{#if lastReading}}
-            <p class="has-text-white-bis is-size-4">{{lastReading.pressure}} hPa</p>
-          {{else}}
-            <p class="has-text-white-bis">No Readings</p>
-          {{/if}}
-        </div>
+  </div>
+  <div class="column is-2">
+    <div class="pressure-box">
+      <div class="field">
+        <label class="label has-text-white">Pressure</label>
+      </div>
+      <div class="field">
+        <span class="icon is-large has-text-white">
+          <i class="fas fa-tachometer-alt"></i>
+        </span>
+        {{#if lastReading}}
+        <p class="has-text-white-bis is-size-4">{{lastReading.pressure}} hPa</p>
+        <p class="has-text-white-bis is-size-4">Max: </p>
+        <p class="has-text-white-bis is-size-4">Min: </p>
+        {{else}}
+        <p class="has-text-white-bis">No Readings</p>
+        {{/if}}
       </div>
     </div>
-    {{/each}}
+  </div>
+  {{/each}}
   {{else}}
-    <div class="column is-12">
-      <p class="has-text-white">No Readings</p>
-    </div>
+  <div class="column is-12">
+    <p class="has-text-white">No Readings</p>
+  </div>
   {{/if}}
 </div>

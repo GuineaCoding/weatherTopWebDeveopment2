@@ -20,13 +20,15 @@ export const stationStore = {
     const list = db.data.stations.find((station) => station.id === id);
   
     if (!list) {
-      // If the station with the specified ID is not found, return null or handle the error as per your application's logic
+      // If the station with the specified ID is not found, return null or handle the error
       return null;
     }
   
     // Fetch readings associated with the station using the readingStore
     list.readings = await readingStore.getReadingByStationId(list.id);
+    console.log(list)
     return list;
+    
   },
   //Add station function
   async addStation(station) {

@@ -6,17 +6,28 @@
   </div>
   {{/if}}
   <form action="/dashboard/addStation" method="POST">
-    <div class="field">
-      <p class="control has-icons-left">
-        <input class="input" type="text" placeholder="Station Name" name="name" required>
-      </p>
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div class="field">
+          <input class="input" type="text" placeholder="Station Name" name="name" required>
+        </div>
+        <div class="field">
+          <input class="input" type="number" placeholder="Latitude" name="latitude" required>
+        </div>
+        <div class="field">
+          <input class="input" type="number" placeholder="Longitude" name="longitude" required>
+        </div>
+      </div>
     </div>
-    <div class="field">
-      <p class="control">
-        <button class="button is-success">
-          Add Station
-        </button>
-      </p>
+          <div class="field">
+            <p class="control">
+              <button class="button is-success">
+                Add Station
+              </button>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </form>
 </section>

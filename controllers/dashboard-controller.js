@@ -23,6 +23,8 @@ export const dashboardController = {
     try {
       // Extract the 'name' property from the request body
       const { name } = request.body;
+      const {latitude} = request.body;
+      const {longitude} = request.body;
 
       // Check if 'name' is missing in the request body, and throw an error if it is
       if (!name) {
@@ -32,6 +34,8 @@ export const dashboardController = {
       // Create a new station object with the extracted name
       const newStation = {
         name: name,
+        latitude: latitude,
+        longitude: longitude
       };
       console.log(`adding Station ${newStation.name}`);
       await stationStore.addStation(newStation);
