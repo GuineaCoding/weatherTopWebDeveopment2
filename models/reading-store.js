@@ -108,6 +108,19 @@ function getBeaufortLevelDescription(windSpeed) {
   }
 }
 
+function getMinValueFromParameter(id, value) {
+  const foundStation = db.data.stations.find((station) => station.id === id);
+  const temperatureValues = foundStation.readings.map((reading) => reading[value]);
+  const min = Math.min(...temperatureValues);
+  return min;
+}
+
+function getMaxValueFromParameter(id, value) {
+  const foundStation = db.data.stations.find((station) => station.id === id);
+  const temperatureValues = foundStation.readings.map((reading) => reading[value]);
+  const max = Math.max(...temperatureValues);
+  return max;
+}
 
 export const readingStore = {
   async getAllReadings() {
@@ -125,7 +138,6 @@ export const readingStore = {
   // Function to get the last reading for the opened station based on the station ID
   async getLastReading(id) {
     await db.read();
-
     const lastReadings = db.data.stations.map((station) => {
       return station.id === id && Array.isArray(station.readings) && station.readings.length > 0
         ? station.readings[station.readings.length - 1]
@@ -134,13 +146,7 @@ export const readingStore = {
 
     // Find the station that matches the requested ID
     const foundStation = db.data.stations.find((station) => station.id === id);
-
-    // console.log(Math.min(foundStation.readings))
-
-    const min = Math.min.apply( null, db.data.foundStation.map((station) => station.readings.temperature));
-    console.log(db.data.stations.map((station) => station.readings))
     
-
     // If the station is not found or the station's readings array is empty, return null
     if (!foundStation || !foundStation.readings || foundStation.readings.length === 0) {
       return null;
@@ -160,6 +166,12 @@ export const readingStore = {
     const beaufortDescription = getBeaufortLevelDescription(windSpeed);
     const windChill = calculateWindChill(temperatureCelsius, windSpeed);
     const windCompassDirection = getWindCompassDirection(lastReading.windDirection);
+    const minTemperature = getMinValueFromParameter(id, "temperature");
+    const maxTemperature = getMaxValueFromParameter(id, "temperature");
+    const minWindSpeed = getMinValueFromParameter(id, "windSpeed");
+    const maxWindSpeed = getMaxValueFromParameter(id, "windSpeed");
+    const minPressure = getMinValueFromParameter(id, "pressure");
+    const maxPressure = getMaxValueFromParameter(id, "pressure");
 
     // Return the prepared object with the last reading and additional data
     return {
@@ -173,9 +185,13 @@ export const readingStore = {
       beaufortDescription: beaufortDescription,
       windChill: windChill,
       windCompassDirection: windCompassDirection,
-      // min: min,
+      minTemperature: minTemperature,
+      maxTemperature: maxTemperature,
+      minWindSpeed: minWindSpeed,
+      maxWindSpeed: maxWindSpeed,
+      minPressure: minPressure,
+      maxPressure: maxPressure,
     };
-    
   },
 
   // Function to add a new reading for the choosen station

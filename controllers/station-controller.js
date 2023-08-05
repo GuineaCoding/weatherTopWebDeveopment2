@@ -30,7 +30,7 @@ export const stationController = {
         station: station,
         lastReadings: lastReadings,
       };
-
+      console.log(viewData)
       response.render("station-view", viewData);
     } catch (error) {
       console.error("Error rendering station:", error);

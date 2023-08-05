@@ -106,6 +106,23 @@
           "stationId": "05"
         }
       ]
+    },
+    {
+      "name": "Test",
+      "latitude": "11",
+      "longitude": "11",
+      "id": "e02e1e41-b724-4a92-9f6e-402ae64bd0ac",
+      "readings": [
+        {
+          "code": 11,
+          "temperature": 11,
+          "windSpeed": 11,
+          "pressure": 11,
+          "windDirection": 11,
+          "id": "2c7f7c5f-7050-42cb-b303-0b8f43c2a53b",
+          "stationId": "e02e1e41-b724-4a92-9f6e-402ae64bd0ac"
+        }
+      ]
     }
   ]
 }

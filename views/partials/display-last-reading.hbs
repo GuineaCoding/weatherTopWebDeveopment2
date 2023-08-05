@@ -41,8 +41,8 @@
         {{#if lastReading}}
         <p class="has-text-white-bis is-size-4">{{lastReading.temperature}}°C</p>
         <p class="has-text-white-bis is-size-4">{{temperatureFahrenheit}}°F</p>
-        <p class="has-text-white-bis is-size-4">Max: </p>
-        <p class="has-text-white-bis is-size-4">Min: </p>
+        <p class="has-text-white-bis is-size-4">Max: {{maxTemperature}}</p>
+        <p class="has-text-white-bis is-size-4">Min: {{minTemperature}}</p>
         {{else}}
         <p class="has-text-white-bis">No Readings</p>
         {{/if}}
@@ -63,8 +63,8 @@
         <p class="has-text-white-bis is-size-4">{{windCompassDirection}}</p>
         <p class="has-text-white-bis is-size-4">Feels Like</p>
         <p class="has-text-white-bis is-size-4">{{windChill}}</p>
-        <p class="has-text-white-bis is-size-4">Max: </p>
-        <p class="has-text-white-bis is-size-4">Min: </p>
+        <p class="has-text-white-bis is-size-4">Max: {{maxWindSpeed}}</p>
+        <p class="has-text-white-bis is-size-4">Min: {{minWindSpeed}}</p>
         {{else}}
         <p class="has-text-white-bis">No Readings</p>
         {{/if}}
@@ -82,8 +82,8 @@
         </span>
         {{#if lastReading}}
         <p class="has-text-white-bis is-size-4">{{lastReading.pressure}} hPa</p>
-        <p class="has-text-white-bis is-size-4">Max: </p>
-        <p class="has-text-white-bis is-size-4">Min: </p>
+        <p class="has-text-white-bis is-size-4">Max: {{maxPressure}}</p>
+        <p class="has-text-white-bis is-size-4">Min:{{minPressure}} </p>
         {{else}}
         <p class="has-text-white-bis">No Readings</p>
         {{/if}}
