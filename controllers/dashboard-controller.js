@@ -1,18 +1,28 @@
 import { stationStore } from "../models/station-store.js";
+import { accountsController } from "./accounts-controller.js";
 
-// Define the dashboardController object with two functions: "index" and "addStation"
 export const dashboardController = {
-  // "index" function to display the dashboard view
   async index(request, response) {
     try {
-      const viewData = {
-        title: "Station Dashboard",
-        stations: await stationStore.getAllStations(), // Retrieve all stations from the stationStore
-      };
-      // Render the "dashboard-view" using the prepared data (viewData)
+      const loggedInUser = await accountsController.getLoggedInUser(request);
+      console.log(loggedInUser)
+
+      let viewData;
+      if (loggedInUser) {
+        // Retrieve stations based on the logged-in user's ID
+        const userStations = await stationStore.getStationsByUserId(loggedInUser.id);
+
+        viewData = {
+          title: "Dashboard",
+          stations: userStations, // Display stations associated with the logged-in user
+        };
+      } else {
+        // If user is not logged in, redirect to login-page
+        response.redirect("/login");
+      }
+
       response.render("dashboard-view", viewData);
     } catch (error) {
-      // If an error occurs during rendering, log the error and send an internal server error status
       console.error("Error rendering dashboard:", error);
       response.status(500).send("Internal Server Error");
     }
@@ -21,23 +31,26 @@ export const dashboardController = {
   // "addStation" function to handle adding a new station
   async addStation(request, response) {
     try {
-      // Extract the 'name' property from the request body
-      const { name } = request.body;
-      const {latitude} = request.body;
-      const {longitude} = request.body;
+      // Extract the 'name', 'latitude', and 'longitude' properties from the request body
+      const { name, latitude, longitude } = request.body;
 
       // Check if 'name' is missing in the request body, and throw an error if it is
       if (!name) {
         throw new Error("Station name is missing in the request body.");
       }
 
-      // Create a new station object with the extracted name
+      // Get the logged-in user
+      const loggedInUser = await accountsController.getLoggedInUser(request);
+
+      // Create a new station object with the extracted properties and the user ID
       const newStation = {
         name: name,
         latitude: latitude,
-        longitude: longitude
+        longitude: longitude,
+        userId: loggedInUser.id, // Use the 'id' property from the logged-in user
       };
-      console.log(`adding Station ${newStation.name}`);
+
+      // Add the new station to the stationStore
       await stationStore.addStation(newStation);
 
       // Redirect the user back to the dashboard after adding the station

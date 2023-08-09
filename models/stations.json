@@ -4,6 +4,7 @@
     {
       "id": "01",
       "name": "Tramore",
+      "userid": "3ad52697-6d98-4d80-8273-084de55a86c0",
       "readings": [
         {
           "id": "02",
@@ -28,57 +29,13 @@
           "windSpeed": 1,
           "pressure": 1005,
           "windDirection": 101
-        },
-        {
-          "code": 11,
-          "temperature": 11,
-          "windSpeed": 11,
-          "pressure": 11,
-          "windDirection": 11,
-          "id": "d88e4a47-e40a-4639-ac0c-54779264f2cc",
-          "stationId": "01"
-        },
-        {
-          "code": 111,
-          "temperature": 11,
-          "windSpeed": 11,
-          "pressure": 11,
-          "windDirection": 11,
-          "id": "64edf123-c103-4b06-90cf-6dea5fafd92c",
-          "stationId": "01"
-        },
-        {
-          "code": 11,
-          "temperature": 11,
-          "windSpeed": 11,
-          "pressure": 11,
-          "windDirection": 11,
-          "id": "86176c81-f9fa-4e27-83a8-c2c3d26e50d5",
-          "stationId": "01"
-        },
-        {
-          "code": 0,
-          "temperature": 0,
-          "windSpeed": 0,
-          "pressure": 0,
-          "windDirection": 0,
-          "id": "836bab7b-1989-4342-882f-62491a64b338",
-          "stationId": "01"
-        },
-        {
-          "code": 11,
-          "temperature": 11,
-          "windSpeed": 11,
-          "pressure": 1,
-          "windDirection": 11,
-          "id": "f29c57c1-cda1-47b0-b0c5-bc40571903d0",
-          "stationId": "01"
         }
       ]
     },
     {
       "id": "05",
       "name": "Dunmore",
+      "userid": "3ad52697-6d98-4d80-8273-084de55a86c0",
       "readings": [
         {
           "id": "06",
@@ -95,23 +52,15 @@
           "windSpeed": 3.5,
           "pressure": 1000,
           "windDirection": 102
-        },
-        {
-          "code": 11,
-          "temperature": 11,
-          "windSpeed": 11,
-          "pressure": 1,
-          "windDirection": 11,
-          "id": "a4c43339-54a7-473e-a481-0985f6178271",
-          "stationId": "05"
         }
       ]
     },
     {
-      "name": "Test",
+      "name": "test",
       "latitude": "11",
       "longitude": "11",
-      "id": "e02e1e41-b724-4a92-9f6e-402ae64bd0ac",
+      "userId": "de2c1e9c-ba9a-4e5d-8ef7-9922733e85bd",
+      "id": "8ae82a28-9c7f-4bcb-bee8-37b04ce25998",
       "readings": [
         {
           "code": 11,
@@ -119,8 +68,17 @@
           "windSpeed": 11,
           "pressure": 11,
           "windDirection": 11,
-          "id": "2c7f7c5f-7050-42cb-b303-0b8f43c2a53b",
-          "stationId": "e02e1e41-b724-4a92-9f6e-402ae64bd0ac"
+          "id": "a46bd904-f5e4-42c6-9867-5e863b2d13e9",
+          "stationId": "8ae82a28-9c7f-4bcb-bee8-37b04ce25998"
+        },
+        {
+          "code": 11,
+          "temperature": 11,
+          "windSpeed": 11,
+          "pressure": 11,
+          "windDirection": 12,
+          "id": "4c28c0f4-cac1-4c89-af13-1ff0f73eda9f",
+          "stationId": "8ae82a28-9c7f-4bcb-bee8-37b04ce25998"
         }
       ]
     }
