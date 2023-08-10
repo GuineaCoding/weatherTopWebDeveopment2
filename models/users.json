@@ -14,20 +14,6 @@
       "email": "marge@simpson.com",
       "password": "secret",
       "id": "2b6f0989-7b7f-4a38-ad26-aa06b922d751"
-    },
-    {
-      "firstName": "andrian",
-      "lastName": "test",
-      "email": "andrianwix@gmail.com",
-      "password": "12345",
-      "id": "799fc701-396d-420b-a5e1-4c1b8b278734"
-    },
-    {
-      "firstName": "Andrian",
-      "lastName": "Barbulat",
-      "email": "andrianwix111@gmail.com",
-      "password": "12345",
-      "id": "de2c1e9c-ba9a-4e5d-8ef7-9922733e85bd"
     }
   ]
 }

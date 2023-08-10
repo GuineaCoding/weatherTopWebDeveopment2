@@ -56,31 +56,13 @@
       ]
     },
     {
-      "name": "test",
+      "name": "11",
       "latitude": "11",
       "longitude": "11",
-      "userId": "de2c1e9c-ba9a-4e5d-8ef7-9922733e85bd",
-      "id": "8ae82a28-9c7f-4bcb-bee8-37b04ce25998",
-      "readings": [
-        {
-          "code": 11,
-          "temperature": 11,
-          "windSpeed": 11,
-          "pressure": 11,
-          "windDirection": 11,
-          "id": "a46bd904-f5e4-42c6-9867-5e863b2d13e9",
-          "stationId": "8ae82a28-9c7f-4bcb-bee8-37b04ce25998"
-        },
-        {
-          "code": 11,
-          "temperature": 11,
-          "windSpeed": 11,
-          "pressure": 11,
-          "windDirection": 12,
-          "id": "4c28c0f4-cac1-4c89-af13-1ff0f73eda9f",
-          "stationId": "8ae82a28-9c7f-4bcb-bee8-37b04ce25998"
-        }
-      ]
+      "userId": "3ad52697-6d98-4d80-8273-084de55a86c0",
+      "id": "90362410-e77c-4d21-a65d-ec5fbb08e1ce",
+      "userid": "3ad52697-6d98-4d80-8273-084de55a86c0",
+      "readings": []
     }
   ]
 }

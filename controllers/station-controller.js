@@ -2,7 +2,6 @@ import { readingStore } from "../models/reading-store.js";
 import { stationStore } from "../models/station-store.js";
 import { accountsController } from "./accounts-controller.js";
 
-
 // Define the stationController object
 export const stationController = {
   async index(request, response) {
@@ -14,7 +13,7 @@ export const stationController = {
       const loggedInUser = await accountsController.getLoggedInUser(request);
 
       // Fetch the station details using the stationStore's 'getStationById' function
-      const station = await stationStore.getStationById(stationId);
+      const station = await stationStore.getStationsByUserId(stationId);
 
       // Fetch the last reading associated with the station using the readingStore's 'getLastReading' function
       const lastReading = await readingStore.getLastReading(stationId);
@@ -45,7 +44,7 @@ export const stationController = {
   },
 
   async addReading(request, response) {
-    const station = await stationStore.getStationById(request.params.id);
+    const station = await stationStore.getStationsByUserId(request.params.id);
 
     // Extract the reading data from the request body
     const reading = {

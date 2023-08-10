@@ -49,4 +49,12 @@ export const accountsController = {
     const userEmail = request.cookies.station;
     return await userStore.getUserByEmail(userEmail);
   },
+
+  async ensureAuthenticated(request, response, next) {
+    const user = await accountsController.getLoggedInUser(request);
+    if (user) {
+      return next();
+    }
+    response.redirect("/login");
+  },
 };

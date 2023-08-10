@@ -131,7 +131,7 @@ export const readingStore = {
   // Function to retrieve readings for the opened station based on the station ID
   async getReadingByStationId(id) {
     await db.read();
-    const station = db.data.stations.find((station) => station.id === id);
+    const station = db.data.stations.filter((station) => station.id === id);
     return station.readings;
   },
 

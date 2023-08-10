@@ -1,53 +1,63 @@
 import { v4 } from "uuid";
-// Import the 'initStore' function from the '../utils/store-utils.js' file
 import { initStore } from "../utils/store-utils.js";
 import { readingStore } from "./reading-store.js";
+import { accountsController } from "../controllers/accounts-controller.js";
 
 // Call the 'initStore' function with the argument "stations" and store the returned data in the constant 'db'
 const db = initStore("stations");
 
 // Define the 'stationStore' object
 export const stationStore = {
-  // Define the 'getAllStations' function to retrieve all stations from the database
-  async getAllStations() {
-    await db.read();
-    // Return the array of stations from the 'db.data.stations'
-    return db.data.stations;
-  },
 
-  async getStationsByUserId(userid) {
-    await db.read();
-    return db.data.stations.filter((station) => station.userId === userid);
-  },  
+// Retrieve all stations associated with a specific user ID
+async getStationsByUserId(userid) {
+  // Read the database
+  await db.read();
 
-  async getStationById(id) {
-    await db.read();
-    const list = db.data.stations.find((station) => station.id === id);
+  // Filter stations based on the provided user ID
+  const stations = db.data.stations.filter((station) => station.userid === userid);
+  console.log(stations)
   
-    if (!list) {
-      // If the station with the specified ID is not found, return null or handle the error
-      return null;
-    }
-  
-    // Fetch readings associated with the station using the readingStore
-    list.readings = await readingStore.getReadingByStationId(list.id);
-    console.log(list)
-    return list;
-    
-  },
-  //Add station function
-  async addStation(station) {
-    //Check if station name which is added already exist
-    const existingStation = db.data.stations.find((s) => s.name === station.name);
-    if (existingStation) {
-      throw new Error("A station with the same name already exists.");
-    }
-    await db.read();
-    station.id = v4();
-    //Push station into database
-    db.data.stations.push(station);
-    await db.write();
-    return station;
-  },
+  // Iterate through each station and fetch its associated readings using the readingStore
+  for (const station of stations) {
+    station.readings = await readingStore.getReadingByStationId(station.id);
+  }
+
+  // Return the list of stations with their associated readings
+  return stations;
+},
+
+ // Add a new station to the database
+async addStation(request, station) {
+  // Get the currently logged-in user
+  const loggedInUser = await accountsController.getLoggedInUser(request);
+
+  // Retrieve stations associated with the logged-in user
+  const userStations = await stationStore.getStationsByUserId(loggedInUser.id);
+
+  // Check if a station with the same name already exists
+  const existingStation = userStations.find((s) => s.name === station.name);
+  if (existingStation) {
+    throw new Error("A station with the same name already exists within your account.");
+  }
+
+  // Read the database
+  await db.read();
+
+  // Generate a unique ID for the new station
+  station.id = v4();
+
+  // Update the "userid" and initialize an empty array for readings
+  station.userid = loggedInUser.id;
+  station.readings = [];
+
+  // Add the new station to the database
+  db.data.stations.push(station);
+  await db.write();
+
+  // Return the newly added station
+  return station;
+},
+
 
 };

@@ -5,33 +5,32 @@ export const dashboardController = {
   async index(request, response) {
     try {
       const loggedInUser = await accountsController.getLoggedInUser(request);
-      console.log(loggedInUser)
 
-      let viewData;
       if (loggedInUser) {
         // Retrieve stations based on the logged-in user's ID
         const userStations = await stationStore.getStationsByUserId(loggedInUser.id);
 
-        viewData = {
+        const viewData = {
           title: "Dashboard",
           stations: userStations, // Display stations associated with the logged-in user
         };
+
+        // Render the "dashboard-view" template only when the user is logged in
+        response.render("dashboard-view", viewData);
       } else {
-        // If user is not logged in, redirect to login-page
+        // If the user is not logged in, redirect to the login page
         response.redirect("/login");
       }
-
-      response.render("dashboard-view", viewData);
     } catch (error) {
       console.error("Error rendering dashboard:", error);
       response.status(500).send("Internal Server Error");
     }
   },
 
-  // "addStation" function to handle adding a new station
+  // Route handler for adding a new station
   async addStation(request, response) {
     try {
-      // Extract the 'name', 'latitude', and 'longitude' properties from the request body
+      const loggedInUser = await accountsController.getLoggedInUser(request);
       const { name, latitude, longitude } = request.body;
 
       // Check if 'name' is missing in the request body, and throw an error if it is
@@ -39,31 +38,44 @@ export const dashboardController = {
         throw new Error("Station name is missing in the request body.");
       }
 
-      // Get the logged-in user
-      const loggedInUser = await accountsController.getLoggedInUser(request);
-
       // Create a new station object with the extracted properties and the user ID
       const newStation = {
         name: name,
         latitude: latitude,
         longitude: longitude,
-        userId: loggedInUser.id, // Use the 'id' property from the logged-in user
+        userId: loggedInUser.id,
       };
 
-      // Add the new station to the stationStore
-      await stationStore.addStation(newStation);
+      // Add the new station to the stationStore, checking for duplicate station names
+      await stationStore.addStation(request, newStation);
 
-      // Redirect the user back to the dashboard after adding the station
-      response.redirect("/dashboard");
-    } catch (error) {
-      // If an error occurs during the station addition process, handle the error and show the dashboard view
+      // Retrieve stations based on the logged-in user's ID (including the newly added station)
+      const userStations = await stationStore.getStationsByUserId(loggedInUser.id);
+
       const viewData = {
         title: "Station Dashboard",
-        stations: await stationStore.getAllStations(), // Retrieve all stations from the stationStore
-        existingStation: true,
-        errorMessage: error.message, // Store the error message to display it in the view
+        stations: userStations,
+        existingStation: false, // Reset this flag as we've successfully added a station
       };
+
+      // Render the dashboard-view template
       response.render("dashboard-view", viewData);
+    } catch (error) {
+      // Handle the error and show the dashboard view
+      try {
+        const loggedInUser = await accountsController.getLoggedInUser(request);
+        const userStations = await stationStore.getStationsByUserId(loggedInUser.id);
+        const viewData = {
+          title: "Station Dashboard",
+          stations: userStations,
+          existingStation: true,
+          errorMessage: error.message,
+        };
+        response.render("dashboard-view", viewData);
+      } catch (innerError) {
+        console.error("Error rendering dashboard:", innerError);
+        response.status(500).send("Internal Server Error");
+      }
     }
   },
 };
