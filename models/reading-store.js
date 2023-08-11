@@ -4,6 +4,10 @@ import { read } from "fs-extra";
 
 const db = initStore("stations");
 
+function findStationById(id) {
+  return db.data.stations.find((station) => station.id === id);
+}
+
 // Function to determine the Beaufort level based on wind speed
 function getBeaufortLevel(windSpeed) {
   // Check the wind speed and return the corresponding Beaufort level
@@ -109,14 +113,14 @@ function getBeaufortLevelDescription(windSpeed) {
 }
 
 function getMinValueFromParameter(id, value) {
-  const foundStation = db.data.stations.find((station) => station.id === id);
+  const foundStation = findStationById(id);
   const temperatureValues = foundStation.readings.map((reading) => reading[value]);
   const min = Math.min(...temperatureValues);
   return min;
 }
 
 function getMaxValueFromParameter(id, value) {
-  const foundStation = db.data.stations.find((station) => station.id === id);
+  const foundStation = findStationById(id);
   const temperatureValues = foundStation.readings.map((reading) => reading[value]);
   const max = Math.max(...temperatureValues);
   return max;
@@ -129,11 +133,11 @@ export const readingStore = {
   },
 
   // Function to retrieve readings for the opened station based on the station ID
-  async getReadingByStationId(id) {
-    await db.read();
-    const station = db.data.stations.filter((station) => station.id === id);
-    return station.readings;
-  },
+async getReadingByStationId(id) {
+  await db.read();
+  const station = findStationById(id);
+  return station.readings;
+},
 
   // Function to get the last reading for the opened station based on the station ID
   async getLastReading(id) {
@@ -145,7 +149,7 @@ export const readingStore = {
     });
 
     // Find the station that matches the requested ID
-    const foundStation = db.data.stations.find((station) => station.id === id);
+    const foundStation = findStationById(id);
     
     // If the station is not found or the station's readings array is empty, return null
     if (!foundStation || !foundStation.readings || foundStation.readings.length === 0) {
@@ -154,7 +158,6 @@ export const readingStore = {
 
     // Find the last non-null reading in the lastReadings array
     const lastReading = lastReadings.find((reading) => reading !== null);
-
     // If no last non-null reading is found, return null
     if (!lastReading) {
       return null;
