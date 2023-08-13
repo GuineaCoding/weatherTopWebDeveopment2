@@ -1,6 +1,7 @@
 import { v4 } from "uuid";
 import { initStore } from "../utils/store-utils.js";
 import { read } from "fs-extra";
+import Handlebars from "handlebars";
 
 const db = initStore("stations");
 
@@ -81,36 +82,103 @@ function getWindCompassDirection(windDirectionDegrees) {
   return directions[index % 16];
 }
 
+function getWeatherDescription(weatherCode) {
+  const weatherDescriptions = {
+    100: "Clear",
+    200: "Partial clouds",
+    300: "Cloudy",
+    400: "Light Showers",
+    500: "Heavy Showers",
+    600: "Rain",
+    700: "Snow",
+    800: "Thunder"
+  };
+
+  return weatherDescriptions[weatherCode]; 
+}
+
 // Function to get the Beaufort level description based on wind speed
 function getBeaufortLevelDescription(windSpeed) {
-  if (windSpeed < 0.3) {
+  if (windSpeed < 1) {
     return 'Calm';
-  } else if (windSpeed < 1.6) {
-    return 'Light air';
-  } else if (windSpeed < 3.4) {
-    return 'Light breeze';
-  } else if (windSpeed < 5.5) {
-    return 'Gentle breeze';
-  } else if (windSpeed < 8) {
-    return 'Moderate breeze';
-  } else if (windSpeed < 10.8) {
-    return 'Fresh breeze';
-  } else if (windSpeed < 13.9) {
-    return 'Strong breeze';
-  } else if (windSpeed < 17.2) {
-    return 'Near gale';
-  } else if (windSpeed < 20.8) {
+  } else if (windSpeed <= 5) {
+    return 'Light Air';
+  } else if (windSpeed <= 11) {
+    return 'Light Breeze';
+  } else if (windSpeed <= 19) {
+    return 'Gentle Breeze';
+  } else if (windSpeed <= 28) {
+    return 'Moderate Breeze';
+  } else if (windSpeed <= 38) {
+    return 'Fresh Breeze';
+  } else if (windSpeed <= 49) {
+    return 'Strong Breeze';
+  } else if (windSpeed <= 61) {
+    return 'Near Gale';
+  } else if (windSpeed <= 74) {
     return 'Gale';
-  } else if (windSpeed < 24.5) {
-    return 'Strong gale';
-  } else if (windSpeed < 28.5) {
-    return 'Storm';
-  } else if (windSpeed < 32.7) {
-    return 'Violent storm';
+  } else if (windSpeed <= 88) {
+    return 'Severe Gale';
+  } else if (windSpeed <= 102) {
+    return 'Strong Storm';
   } else {
-    return 'Hurricane force';
+    return 'Violent Storm';
   }
 }
+
+Handlebars.registerHelper("beaufortIcon", function (beaufortDescription) {
+  const iconMapping = {
+    "Calm": "fa-rainbow",
+    "Light air": "fa-feather",
+    "Light breeze": "fa-smog",
+    "Gentle breeze": "fa-water",
+    "Moderate breeze": "fa-wind",
+    "Fresh breeze": "fa-wind",
+    "Strong breeze": "fa-wind",
+    "Near gale": "fa-icicles", 
+    "Gale": "fa-meteor",
+    "Strong gale": "fa-cloud-meatball",
+    "Storm": "fa-tornado",
+    "Violent storm": "fa-house-tsunami",
+    "Hurricane force": "fa-hurricane",
+    default: "fa-question", // Default icon
+  };
+
+  const iconName = iconMapping[beaufortDescription] || iconMapping.default;
+
+  return new Handlebars.SafeString(`<i class="fa-solid ${iconName}"></i>`);
+});
+
+// Helper function to get the temperature range and corresponding Font Awesome icon based on temperature
+Handlebars.registerHelper('temperatureRangeAndIcon', function(temperature) {
+  let temperatureRange = '';
+
+  if (temperature < 0) {
+    temperatureRange = 'Freezing';
+  } else if (temperature < 10) {
+    temperatureRange = 'Cold';
+  } else if (temperature < 20) {
+    temperatureRange = 'Moderate';
+  } else if (temperature < 30) {
+    temperatureRange = 'Warm';
+  } else {
+    temperatureRange = 'Hot';
+  }
+
+  const temperatureIcons = {
+    Freezing: 'fa-temperature-empty',
+    Cold: 'fa-temperature-quarter', 
+    Moderate: 'fa-solid fa-solid fa-temperature-half', 
+    Warm: 'fa-temperature-full',
+    Hot: 'fa-temperature-high', 
+  };
+
+  const temperatureIcon = temperatureIcons[temperatureRange];
+
+  return new Handlebars.SafeString(`<i class="fa-solid ${temperatureIcon}"></i>`);
+});
+
+
 
 function getMinValueFromParameter(id, value) {
   const foundStation = findStationById(id);
@@ -155,7 +223,7 @@ async getReadingByStationId(id) {
     if (!foundStation || !foundStation.readings || foundStation.readings.length === 0) {
       return null;
     }
-
+    
     // Find the last non-null reading in the lastReadings array
     const lastReading = lastReadings.find((reading) => reading !== null);
     // If no last non-null reading is found, return null
@@ -163,6 +231,7 @@ async getReadingByStationId(id) {
       return null;
     }
     const temperatureCelsius = lastReading.temperature;
+    const weatherDescription = getWeatherDescription(lastReading.code);
     const temperatureFahrenheit = temperatureCelsius * 9 / 5 + 32;
     const windSpeed = lastReading.windSpeed;
     const beaufortLevel = getBeaufortLevel(windSpeed);
@@ -194,6 +263,7 @@ async getReadingByStationId(id) {
       maxWindSpeed: maxWindSpeed,
       minPressure: minPressure,
       maxPressure: maxPressure,
+      weatherDescription: weatherDescription,
     };
   },
 

@@ -105,6 +105,42 @@
           "windDirection": 11,
           "id": "1f1f635e-a886-4428-be9d-eac003a0ae90",
           "stationId": "cf8c5a9a-1ae4-48a5-9755-16136887a2b1"
+        },
+        {
+          "code": 11,
+          "temperature": 11,
+          "windSpeed": 444,
+          "pressure": 11,
+          "windDirection": 11,
+          "id": "ca89b730-40d9-44d9-a604-e5d60a7b25ff",
+          "stationId": "cf8c5a9a-1ae4-48a5-9755-16136887a2b1"
+        },
+        {
+          "code": 22,
+          "temperature": 22,
+          "windSpeed": 20,
+          "pressure": 21,
+          "windDirection": 21,
+          "id": "9b1bfa0a-8b13-4c83-887f-1f34970e402b",
+          "stationId": "cf8c5a9a-1ae4-48a5-9755-16136887a2b1"
+        },
+        {
+          "code": 11,
+          "temperature": 11,
+          "windSpeed": 0,
+          "pressure": 11,
+          "windDirection": 11,
+          "id": "3fcb6447-4431-4728-88b1-58779d056276",
+          "stationId": "cf8c5a9a-1ae4-48a5-9755-16136887a2b1"
+        },
+        {
+          "code": 11,
+          "temperature": 11,
+          "windSpeed": 1,
+          "pressure": 11,
+          "windDirection": 11,
+          "id": "2e0302f0-f096-41dd-a352-aebdc12bee13",
+          "stationId": "cf8c5a9a-1ae4-48a5-9755-16136887a2b1"
         }
       ]
     },
@@ -158,8 +194,33 @@
           "windDirection": 11,
           "id": "2d4a400d-125d-49e7-bedf-4a4ebbd60c86",
           "stationId": "81b2999e-4bd3-4a9f-9359-402edb8d73a5"
+        },
+        {
+          "code": 100,
+          "temperature": 10,
+          "windSpeed": 11,
+          "pressure": 11,
+          "windDirection": 11,
+          "id": "8add85df-6e8f-4af0-85b6-1b8dee25d0bb",
+          "stationId": "81b2999e-4bd3-4a9f-9359-402edb8d73a5"
         }
       ]
+    },
+    {
+      "name": "11",
+      "latitude": "11",
+      "longitude": "11",
+      "userId": "b9bd364e-3963-46ff-9237-61b5588f4bd9",
+      "id": "20a6574d-e29e-466f-83b5-5103766420b5",
+      "readings": []
+    },
+    {
+      "name": "111",
+      "latitude": 90,
+      "longitude": 180,
+      "userId": "b9bd364e-3963-46ff-9237-61b5588f4bd9",
+      "id": "5899cbea-d2f4-4854-96c8-33a2ed773ec6",
+      "readings": []
     }
   ]
 }

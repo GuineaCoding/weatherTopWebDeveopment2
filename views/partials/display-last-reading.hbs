@@ -25,7 +25,7 @@
         </span>
       </div>
       <div class="field">
-        <label class="label has-text-white">{{beaufortDescription}}</label>
+        <label class="label has-text-white">{{weatherDescription}}</label>
       </div>
     </div>
   </div>
@@ -56,13 +56,14 @@
       </div>
       <div class="field">
         <span class="icon is-large has-text-white">
-          <i class="fas fa-wind"></i>
+          {{beaufortIcon beaufortDescription}}
         </span>
         {{#if lastReading}}
         <p class="has-text-white-bis is-size-4">{{beaufortLevel}} Bft</p>
         <p class="has-text-white-bis is-size-4">{{windCompassDirection}}</p>
         <p class="has-text-white-bis is-size-4">Feels Like</p>
         <p class="has-text-white-bis is-size-4">{{windChill}}</p>
+        <p class="has-text-white-bis is-size-4"></p> {{beaufortDescription}}</p>
         <p class="has-text-white-bis is-size-4">Max: {{maxWindSpeed}}</p>
         <p class="has-text-white-bis is-size-4">Min: {{minWindSpeed}}</p>
         {{else}}

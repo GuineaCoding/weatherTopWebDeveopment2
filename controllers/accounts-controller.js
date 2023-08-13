@@ -35,13 +35,19 @@ export const accountsController = {
   },
 
   async authenticate(request, response) {
-    const user = await userStore.getUserByEmail(request.body.email);
-    if (user) {
+    const { email, password } = request.body;
+    const user = await userStore.getUserByEmail(email);
+  
+    if (user && user.password === password) {
       response.cookie("station", user.email);
       console.log(`logging in ${user.email}`);
       response.redirect("/dashboard");
     } else {
-      response.redirect("/login");
+      const viewData = {
+        title: "Login to the Service",
+        errorMessage: "Incorrect email or password. Please try again.",
+      };
+      response.render("login-view", viewData);
     }
   },
 

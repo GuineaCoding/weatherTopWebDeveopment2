@@ -14,6 +14,13 @@
       "email": "marge@simpson.com",
       "password": "secret",
       "id": "2b6f0989-7b7f-4a38-ad26-aa06b922d751"
+    },
+    {
+      "firstName": "Andrian",
+      "lastName": "Barbulat",
+      "email": "andrianwix24@gmail.com",
+      "password": "12345",
+      "id": "b9bd364e-3963-46ff-9237-61b5588f4bd9"
     }
   ]
 }

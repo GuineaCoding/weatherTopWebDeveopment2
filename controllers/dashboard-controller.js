@@ -32,32 +32,50 @@ export const dashboardController = {
     try {
       const loggedInUser = await accountsController.getLoggedInUser(request);
       const { name, latitude, longitude } = request.body;
-
-      // Check if 'name' is missing in the request body, and throw an error if it is
+  
+      // Check if 'name', 'latitude', and 'longitude' are missing in the request body, and throw an error if any of them are missing
       if (!name) {
         throw new Error("Station name is missing in the request body.");
       }
-
+      if (!latitude) {
+        throw new Error("Latitude is missing in the request body.");
+      }
+      if (!longitude) {
+        throw new Error("Longitude is missing in the request body.");
+      }
+  
+      // Convert latitude and longitude to numbers
+      const numericLatitude = parseFloat(latitude);
+      const numericLongitude = parseFloat(longitude);
+  
+      // Validate latitude and longitude ranges
+      if (numericLatitude < -90 || numericLatitude > 90) {
+        throw new Error("Latitude must be between -90 and 90 degrees.");
+      }
+      if (numericLongitude < -180 || numericLongitude > 180) {
+        throw new Error("Longitude must be between -180 and 180 degrees.");
+      }
+  
       // Create a new station object with the extracted properties and the user ID
       const newStation = {
         name: name,
-        latitude: latitude,
-        longitude: longitude,
+        latitude: numericLatitude,
+        longitude: numericLongitude,
         userId: loggedInUser.id,
       };
-
+  
       // Add the new station to the stationStore, checking for duplicate station names
       await stationStore.addStation(request, newStation);
-
+  
       // Retrieve stations based on the logged-in user's ID (including the newly added station)
       const userStations = await stationStore.getStationsByUserId(loggedInUser.id);
-
+  
       const viewData = {
         title: "Station Dashboard",
         stations: userStations,
         existingStation: false, // Reset this flag as we've successfully added a station
       };
-
+  
       // Render the dashboard-view template
       response.render("dashboard-view", viewData);
     } catch (error) {
@@ -77,5 +95,5 @@ export const dashboardController = {
         response.status(500).send("Internal Server Error");
       }
     }
-  },
+  },  
 };
