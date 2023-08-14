@@ -141,6 +141,24 @@
           "windDirection": 11,
           "id": "2e0302f0-f096-41dd-a352-aebdc12bee13",
           "stationId": "cf8c5a9a-1ae4-48a5-9755-16136887a2b1"
+        },
+        {
+          "code": 100,
+          "temperature": 11,
+          "windSpeed": 11,
+          "pressure": 11,
+          "windDirection": 11,
+          "id": "b1e72826-a005-4ec6-8296-3206580de753",
+          "stationId": "cf8c5a9a-1ae4-48a5-9755-16136887a2b1"
+        },
+        {
+          "code": 300,
+          "temperature": 11,
+          "windSpeed": 11,
+          "pressure": 11,
+          "windDirection": 11,
+          "id": "37d45195-a452-4bf9-a6ec-0fb0d3388b2c",
+          "stationId": "cf8c5a9a-1ae4-48a5-9755-16136887a2b1"
         }
       ]
     },
@@ -220,6 +238,14 @@
       "longitude": 180,
       "userId": "b9bd364e-3963-46ff-9237-61b5588f4bd9",
       "id": "5899cbea-d2f4-4854-96c8-33a2ed773ec6",
+      "readings": []
+    },
+    {
+      "name": "15",
+      "latitude": -1,
+      "longitude": -1,
+      "userId": "2b6f0989-7b7f-4a38-ad26-aa06b922d751",
+      "id": "f78473bb-659e-4de1-bfd4-ae9e56331b68",
       "readings": []
     }
   ]

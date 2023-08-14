@@ -1,22 +1,35 @@
-
 <form class="box" action="/station/{{station.id}}/addreading" method="POST">
   <label>Add details:</label>
   <div class="field is-horizontal">
     <div class="field-body">
-      <div class="field">
-        <input class="input" type="number" placeholder="Code" name="code" required>
+      <div class="field is-narrow">
+        <div class="control">
+          <div class="select is-fullwidth">
+            <select name="code" required>
+              <option value="" disabled selected>Select Code</option>
+              <option value="100">100</option>
+              <option value="200">200</option>
+              <option value="300">300</option>
+              <option value="400">400</option>
+              <option value="500">500</option>
+              <option value="600">600</option>
+              <option value="700">700</option>
+              <option value="800">800</option>
+            </select>
+          </div>
+        </div>
       </div>
       <div class="field">
         <input class="input" type="number" placeholder="Enter Temperature" name="temperature" required>
       </div>
       <div class="field">
-        <input class="input" type="number" placeholder="Enter Wind Speed" name="windSpeed" required>
+        <input class="input" type="number" placeholder="Enter Wind Speed" name="windSpeed" min="0" required>
       </div>
       <div class="field">
-        <input type="number" class="input" placeholder="Enter Pressure" name="pressure" required>
+        <input type="number" class="input" placeholder="Enter Pressure" name="pressure" min="0"required>
       </div>
       <div class="field">
-        <input type="number" class="input" placeholder="Enter Wind Direction" name="windDirection" required>
+        <input type="number" class="input" placeholder="Enter Wind Direction" name="windDirection" min="0" max="359" required>
       </div>
     </div>
   </div>
