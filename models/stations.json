@@ -28,51 +28,6 @@
           "windSpeed": 1,
           "pressure": 1005,
           "windDirection": 101
-        },
-        {
-          "code": 11,
-          "temperature": 11,
-          "windSpeed": 11,
-          "pressure": 11,
-          "windDirection": 11,
-          "id": "d88e4a47-e40a-4639-ac0c-54779264f2cc",
-          "stationId": "01"
-        },
-        {
-          "code": 111,
-          "temperature": 11,
-          "windSpeed": 11,
-          "pressure": 11,
-          "windDirection": 11,
-          "id": "64edf123-c103-4b06-90cf-6dea5fafd92c",
-          "stationId": "01"
-        },
-        {
-          "code": 11,
-          "temperature": 11,
-          "windSpeed": 11,
-          "pressure": 11,
-          "windDirection": 11,
-          "id": "86176c81-f9fa-4e27-83a8-c2c3d26e50d5",
-          "stationId": "01"
-        },
-        {
-          "code": 0,
-          "temperature": 0,
-          "windSpeed": 0,
-          "pressure": 0,
-          "windDirection": 0,
-          "id": "836bab7b-1989-4342-882f-62491a64b338",
-          "stationId": "01"
-        },
-        {
-          "code": 11,
-          "temperature": 11,
-          "windSpeed": 11,
-          "pressure": 1,
-          "windDirection": 11,
-          "id": "f29c57c1-cda1-47b0-b0c5-bc40571903d0",
-          "stationId": "01"
         }
       ]
     },
@@ -97,127 +52,15 @@
           "windDirection": 102
         },
         {
-          "code": 11,
+          "code": 800,
           "temperature": 11,
-          "windSpeed": 11,
-          "pressure": 1,
-          "windDirection": 11,
-          "id": "a4c43339-54a7-473e-a481-0985f6178271",
+          "windSpeed": 41,
+          "pressure": 31,
+          "windDirection": 324,
+          "id": "1dde907c-ef68-4fe5-a36a-94d40abf2cd7",
           "stationId": "05"
         }
       ]
-    },
-    {
-      "name": "weq",
-      "id": "5994bdc0-9e46-413d-b6bb-afc05e8319da",
-      "readings": [
-        {
-          "code": 11,
-          "temperature": 11,
-          "windSpeed": 11,
-          "pressure": 11,
-          "windDirection": 11,
-          "id": "ba997b4c-b0e8-4541-9b5f-d902b9defa6f",
-          "stationId": "5994bdc0-9e46-413d-b6bb-afc05e8319da"
-        },
-        {
-          "code": 11,
-          "temperature": 11,
-          "windSpeed": 11,
-          "pressure": 11,
-          "windDirection": 11,
-          "id": "e1540e88-8448-4e5b-b070-19c0f5ee9104",
-          "stationId": "5994bdc0-9e46-413d-b6bb-afc05e8319da"
-        }
-      ]
-    },
-    {
-      "name": "rrr",
-      "id": "67e2cf28-c799-42bb-82de-68052ded2ddf",
-      "readings": [
-        {
-          "code": 11,
-          "temperature": 11,
-          "windSpeed": 11,
-          "pressure": 11,
-          "windDirection": 11,
-          "id": "7b53ed50-8a6e-4654-8f8c-b5402b4bb1b7",
-          "stationId": "67e2cf28-c799-42bb-82de-68052ded2ddf"
-        }
-      ]
-    },
-    {
-      "name": "11",
-      "id": "35912396-eeb7-43f2-a114-aa7c2df88ef5",
-      "readings": [
-        {
-          "code": 11,
-          "temperature": 11,
-          "windSpeed": 11,
-          "pressure": 11,
-          "windDirection": 11,
-          "id": "40a3cd4e-40ba-49f8-ad9f-a9b6e98505f1",
-          "stationId": "35912396-eeb7-43f2-a114-aa7c2df88ef5"
-        }
-      ]
-    },
-    {
-      "name": "111",
-      "id": "9407d655-ad9d-4f17-9107-3bff286b57f9",
-      "readings": [
-        {
-          "code": 11,
-          "temperature": 11,
-          "windSpeed": 11,
-          "pressure": 11,
-          "windDirection": 1,
-          "id": "571a2f1e-b929-4ac1-85ed-d63a2c676e9c",
-          "stationId": "9407d655-ad9d-4f17-9107-3bff286b57f9"
-        }
-      ]
-    },
-    {
-      "name": "1111",
-      "id": "5fabe00b-b01f-42ba-8229-1fb05484bab0"
-    },
-    {
-      "name": "12345",
-      "id": "b1008dd6-0cf7-4713-9c08-dfa5deaf5940",
-      "readings": [
-        {
-          "code": 11,
-          "temperature": 11,
-          "windSpeed": 11,
-          "pressure": 11,
-          "windDirection": 11,
-          "id": "bf9d85c9-20d0-4440-b3c8-64f39fbf7d4e",
-          "stationId": "b1008dd6-0cf7-4713-9c08-dfa5deaf5940"
-        },
-        {
-          "code": 11,
-          "temperature": 11,
-          "windSpeed": 11,
-          "pressure": 11,
-          "windDirection": 11,
-          "id": "3a6cab38-fc43-4d69-b062-734c7a6dbc73",
-          "stationId": "b1008dd6-0cf7-4713-9c08-dfa5deaf5940"
-        }
-      ]
-    },
-    {
-      "name": "123456",
-      "id": "1b5cbe48-d1ce-4dd8-98ef-dda39b08a42c"
-    }
-  ],
-  "readings": [
-    {
-      "code": 11,
-      "temperature": 11,
-      "windSpeed": 11,
-      "Pressure": null,
-      "windDirection": 11,
-      "id": "7ea79140-4f0b-48f8-84dc-2694c40fdca0",
-      "stationId": "01"
     }
   ]
 }

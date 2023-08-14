@@ -1,6 +1,4 @@
 <div id="last-readings" class="columns is-multiline">
-  {{#if lastReadings.length}}
-    {{#each lastReadings}}
     <div class="column is-3">
       <div class="box hero has-text-white">
         <div class="field">
@@ -8,6 +6,8 @@
         </div>
       </div>
     </div>
+      {{#if lastReadings.length}}
+    {{#each lastReadings}}
     <div class="column is-3">
       <div class="weather-box">
         <div class="field">
@@ -19,7 +19,7 @@
           </span>
         </div>
         <div class="field">
-          <label class="label has-text-white">{{beaufortDescription}}</label>
+          <p class="label has-text-white">{{weatherDescription}}</p>
         </div>
       </div>
     </div>
@@ -54,6 +54,7 @@
             <p class="has-text-white-bis is-size-4">{{beaufortLevel}} Bft</p>
             <p class="has-text-white-bis is-size-4">{{windCompassDirection}}</p>
             <p class="has-text-white-bis is-size-4">Feels Like</p>
+            <p class="has-text-white-bis is-size-4">{{beaufortDescription}}</p>
             <p class="has-text-white-bis is-size-4">{{windChill}}</p>
           {{else}}
             <p class="has-text-white-bis">No Readings</p>

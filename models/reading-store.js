@@ -6,34 +6,31 @@ const db = initStore("stations");
 
 // Function to determine the Beaufort level based on wind speed
 function getBeaufortLevel(windSpeed) {
-  // Check the wind speed and return the corresponding Beaufort level
-  // Each condition represents a Beaufort level range
-  if (windSpeed < 0.3) {
+  // Check wind speed ranges and return corresponding Beaufort level
+  if (windSpeed < 0.5) {
     return 0;
-  } else if (windSpeed < 1.6) {
+  } else if (windSpeed <= 7) {
     return 1;
-  } else if (windSpeed < 3.4) {
+  } else if (windSpeed <= 13.8) {
     return 2;
-  } else if (windSpeed < 5.5) {
+  } else if (windSpeed <= 20.7) {
     return 3;
-  } else if (windSpeed < 8) {
+  } else if (windSpeed <= 28.5) {
     return 4;
-  } else if (windSpeed < 10.8) {
+  } else if (windSpeed <= 38.8) {
     return 5;
-  } else if (windSpeed < 13.9) {
+  } else if (windSpeed <= 49.9) {
     return 6;
-  } else if (windSpeed < 17.2) {
+  } else if (windSpeed <= 61.2) {
     return 7;
-  } else if (windSpeed < 20.8) {
+  } else if (windSpeed <= 74.5) {
     return 8;
-  } else if (windSpeed < 24.5) {
+  } else if (windSpeed <= 88.5) {
     return 9;
-  } else if (windSpeed < 28.5) {
+  } else if (windSpeed <= 102.8) {
     return 10;
-  } else if (windSpeed < 32.7) {
-    return 11;
   } else {
-    return 12;
+    return 11; // Maximum value for the provided ranges
   }
 }
 
@@ -79,34 +76,50 @@ function getWindCompassDirection(windDirectionDegrees) {
 
 // Function to get the Beaufort level description based on wind speed
 function getBeaufortLevelDescription(windSpeed) {
-  if (windSpeed < 0.3) {
+  // Check wind speed ranges and return corresponding Beaufort level description
+  if (windSpeed < 0.5) {
     return 'Calm';
-  } else if (windSpeed < 1.6) {
-    return 'Light air';
-  } else if (windSpeed < 3.4) {
-    return 'Light breeze';
-  } else if (windSpeed < 5.5) {
-    return 'Gentle breeze';
-  } else if (windSpeed < 8) {
-    return 'Moderate breeze';
-  } else if (windSpeed < 10.8) {
-    return 'Fresh breeze';
-  } else if (windSpeed < 13.9) {
-    return 'Strong breeze';
-  } else if (windSpeed < 17.2) {
-    return 'Near gale';
-  } else if (windSpeed < 20.8) {
+  } else if (windSpeed <= 7) {
+    return 'Light Air';
+  } else if (windSpeed <= 13.8) {
+    return 'Light Breeze';
+  } else if (windSpeed <= 20.7) {
+    return 'Gentle Breeze';
+  } else if (windSpeed <= 28.5) {
+    return 'Moderate Breeze';
+  } else if (windSpeed <= 38.8) {
+    return 'Fresh Breeze';
+  } else if (windSpeed <= 49.9) {
+    return 'Strong Breeze';
+  } else if (windSpeed <= 61.2) {
+    return 'Near Gale';
+  } else if (windSpeed <= 74.5) {
     return 'Gale';
-  } else if (windSpeed < 24.5) {
-    return 'Strong gale';
-  } else if (windSpeed < 28.5) {
-    return 'Storm';
-  } else if (windSpeed < 32.7) {
-    return 'Violent storm';
+  } else if (windSpeed <= 88.5) {
+    return 'Severe Gale';
+  } else if (windSpeed <= 102.8) {
+    return 'Strong Storm';
   } else {
-    return 'Hurricane force';
+    return 'Violent Storm';
   }
 }
+
+// Function to get the weather description based on weather code
+function getWeatherDescription(code) {
+  const weatherDescriptions = {
+    100: "Clear",
+    200: "Partial clouds",
+    300: "Cloudy",
+    400: "Light Showers",
+    500: "Heavy Showers",
+    600: "Rain",
+    700: "Snow",
+    800: "Thunder",
+  };
+
+  return weatherDescriptions[code];
+}
+
 
 export const readingStore = {
   async getAllReadings() {
@@ -151,6 +164,7 @@ export const readingStore = {
     const windSpeed = lastReading.windSpeed;
     const beaufortLevel = getBeaufortLevel(windSpeed);
     const beaufortDescription = getBeaufortLevelDescription(windSpeed);
+    const weatherDescription = getWeatherDescription(lastReading.code);
     const windChill = calculateWindChill(temperatureCelsius, windSpeed);
     const windCompassDirection = getWindCompassDirection(lastReading.windDirection);
 
@@ -164,6 +178,7 @@ export const readingStore = {
       beaufortDescription: beaufortDescription,
       windChill: windChill,
       windCompassDirection: windCompassDirection,
+      weatherDescription: weatherDescription,
     };
   },
 
@@ -175,10 +190,14 @@ export const readingStore = {
     // Generate a unique ID for the new reading
     reading.id = v4();
     reading.stationId = stationId;
+    
+    if (reading.windDirection < 0 || reading.windDirection >= 360) {
+      throw new Error(" Please enter a value between 0 and 359");
+    }
 
     // Find the station that matches the requested stationId
     const station = db.data.stations.find((station) => station.id === stationId);
-
+ 
     // If the station is not found, log an error message
     if (!station) {
       console.log("Station not found");
