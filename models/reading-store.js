@@ -1,8 +1,12 @@
+// Import the 'initStore' function from '../utils/store-utils.js'
 import { initStore } from "../utils/store-utils.js";
 
+// Call the 'initStore' function with the argument "stations" and store the returned data in the constant 'db'
 const db = initStore("stations");
 
+// Function to determine the Beaufort level based on wind speed
 function getBeaufortLevel(windSpeed) {
+  // Check wind speed ranges and return corresponding Beaufort level
   if (windSpeed < 0.5) {
     return 0;
   } else if (windSpeed <= 7) {
@@ -30,7 +34,9 @@ function getBeaufortLevel(windSpeed) {
   }
 }
 
+// Function to get the Beaufort level description based on wind speed
 function getBeaufortLevelDescription(windSpeed) {
+  // Check wind speed ranges and return corresponding Beaufort level description
   if (windSpeed < 0.5) {
     return 'Calm';
   } else if (windSpeed <= 7) {
@@ -58,6 +64,7 @@ function getBeaufortLevelDescription(windSpeed) {
   }
 }
 
+// Function to get the weather description based on weather code
 function getWeatherDescription(code) {
   const weatherDescriptions = {
     100: "Clear",
@@ -73,18 +80,22 @@ function getWeatherDescription(code) {
   return weatherDescriptions[code];
 }
 
+// Export the 'readingStore' object containing async functions to interact with the database
 export const readingStore = {
+  // Function to retrieve all readings from the database
   async getAllReadings() {
     await db.read();
     return db.data.readings;
   },
   
+  // Function to retrieve the last readings for all stations
   async getLastReading() {
     await db.read();
     const lastReadings = db.data.stations.map((station) => {
       if (station.readings.length === 0) {
         return { id: station.id, name: station.name, lastReading: null }; // Indicate no data
       }
+      // Retrieve data from the last reading
       const lastReading = station.readings[station.readings.length - 1];
       const temperatureCelsius = lastReading.temperature;
       const temperatureFahrenheit = temperatureCelsius * 9 / 5 + 32;
@@ -92,6 +103,8 @@ export const readingStore = {
       const beaufortLevel = getBeaufortLevel(windSpeed);
       const beaufortDescription = getBeaufortLevelDescription(windSpeed);
       const weatherDescription = getWeatherDescription(lastReading.code);
+      
+      // Return the data in the desired format
       return {
         id: station.id,
         name: station.name,
