@@ -23,6 +23,7 @@ export const stationStore = {
 
     return stations;
   },
+  
   async getStationById(stationId) {
     await db.read();
     return db.data.stations.find((station) => station.id === stationId);

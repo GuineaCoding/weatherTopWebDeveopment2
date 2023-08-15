@@ -1,66 +1,49 @@
-import { userStore } from "../models/user-store.js";
+import { v4 } from "uuid";
+import { initStore } from "../utils/store-utils.js";
 
-export const accountsController = {
-  index(request, response) {
-    const viewData = {
-      title: "Login or Signup",
-    };
-    response.render("home-view", viewData);
+// Initialize the database store for users
+const db = initStore("users");
+
+// Define the userStore object with various functions to interact with user data
+export const userStore = {
+  // Function to retrieve all users
+  async getAllUsers() {
+    await db.read();
+    return db.data.users;
   },
 
-  login(request, response) {
-    const viewData = {
-      title: "Login to the Service",
-    };
-    response.render("login-view", viewData);
+  // Function to add a new user
+  async addUser(user) {
+    await db.read();
+    user.id = v4(); // Generate a unique ID for the user
+    db.data.users.push(user); // Add the user to the database
+    await db.write(); // Write the updated data to the database
+    return user; // Return the added user
   },
 
-  logout(request, response) {
-    response.cookie("station", "");
-    response.redirect("/");
+  // Function to retrieve a user by their ID
+  async getUserById(id) {
+    await db.read();
+    return db.data.users.find((user) => user.id === id);
   },
 
-  signup(request, response) {
-    const viewData = {
-      title: "Login to the Service",
-    };
-    response.render("signup-view", viewData);
+  // Function to retrieve a user by their email
+  async getUserByEmail(email) {
+    await db.read();
+    return db.data.users.find((user) => user.email === email);
   },
 
-  async register(request, response) {
-    const user = request.body;
-    await userStore.addUser(user);
-    console.log(`registering ${user.email}`);
-    response.redirect("/");
+  // Function to delete a user by their ID
+  async deleteUserById(id) {
+    await db.read();
+    const index = db.data.users.findIndex((user) => user.id === id);
+    db.data.users.splice(index, 1); // Remove the user from the database
+    await db.write(); 
   },
 
-  async authenticate(request, response) {
-    const { email, password } = request.body;
-    const user = await userStore.getUserByEmail(email);
-  
-    if (user && user.password === password) {
-      response.cookie("station", user.email);
-      console.log(`logging in ${user.email}`);
-      response.redirect("/dashboard");
-    } else {
-      const viewData = {
-        title: "Login to the Service",
-        errorMessage: "Incorrect email or password. Please try again.",
-      };
-      response.render("login-view", viewData);
-    }
-  },
-
-  async getLoggedInUser(request) {
-    const userEmail = request.cookies.station;
-    return await userStore.getUserByEmail(userEmail);
-  },
-
-  async ensureAuthenticated(request, response, next) {
-    const user = await accountsController.getLoggedInUser(request);
-    if (user) {
-      return next();
-    }
-    response.redirect("/login");
+  // Function to delete all users
+  async deleteAll() {
+    db.data.users = []; // Remove all users from the database
+    await db.write(); 
   },
 };

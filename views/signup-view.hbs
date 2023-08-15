@@ -1,27 +1,42 @@
 {{> welcome-menu active="signup"}}
 
-<section class="section">
-  <h1 class="title">Sign up</h1>
-  <form action="/register" method="POST">
-    <label class="label">Name</label>
-    <div class="field is-horizontal">
-      <div class="field-body">
-        <div class="field">
-          <input class="input" type="text" placeholder="Enter first name" name="firstName" required>
+<div class="columns">
+  <div class="column is-three-fifths">
+    <section class="section">
+      <h1 class="title">Sign up</h1>
+      <form action="/register" method="POST">
+        <label class="label">Name</label>
+        <div class="field is-horizontal">
+          <div class="field-body">
+            <div class="field">
+              <input class="input" type="text" placeholder="Enter first name" name="firstName" required>
+            </div>
+            <div class="field">
+              <input class="input" type="text" placeholder="Enter last name" name="lastName" required>
+            </div>
+          </div>
         </div>
         <div class="field">
-          <input class="input" type="text" placeholder="Enter last name" name="lastName" required>
+          <label class="label">Email</label>
+          <input class="input" type="text" placeholder="Enter email" name="email" required>
         </div>
-      </div>
-    </div>
-    <div class="field">
-      <label class="label">Email</label> <input class="input" type="text" placeholder="Enter email" name="email" required>
-    </div>
-    <div class="field">
-      <label class="label">Password</label> <input class="input" type="password" placeholder="Enter Password" name="password" required>
-    </div>
-    <div class="field is-grouped">
-      <button class="button is-link">Register</button>
-    </div>
-  </form>
-</section>
+        <div class="field">
+          <label class="label">Password</label>
+          <input class="input" type="password" placeholder="Enter Password" name="password" required>
+        </div>
+        {{#if errorMessage}}
+        <div id="warning-sign" class="notification is-danger">
+          {{errorMessage}}
+        </div>
+        {{/if}}
+        <div class="field is-grouped">
+          <button class="button is-link">Register</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <div class="column">
+    <img src="../images/weatherAnimationLoginSignupPage.gif" alt="GIF Image">
+  </div>
+</div>

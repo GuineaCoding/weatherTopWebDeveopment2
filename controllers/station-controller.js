@@ -34,10 +34,12 @@ export const stationController = {
       // Prepare the data to be passed to the view
       const viewData = {
         name: station.name,
+        latitude: station.latitude,
+        longitude: station.longitude, 
         station: station,
         lastReadings: lastReadings,
         readings: readings,
-        loggedInUser: loggedInUser, // Pass the loggedInUser to the view
+        loggedInUser: loggedInUser,
       };
       console.log(viewData)
       response.render("station-view", viewData);

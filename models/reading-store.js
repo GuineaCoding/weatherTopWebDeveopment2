@@ -12,7 +12,6 @@ function findStationById(id) {
 // Function to determine the Beaufort level based on wind speed
 function getBeaufortLevel(windSpeed) {
   // Check the wind speed and return the corresponding Beaufort level
-  // Each condition represents a Beaufort level range
   if (windSpeed < 0.3) {
     return 0;
   } else if (windSpeed < 1.6) {
@@ -56,7 +55,6 @@ function calculateWindChill(temperatureCelsius, windSpeedMps) {
 
 // Function to get the wind compass direction based on wind direction degrees
 function getWindCompassDirection(windDirectionDegrees) {
-  // Array containing the compass directions in geographical order
   const directions = [
     "North",
     "North-Northeast",
@@ -82,6 +80,7 @@ function getWindCompassDirection(windDirectionDegrees) {
   return directions[index % 16];
 }
 
+// Function to get the weather description based on weather code
 function getWeatherDescription(weatherCode) {
   const weatherDescriptions = {
     100: "Clear",
@@ -94,8 +93,31 @@ function getWeatherDescription(weatherCode) {
     800: "Thunder"
   };
 
-  return weatherDescriptions[weatherCode]; 
+  // Return the weather description corresponding to the provided weather code
+  return weatherDescriptions[weatherCode];
 }
+
+// Define a Handlebars helper named 'weatherIcon'
+Handlebars.registerHelper('weatherIcon', function (weatherCode) {
+  console.log('weatherCode:', weatherCode); 
+  const weatherIcons = {
+    100: 'fa-sun',
+    200: 'fa-cloud-sun',
+    300: 'fa-cloud',
+    400: 'fa-cloud-rain',
+    500: 'fa-cloud-showers-heavy',
+    600: 'fa-cloud-rain',
+    700: 'fa-snowflake',
+    800: 'fa-bolt',
+  };
+
+  // Get the icon class corresponding to the provided weather code
+  const iconClass = weatherIcons[weatherCode];
+  console.log('iconClass:', iconClass); 
+
+  // Create an HTML string containing the Font Awesome icon
+  return new Handlebars.SafeString(`<i class="fa-solid ${iconClass}"></i>`);
+});
 
 // Function to get the Beaufort level description based on wind speed
 function getBeaufortLevelDescription(windSpeed) {
@@ -126,33 +148,34 @@ function getBeaufortLevelDescription(windSpeed) {
   }
 }
 
+// Handlebars helper function to generate the Beaufort scale icon based on the description
 Handlebars.registerHelper("beaufortIcon", function (beaufortDescription) {
   const iconMapping = {
     "Calm": "fa-rainbow",
-    "Light air": "fa-feather",
-    "Light breeze": "fa-smog",
-    "Gentle breeze": "fa-water",
-    "Moderate breeze": "fa-wind",
-    "Fresh breeze": "fa-wind",
-    "Strong breeze": "fa-wind",
-    "Near gale": "fa-icicles", 
+    "Light Air": "fa-feather",
+    "Light Breeze": "fa-smog",
+    "Gentle Breeze": "fa-water",
+    "Moderate Breeze": "fa-wind",
+    "Fresh Breeze": "fa-wind",
+    "Strong Breeze": "fa-wind",
+    "Near Gale": "fa-icicles",
     "Gale": "fa-meteor",
-    "Strong gale": "fa-cloud-meatball",
-    "Storm": "fa-tornado",
-    "Violent storm": "fa-house-tsunami",
-    "Hurricane force": "fa-hurricane",
-    default: "fa-question", // Default icon
+    "Severe Gale": "fa-cloud-meatball",
+    "Strong Storm": "fa-tornado",
+    "Violent Storm": "fa-house-tsunami",
+    "Hurricane Force": "fa-hurricane",
   };
 
-  const iconName = iconMapping[beaufortDescription] || iconMapping.default;
-
+  // Get the corresponding icon name from the mapping based on the provided description
+  const iconName = iconMapping[beaufortDescription];
+  
+  // Return the generated HTML for the icon using the selected icon name
   return new Handlebars.SafeString(`<i class="fa-solid ${iconName}"></i>`);
 });
 
 // Helper function to get the temperature range and corresponding Font Awesome icon based on temperature
-Handlebars.registerHelper('temperatureRangeAndIcon', function(temperature) {
+Handlebars.registerHelper('temperatureRangeAndIcon', function (temperature) {
   let temperatureRange = '';
-
   if (temperature < 0) {
     temperatureRange = 'Freezing';
   } else if (temperature < 10) {
@@ -167,26 +190,23 @@ Handlebars.registerHelper('temperatureRangeAndIcon', function(temperature) {
 
   const temperatureIcons = {
     Freezing: 'fa-temperature-empty',
-    Cold: 'fa-temperature-quarter', 
-    Moderate: 'fa-solid fa-solid fa-temperature-half', 
+    Cold: 'fa-temperature-quarter',
+    Moderate: 'fa-solid fa-solid fa-temperature-half',
     Warm: 'fa-temperature-full',
-    Hot: 'fa-temperature-high', 
+    Hot: 'fa-temperature-high',
   };
 
   const temperatureIcon = temperatureIcons[temperatureRange];
-
   return new Handlebars.SafeString(`<i class="fa-solid ${temperatureIcon}"></i>`);
 });
-
-
-
+//function to get the Min Value from the reading parameter
 function getMinValueFromParameter(id, value) {
   const foundStation = findStationById(id);
   const temperatureValues = foundStation.readings.map((reading) => reading[value]);
   const min = Math.min(...temperatureValues);
   return min;
 }
-
+//function to get the Max Value from the reading parameter
 function getMaxValueFromParameter(id, value) {
   const foundStation = findStationById(id);
   const temperatureValues = foundStation.readings.map((reading) => reading[value]);
@@ -201,11 +221,11 @@ export const readingStore = {
   },
 
   // Function to retrieve readings for the opened station based on the station ID
-async getReadingByStationId(id) {
-  await db.read();
-  const station = findStationById(id);
-  return station.readings;
-},
+  async getReadingByStationId(id) {
+    await db.read();
+    const station = findStationById(id);
+    return station.readings;
+  },
 
   // Function to get the last reading for the opened station based on the station ID
   async getLastReading(id) {
@@ -218,12 +238,12 @@ async getReadingByStationId(id) {
 
     // Find the station that matches the requested ID
     const foundStation = findStationById(id);
-    
+
     // If the station is not found or the station's readings array is empty, return null
     if (!foundStation || !foundStation.readings || foundStation.readings.length === 0) {
       return null;
     }
-    
+
     // Find the last non-null reading in the lastReadings array
     const lastReading = lastReadings.find((reading) => reading !== null);
     // If no last non-null reading is found, return null
@@ -248,8 +268,6 @@ async getReadingByStationId(id) {
     // Return the prepared object with the last reading and additional data
     return {
       id: foundStation.id,
-      latitude: foundStation.latitude,
-      longitude: foundStation.longitude,
       name: foundStation.name,
       lastReading: lastReading,
       temperatureFahrenheit: temperatureFahrenheit,
@@ -268,7 +286,6 @@ async getReadingByStationId(id) {
   },
 
   // Function to add a new reading for the choosen station
-  
   async addReading(stationId, reading) {
     await db.read();
 

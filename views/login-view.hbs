@@ -1,22 +1,30 @@
 {{> welcome-menu active="login"}}
-
-<section class="section">
-  <h1 class="title">Log in</h1>
-  <form action="/authenticate" method="POST">
-    <div class="field">
-      <label class="label">Email</label> <input class="input" type="text" placeholder="Enter email" name="email" required>
-    </div>
-    <div class="field">
-      <label class="label">Password</label> <input class="input" type="password" placeholder="Enter Password" name="password" required>
-    </div>
-    <div class="field is-grouped">
-      {{#if errorMessage}}
-  <div class="error-message">
-    {{errorMessage}}
+<div class="columns">
+  <div class="column is-three-fifths">
+    <section class="section">
+      <h1 class="title">Log in</h1>
+      <form action="/authenticate" method="POST">
+        <div class="field">
+          <label class="label">Email</label>
+          <input class="input" type="text" placeholder="Enter email" name="email" required>
+        </div>
+        <div class="field">
+          <label class="label">Password</label>
+          <input class="input" type="password" placeholder="Enter Password" name="password" required>
+        </div>
+        {{#if errorMessage}}
+        <div id="warning-sign" class="notification is-danger">
+          {{errorMessage}}
+        </div>
+        {{/if}}
+        <div class="field is-grouped">
+          <button class="button is-primary">Log in</button>
+        </div>
+      </form>
+    </section>
   </div>
-{{/if}}
-      <button class="button is-link">Log in</button>
-    </div>
-    
-  </form>
-</section>
+
+  <div class="column">
+    <img src="../images/weatherAnimationLoginSignupPage.gif" alt="GIF Image">
+  </div>
+</div>
