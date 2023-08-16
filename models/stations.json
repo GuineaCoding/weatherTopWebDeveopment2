@@ -61,6 +61,10 @@
           "stationId": "05"
         }
       ]
+    },
+    {
+      "name": "test",
+      "id": "7a975c6f-5d4c-4a14-a42c-134c35f19b2e"
     }
   ]
 }
