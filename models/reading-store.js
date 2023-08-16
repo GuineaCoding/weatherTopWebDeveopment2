@@ -99,7 +99,6 @@ function getWeatherDescription(weatherCode) {
 
 // Define a Handlebars helper named 'weatherIcon'
 Handlebars.registerHelper('weatherIcon', function (weatherCode) {
-  console.log('weatherCode:', weatherCode); 
   const weatherIcons = {
     100: 'fa-sun',
     200: 'fa-cloud-sun',
@@ -113,7 +112,6 @@ Handlebars.registerHelper('weatherIcon', function (weatherCode) {
 
   // Get the icon class corresponding to the provided weather code
   const iconClass = weatherIcons[weatherCode];
-  console.log('iconClass:', iconClass); 
 
   // Create an HTML string containing the Font Awesome icon
   return new Handlebars.SafeString(`<i class="fa-solid ${iconClass}"></i>`);
@@ -310,5 +308,12 @@ export const readingStore = {
     await db.write();
 
     return reading;
+  },
+
+  async deleteReading(id) {
+    await db.read();
+    const index = db.data.reading.findIndex((track) => track._id === id);
+    db.data.tracks.splice(index, 1);
+    await db.write();
   },
 };
