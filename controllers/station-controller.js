@@ -53,7 +53,9 @@ export const stationController = {
     try {
       // Get the station ID from the request parameters
       const stationId = request.params.id;
-
+      
+      const date = new Date().toLocaleString();
+      console.log(date)
       // Get the station using the stationStore's 'getStationById' function
       const station = await stationStore.getStationById(stationId);
 
@@ -66,6 +68,7 @@ export const stationController = {
 
       // Extract the reading data from the request body
       const reading = {
+        date: date,
         code: Number(request.body.code),
         temperature: Number(request.body.temperature),
         windSpeed: Number(request.body.windSpeed),

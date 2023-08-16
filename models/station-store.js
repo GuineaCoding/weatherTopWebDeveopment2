@@ -54,7 +54,6 @@ export const stationStore = {
 
     // Add the new station to the database
     db.data.stations.push(station);
-    console.log(station)
     await db.write();
 
     // Return the newly added station

@@ -51,7 +51,6 @@ export const accountsController = {
   
     // If the email is not registered, add the new user to the database
     await userStore.addUser(user);
-    console.log(`registering ${user.email}`); // Log the registration
     response.redirect("/"); // Redirect to the home page
   },
 
@@ -62,7 +61,6 @@ export const accountsController = {
   
     if (user && user.password === password) {
       response.cookie("station", user.email); // Set the "station" cookie
-      console.log(`logging in ${user.email}`); // Log the login
       response.redirect("/dashboard"); // Redirect to the dashboard
     } else {
       // If login fails, show an error message on the login page
