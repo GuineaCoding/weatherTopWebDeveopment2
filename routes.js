@@ -21,5 +21,5 @@ router.post("/dashboard/addStation", accountsController.ensureAuthenticated, das
 router.get("/about", aboutController.index);
 router.get("/station/:id", stationController.index);
 router.post("/station/:id/addReading", stationController.addReading);
-router.get("/station/:stationid/deletestation/:id", playlistController.deleteTrack);
+// router.get("/station/:stationid/deletestation/:id", playlistController.deleteTrack);
 export default router;

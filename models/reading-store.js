@@ -117,6 +117,68 @@ Handlebars.registerHelper('weatherIcon', function (weatherCode) {
   return new Handlebars.SafeString(`<i class="fa-solid ${iconClass}"></i>`);
 });
 
+function calculateTrend(values) {
+  const trendThreshold = 3; // Number of consecutive readings for a trend
+  let trend = ""; // Initialize the trend as neutral
+
+  if (values.length < trendThreshold) {
+    return "Steady"; // Not enough data for a trend, default to Steady
+  }
+
+  let risingCount = 0;
+  let fallingCount = 0;
+  let steadyCount = 0;
+
+  for (let i = 0; i < values.length; i++) {
+    if (values[i] > values[i - 1]) {
+      risingCount++;
+      fallingCount = 0; // Reset falling count
+      steadyCount = 0; // Reset steady count
+    } else if (values[i] < values[i - 1]) {
+      fallingCount++;
+      risingCount = 0; // Reset rising count
+      steadyCount = 0; // Reset steady count
+    } else {
+      steadyCount++;
+      risingCount = 0; // Reset rising count
+      fallingCount = 0; // Reset falling count
+    }
+
+    if (risingCount >= trendThreshold - 1) {
+      trend = "Rising";
+      break;
+    } else if (fallingCount >= trendThreshold - 1) {
+      trend = "Falling";
+      break;
+    } else if (steadyCount >= trendThreshold - 1) {
+      trend = "Steady"; // Set trend to Steady if values are equal for the specified threshold
+      break;
+    }
+  }
+
+  if (trend === "") {
+    trend = "Steady"; // Default to Steady if no clear trend is found
+  }
+
+  return trend;
+}
+
+// Handlebars helper function to generate the trend icon based on the trend value
+Handlebars.registerHelper('trendIcon', function (trend) {
+  const trendIcons = {
+    'Up': 'fa-arrow-circle-up',
+    'Down': 'fa-arrow-circle-down',
+    'Stable': 'fa-circle',
+  };
+
+  // Get the corresponding icon class from the mapping based on the provided trend value
+  const iconClass = trendIcons[trend];
+
+  // Create an HTML string containing the Font Awesome icon
+  return new Handlebars.SafeString(`<i class="fa-solid ${iconClass}"></i>`);
+});
+
+
 // Function to get the Beaufort level description based on wind speed
 function getBeaufortLevelDescription(windSpeed) {
   if (windSpeed < 1) {
@@ -166,7 +228,7 @@ Handlebars.registerHelper("beaufortIcon", function (beaufortDescription) {
 
   // Get the corresponding icon name from the mapping based on the provided description
   const iconName = iconMapping[beaufortDescription];
-  
+
   // Return the generated HTML for the icon using the selected icon name
   return new Handlebars.SafeString(`<i class="fa-solid ${iconName}"></i>`);
 });
@@ -197,6 +259,8 @@ Handlebars.registerHelper('temperatureRangeAndIcon', function (temperature) {
   const temperatureIcon = temperatureIcons[temperatureRange];
   return new Handlebars.SafeString(`<i class="fa-solid ${temperatureIcon}"></i>`);
 });
+
+
 //function to get the Min Value from the reading parameter
 function getMinValueFromParameter(id, value) {
   const foundStation = findStationById(id);
@@ -228,26 +292,25 @@ export const readingStore = {
   // Function to get the last reading for the opened station based on the station ID
   async getLastReading(id) {
     await db.read();
-    const lastReadings = db.data.stations.map((station) => {
-      return station.id === id && Array.isArray(station.readings) && station.readings.length > 0
-        ? station.readings[station.readings.length - 1]
-        : null;
-    });
-
-    // Find the station that matches the requested ID
     const foundStation = findStationById(id);
 
-    // If the station is not found or the station's readings array is empty, return null
     if (!foundStation || !foundStation.readings || foundStation.readings.length === 0) {
       return null;
     }
 
     // Find the last non-null reading in the lastReadings array
-    const lastReading = lastReadings.find((reading) => reading !== null);
+    const lastReading = foundStation.readings[foundStation.readings.length - 1];
+    const recentReadings = foundStation.readings.slice(-3);
     // If no last non-null reading is found, return null
     if (!lastReading) {
       return null;
     }
+    const temperatureTrendValues = recentReadings.map((reading) => reading.temperature);
+    console.log(temperatureTrendValues, 'temperature')
+    const windSpeedTrendValues = recentReadings.map((reading) => reading.windSpeed);
+    console.log(windSpeedTrendValues, 'windspeed')
+    const pressureTrendValues = recentReadings.map((reading) => reading.pressure);
+    console.log(pressureTrendValues, 'pressure')
     const temperatureCelsius = lastReading.temperature;
     const weatherDescription = getWeatherDescription(lastReading.code);
     const temperatureFahrenheit = temperatureCelsius * 9 / 5 + 32;
@@ -262,7 +325,12 @@ export const readingStore = {
     const maxWindSpeed = getMaxValueFromParameter(id, "windSpeed");
     const minPressure = getMinValueFromParameter(id, "pressure");
     const maxPressure = getMaxValueFromParameter(id, "pressure");
-
+    const temperatureTrend = calculateTrend(temperatureTrendValues);
+    const windSpeedTrend = calculateTrend(windSpeedTrendValues);
+    const pressureTrend = calculateTrend(pressureTrendValues);
+    console.log(temperatureTrend, 'temperatureTrend')
+    console.log(windSpeedTrend, 'windSpeedTrend')
+    console.log(pressureTrend, 'pressureTrend')
     // Return the prepared object with the last reading and additional data
     return {
       id: foundStation.id,
@@ -280,6 +348,9 @@ export const readingStore = {
       minPressure: minPressure,
       maxPressure: maxPressure,
       weatherDescription: weatherDescription,
+      temperatureTrend: temperatureTrend,
+      windSpeedTrend: windSpeedTrend,
+      pressureTrend: pressureTrend,
     };
   },
 

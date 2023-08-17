@@ -41,7 +41,6 @@ export const stationController = {
         readings: readings,
         loggedInUser: loggedInUser,
       };
-      console.log(viewData)
       response.render("station-view", viewData);
     } catch (error) {
       console.error("Error rendering station:", error);
@@ -55,7 +54,6 @@ export const stationController = {
       const stationId = request.params.id;
       
       const date = new Date().toLocaleString();
-      console.log(date)
       // Get the station using the stationStore's 'getStationById' function
       const station = await stationStore.getStationById(stationId);
 

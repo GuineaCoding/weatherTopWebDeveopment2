@@ -4,12 +4,12 @@
       <div class="field">
         <h3 class="title is-3 has-text-white">{{name}}</h3>
       </div>
-        <div class="field">
-          <label class="label has-text-white">Latitude: {{latitude}}</label>
-        </div>
-        <div class="field">
-          <label class="label has-text-white">Longitude: {{longitude}}</label>
-        </div>
+      <div class="field">
+        <label class="label has-text-white">Latitude: {{latitude}}</label>
+      </div>
+      <div class="field">
+        <label class="label has-text-white">Longitude: {{longitude}}</label>
+      </div>
     </div>
   </div>
   {{#each lastReadings}}
@@ -19,16 +19,16 @@
         <h3 class="title is-3 has-text-white">Weather</h3>
       </div>
       {{#if lastReading}}
-        <div class="field">
-          <div class="weather-icon">
-            {{weatherIcon lastReading.code}}
-          </div>
+      <div class="field">
+        <div class="weather-icon">
+          {{weatherIcon lastReading.code}}
         </div>
-        <div class="field">
-          <label class="label has-text-white">{{weatherDescription}}</label>
-        </div>
+      </div>
+      <div class="field">
+        <label class="label has-text-white">{{weatherDescription}}</label>
+      </div>
       {{else}}
-        <p class="has-text-white">No Data</p>
+      <p class="has-text-white">No Data</p>
       {{/if}}
     </div>
   </div>
@@ -37,22 +37,32 @@
       <div class="field">
         <h3 class="title is-3 has-text-white">Temperature</h3>
       </div>
+      {{trendIcon temperatureTrend}}
+{{trendIcon windSpeedTrend}}
+{{trendIcon pressureTrend}}
       <div class="field">
         {{#if lastReading}}
-          <div class="weather-icon">
-            {{temperatureRangeAndIcon lastReading.temperature}}
-          </div>
-          <p class="has-text-white-bis is-size-4">{{lastReading.temperature}}°C</p>
-          <p class="has-text-white-bis is-size-4">{{temperatureFahrenheit}}°F</p>
-          <p class="has-text-white-bis is-size-4">Max: {{maxTemperature}}</p>
-          <p class="has-text-white-bis is-size-4">Min: {{minTemperature}}</p>
+        {{trendIcon temperatureTrend}}
+{{trendIcon windSpeedTrend}}
+{{trendIcon pressureTrend}}
+        <div class="weather-icon">
+          {{temperatureRangeAndIcon lastReading.temperature}}
+        </div>
+        <p class="has-text-white-bis is-size-4">{{lastReading.temperature}}°C</p>
+        <p class="has-text-white-bis is-size-4">{{temperatureFahrenheit}}°F</p>
+        <p class="has-text-white-bis is-size-4">Max: {{maxTemperature}}</p>
+        <p class="has-text-white-bis is-size-4">Min: {{minTemperature}}</p>
+        <div class="temperature-range">
+          {{trendIcon temperatureTrend}}
+          {{temperatureTrend}}
+        </div>
         {{else}}
-          <p class="has-text-white-bis">No Data</p>
+        <p class="has-text-white-bis">No Data</p>
         {{/if}}
       </div>
     </div>
   </div>
-  
+
   <div class="column is-3">
     <div class="wind-box">
       <div class="field">
@@ -60,22 +70,26 @@
       </div>
       <div class="field">
         {{#if lastReading}}
-          <div class="weather-icon">
-            {{beaufortIcon beaufortDescription}}
-          </div>
-          <p class="has-text-white-bis is-size-4">{{beaufortLevel}} Bft</p>
-          <p class="has-text-white-bis is-size-4">{{windCompassDirection}}</p>
-          <p class="has-text-white-bis is-size-4">Feels Like {{beaufortDescription}}</p>
-          <p class="has-text-white-bis is-size-4">{{windChill}}</p>
-          <p class="has-text-white-bis is-size-4">Max: {{maxWindSpeed}}</p>
-          <p class="has-text-white-bis is-size-4">Min: {{minWindSpeed}}</p>
+        <div class="weather-icon">
+          {{beaufortIcon beaufortDescription}}
+        </div>
+        <p class="has-text-white-bis is-size-4">{{beaufortLevel}} Bft</p>
+        <p class="has-text-white-bis is-size-4">{{windCompassDirection}}</p>
+        <p class="has-text-white-bis is-size-4">Feels Like {{beaufortDescription}}</p>
+        <p class="has-text-white-bis is-size-4">{{windChill}}</p>
+        <p class="has-text-white-bis is-size-4">Max: {{maxWindSpeed}}</p>
+        <p class="has-text-white-bis is-size-4">Min: {{minWindSpeed}}</p>
+        <div class="temperature-range">
+          {{trendIcon windSpeedTrend}}
+           <p>{{windSpeedTrend}}</p>
+        </div>
         {{else}}
-          <p class="has-text-white-bis">No Data</p>
+        <p class="has-text-white-bis">No Data</p>
         {{/if}}
       </div>
     </div>
   </div>
-  
+
   <div class="column is-2">
     <div class="pressure-box">
       <div class="field">
@@ -83,14 +97,18 @@
       </div>
       <div class="field">
         {{#if lastReading}}
-          <div class="weather-icon">
-            <i class="fas fa-tachometer-alt"></i>
-          </div>
-          <p class="has-text-white-bis is-size-4">{{lastReading.pressure}} hPa</p>
-          <p class="has-text-white-bis is-size-4">Max: {{maxPressure}}</p>
-          <p class="has-text-white-bis is-size-4">Min: {{minPressure}} </p>
+        <div class="weather-icon">
+          <i class="fas fa-tachometer-alt"></i>
+        </div>
+        <p class="has-text-white-bis is-size-4">{{lastReading.pressure}} hPa</p>
+        <p class="has-text-white-bis is-size-4">Max: {{maxPressure}}</p>
+        <p class="has-text-white-bis is-size-4">Min: {{minPressure}} </p>
+        <div class="temperature-range">
+          {{trendIcon pressureTrend}}
+          {{pressureTrend}}
+        </div>
         {{else}}
-          <p class="has-text-white-bis">No Data</p>
+        <p class="has-text-white-bis">No Data</p>
         {{/if}}
       </div>
     </div>
