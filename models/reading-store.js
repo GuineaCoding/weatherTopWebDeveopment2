@@ -166,11 +166,11 @@ function calculateTrend(values) {
 // Handlebars helper function to generate the trend icon based on the trend value
 Handlebars.registerHelper('trendIcon', function (trend) {
   const trendIcons = {
-    'Up': 'fa-arrow-circle-up',
-    'Down': 'fa-arrow-circle-down',
-    'Stable': 'fa-circle',
+    'Rising': 'fa-arrow-circle-up',
+    'Falling': 'fa-arrow-circle-down',
+    'Steady': 'fa-circle',
   };
-
+console.log(trend)
   // Get the corresponding icon class from the mapping based on the provided trend value
   const iconClass = trendIcons[trend];
 

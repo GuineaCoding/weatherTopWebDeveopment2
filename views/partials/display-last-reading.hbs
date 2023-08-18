@@ -37,14 +37,8 @@
       <div class="field">
         <h3 class="title is-3 has-text-white">Temperature</h3>
       </div>
-      {{trendIcon temperatureTrend}}
-{{trendIcon windSpeedTrend}}
-{{trendIcon pressureTrend}}
       <div class="field">
         {{#if lastReading}}
-        {{trendIcon temperatureTrend}}
-{{trendIcon windSpeedTrend}}
-{{trendIcon pressureTrend}}
         <div class="weather-icon">
           {{temperatureRangeAndIcon lastReading.temperature}}
         </div>
