@@ -168,9 +168,8 @@ Handlebars.registerHelper('trendIcon', function (trend) {
   const trendIcons = {
     'Rising': 'fa-arrow-circle-up',
     'Falling': 'fa-arrow-circle-down',
-    'Steady': 'fa-circle',
+    'Steady': 'fa-equals',
   };
-console.log(trend)
   // Get the corresponding icon class from the mapping based on the provided trend value
   const iconClass = trendIcons[trend];
 
@@ -306,11 +305,8 @@ export const readingStore = {
       return null;
     }
     const temperatureTrendValues = recentReadings.map((reading) => reading.temperature);
-    console.log(temperatureTrendValues, 'temperature')
     const windSpeedTrendValues = recentReadings.map((reading) => reading.windSpeed);
-    console.log(windSpeedTrendValues, 'windspeed')
     const pressureTrendValues = recentReadings.map((reading) => reading.pressure);
-    console.log(pressureTrendValues, 'pressure')
     const temperatureCelsius = lastReading.temperature;
     const weatherDescription = getWeatherDescription(lastReading.code);
     const temperatureFahrenheit = temperatureCelsius * 9 / 5 + 32;
@@ -328,9 +324,6 @@ export const readingStore = {
     const temperatureTrend = calculateTrend(temperatureTrendValues);
     const windSpeedTrend = calculateTrend(windSpeedTrendValues);
     const pressureTrend = calculateTrend(pressureTrendValues);
-    console.log(temperatureTrend, 'temperatureTrend')
-    console.log(windSpeedTrend, 'windSpeedTrend')
-    console.log(pressureTrend, 'pressureTrend')
     // Return the prepared object with the last reading and additional data
     return {
       id: foundStation.id,
@@ -381,10 +374,29 @@ export const readingStore = {
     return reading;
   },
 
-  async deleteReading(id) {
+  async deleteReading(stationId, readingId) {
+    console.log(`Deleting reading with ID: ${readingId}`);
     await db.read();
-    const index = db.data.reading.findIndex((track) => track._id === id);
-    db.data.tracks.splice(index, 1);
-    await db.write();
-  },
+    console.log(`Database read complete`);
+    
+    const station = db.data.stations.find((station) => station.id === stationId);
+    console.log(`Found station: ${JSON.stringify(station)}`);
+    
+    if (!station) {
+      console.log(`station not found`);
+      return;
+    }
+  
+    const index = station.readings.findIndex((reading) => reading.id === readingId);
+    console.log(`Index of reading: ${index}`);
+    
+    if (index !== -1) {
+      station.readings.splice(index, 1);
+      console.log(`test reading deleted`);
+      await db.write();
+    } else {
+      console.log(`reading not found`);
+    }
+  }
+  
 };

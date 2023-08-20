@@ -12,15 +12,17 @@ export const stationStore = {
   // Retrieve all stations associated with a specific user ID
   async getStationsByUserId(userId) {
     await db.read();
-
     const stations = db.data.stations.filter((station) => station.userId === userId);
-
+  
     const fetchReadingsPromises = stations.map(async (station) => {
       station.readings = await readingStore.getReadingByStationId(station.id);
     });
-
+  
     await Promise.all(fetchReadingsPromises);
-
+  
+    // Sort the stations alphabetically by name
+    stations.sort((a, b) => a.name.localeCompare(b.name));
+  
     return stations;
   },
   
@@ -60,4 +62,12 @@ export const stationStore = {
     return station;
   },
 
+  async deleteStationById(id) {
+    await db.read();
+    const index = db.data.stations.findIndex((station) => station.id === id);
+    if (index !== -1) {
+      db.data.stations.splice(index, 1);
+      await db.write();
+    }
+  },
 };

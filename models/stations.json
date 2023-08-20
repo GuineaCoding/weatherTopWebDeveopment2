@@ -131,131 +131,21 @@
       ]
     },
     {
-      "name": "11",
+      "name": "art",
       "latitude": 11,
       "longitude": 11,
       "userId": "3ad52697-6d98-4d80-8273-084de55a86c0",
-      "id": "a7cf5ff9-c8d6-45a8-902e-9ac4e4026b77",
+      "id": "6c27e5bd-38c8-429d-823f-6ae966a299f7",
       "readings": [
         {
-          "date": "8/17/2023, 10:32:52 PM",
-          "code": 600,
+          "date": "8/20/2023, 6:10:33 PM",
+          "code": 300,
           "temperature": 11,
           "windSpeed": 11,
           "pressure": 11,
           "windDirection": 11,
-          "id": "4794f0d7-f8e8-41d7-95d4-91fde8df71e9",
-          "stationId": "a7cf5ff9-c8d6-45a8-902e-9ac4e4026b77"
-        },
-        {
-          "date": "8/17/2023, 10:33:02 PM",
-          "code": 300,
-          "temperature": 14,
-          "windSpeed": 14,
-          "pressure": 14,
-          "windDirection": 14,
-          "id": "99846c0c-782a-452e-a2de-990b50d21d77",
-          "stationId": "a7cf5ff9-c8d6-45a8-902e-9ac4e4026b77"
-        },
-        {
-          "date": "8/17/2023, 10:43:13 PM",
-          "code": 500,
-          "temperature": 15,
-          "windSpeed": 15,
-          "pressure": 15,
-          "windDirection": 15,
-          "id": "384513df-986b-491f-835d-e649d8fecb6c",
-          "stationId": "a7cf5ff9-c8d6-45a8-902e-9ac4e4026b77"
-        },
-        {
-          "date": "8/17/2023, 10:43:31 PM",
-          "code": 300,
-          "temperature": 16,
-          "windSpeed": 15,
-          "pressure": 14,
-          "windDirection": 14,
-          "id": "933aa90f-82b6-4768-8a39-8c23cb6fdea1",
-          "stationId": "a7cf5ff9-c8d6-45a8-902e-9ac4e4026b77"
-        },
-        {
-          "date": "8/17/2023, 10:43:50 PM",
-          "code": 200,
-          "temperature": 17,
-          "windSpeed": 15,
-          "pressure": 13,
-          "windDirection": 13,
-          "id": "d612e573-f8c0-4bb6-ab9c-f760bfecef30",
-          "stationId": "a7cf5ff9-c8d6-45a8-902e-9ac4e4026b77"
-        },
-        {
-          "date": "8/17/2023, 10:44:45 PM",
-          "code": 700,
-          "temperature": 15,
-          "windSpeed": 15,
-          "pressure": 15,
-          "windDirection": 15,
-          "id": "b17d0aa5-2c8a-446b-953a-04990f3757bd",
-          "stationId": "a7cf5ff9-c8d6-45a8-902e-9ac4e4026b77"
-        },
-        {
-          "date": "8/17/2023, 11:27:45 PM",
-          "code": 700,
-          "temperature": 14,
-          "windSpeed": 15,
-          "pressure": 16,
-          "windDirection": 11,
-          "id": "1ad0b8e5-a21d-491f-8564-a81a84bcbad0",
-          "stationId": "a7cf5ff9-c8d6-45a8-902e-9ac4e4026b77"
-        },
-        {
-          "date": "8/17/2023, 11:28:01 PM",
-          "code": 300,
-          "temperature": 13,
-          "windSpeed": 15,
-          "pressure": 11,
-          "windDirection": 17,
-          "id": "6e203cb5-ced4-49f0-bb9a-881355ab780c",
-          "stationId": "a7cf5ff9-c8d6-45a8-902e-9ac4e4026b77"
-        },
-        {
-          "date": "8/17/2023, 11:29:53 PM",
-          "code": 600,
-          "temperature": 12,
-          "windSpeed": 15,
-          "pressure": 12,
-          "windDirection": 11,
-          "id": "653d0c1d-854e-4d61-a621-fb5f54ae8c06",
-          "stationId": "a7cf5ff9-c8d6-45a8-902e-9ac4e4026b77"
-        },
-        {
-          "date": "8/17/2023, 11:30:04 PM",
-          "code": 400,
-          "temperature": 11,
-          "windSpeed": 16,
-          "pressure": 10,
-          "windDirection": 13,
-          "id": "f6f50871-f98e-45e9-b120-32798bd0e35c",
-          "stationId": "a7cf5ff9-c8d6-45a8-902e-9ac4e4026b77"
-        },
-        {
-          "date": "8/17/2023, 11:30:39 PM",
-          "code": 500,
-          "temperature": 10,
-          "windSpeed": 16,
-          "pressure": 11,
-          "windDirection": 11,
-          "id": "7ea7b903-f762-4940-89a2-46b6ce993d2d",
-          "stationId": "a7cf5ff9-c8d6-45a8-902e-9ac4e4026b77"
-        },
-        {
-          "date": "8/17/2023, 11:30:52 PM",
-          "code": 300,
-          "temperature": 9,
-          "windSpeed": 16,
-          "pressure": 12,
-          "windDirection": 12,
-          "id": "89c55df3-d752-464d-9c7a-1ffdd31bb456",
-          "stationId": "a7cf5ff9-c8d6-45a8-902e-9ac4e4026b77"
+          "id": "0a0c4f01-fbe4-411e-aeaf-de6faa0c94fa",
+          "stationId": "6c27e5bd-38c8-429d-823f-6ae966a299f7"
         }
       ]
     }

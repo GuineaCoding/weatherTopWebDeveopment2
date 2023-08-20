@@ -11,6 +11,13 @@ export const stationController = {
   
       // Get the logged-in user
       const loggedInUser = await accountsController.getLoggedInUser(request);
+
+      // Check if the user is logged in
+      if (!loggedInUser) {
+        // Redirect the user to the login page or show an error message
+        response.redirect("/login"); // Change the route to your login page
+        return;
+      }
   
       // Fetch the station details using the stationStore's 'getStationById' function
       const userStations = await stationStore.getStationsByUserId(loggedInUser.id);
@@ -83,5 +90,12 @@ export const stationController = {
       console.error("Error adding reading:", error);
       response.status(500).send("Internal Server Error");
     }
-  },
+  },  
+  async deleteReading(request, response) {
+    const stationId = request.params.stationid; 
+    const readingId = request.params.readingId;
+    console.log(`Deleting Reading ${readingId} from Station ${stationId}`);
+    await readingStore.deleteReading(stationId, readingId); 
+    response.redirect("/station/" + stationId);
+  }
 };
