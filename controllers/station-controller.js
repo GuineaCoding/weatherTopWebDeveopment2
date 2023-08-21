@@ -97,5 +97,32 @@ export const stationController = {
     console.log(`Deleting Reading ${readingId} from Station ${stationId}`);
     await readingStore.deleteReading(stationId, readingId); 
     response.redirect("/station/" + stationId);
-  }
+  },
+  async updateStationName(stationId, updatedName) {
+    const station = await stationStore.getStationById(stationId);
+    console.log(station, 'station')
+    station.name = updatedName;  
+    await stationStore.updateStationParam(stationId, updatedName); 
+  },
+  async editStationParam(request, response) {
+    try {
+      const stationId = request.params.id;
+      const station = await stationStore.getStationById(stationId);
+  
+      if (!station) {
+        response.status(404).send("Station not found");
+        return;
+      }
+  
+      const viewData = {
+        title: "Edit Station Name",
+        station: station,
+      };
+  
+      response.render("edit-station-name", viewData); 
+    } catch (error) {
+      console.error("Error rendering edit station name page:", error);
+      response.status(500).send("Internal Server Error");
+    }
+  },
 };

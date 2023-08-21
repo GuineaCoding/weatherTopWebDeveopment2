@@ -28,7 +28,9 @@ export const stationStore = {
   
   async getStationById(stationId) {
     await db.read();
-    return db.data.stations.find((station) => station.id === stationId);
+    const test = db.data.stations.find((station) => station.id === stationId);
+    console.log(test, 'test')
+    return test;
   },
   // Add a new station to the database
   async addStation(request, station) {
@@ -68,6 +70,34 @@ export const stationStore = {
     if (index !== -1) {
       db.data.stations.splice(index, 1);
       await db.write();
+    }
+  },
+
+  async getStationByName(loggedInUserId, name) {
+    await db.read();
+    return db.data.stations.find((station) => station.userId === loggedInUserId && station.name === name);
+  },
+
+  async updateStationParam(request, stationId, updatedName, response) {
+    try {
+      const loggedInUser = await accountsController.getLoggedInUser(request);
+  
+      if (!updatedName) {
+        throw new Error("New station name is missing in the request body.");
+      }
+  
+      const existingStation = await stationStore.getStationByName(loggedInUser.id, updatedName);
+  
+      if (existingStation && existingStation.id !== stationId) {
+        throw new Error("A station with the same name already exists.");
+      }
+  
+      await stationController.updateStationParam(request, stationId, updatedName, response);
+  
+      response.redirect("/station/" + stationId); 
+    } catch (error) {
+      console.error("Error updating station name:", error);
+      response.status(500).send("Internal Server Error");
     }
   },
 };

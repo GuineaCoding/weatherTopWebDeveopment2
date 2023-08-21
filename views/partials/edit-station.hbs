@@ -1,0 +1,35 @@
+<form class="box" action="/station/updateStationDetails/{{station.id}}" method="POST">
+  <section class="section">
+    <h1 class="title">Edit Station</h1>
+    {{#if errorMessage}}
+      <div id="warning-sign" class="notification is-danger">
+        {{errorMessage}}
+      </div>
+    {{/if}}
+    <div class="field">
+      <label class="label">Station Name</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="Station Name" name="name" value="{{station.name}}" required>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Latitude</label>
+      <div class="control">
+        <input class="input" type="number" placeholder="Latitude" name="latitude" value="{{station.latitude}}" required>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Longitude</label>
+      <div class="control">
+        <input class="input" type="number" placeholder="Longitude" name="longitude" value="{{station.longitude}}" required>
+      </div>
+    </div>
+    <div class="field">
+      <p class="control">
+        <button class="button is-success">
+          Update Station
+        </button>
+      </p>
+    </div>
+  </section>
+</form>

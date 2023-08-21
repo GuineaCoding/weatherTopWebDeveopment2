@@ -3,6 +3,7 @@ import { accountsController } from "./controllers/accounts-controller.js";
 import { dashboardController } from "./controllers/dashboard-controller.js";
 import { aboutController } from "./controllers/about-controller.js";
 import { stationController } from "./controllers/station-controller.js";
+import { readingController } from "./controllers/reading-controller.js";
 
 export const router = express.Router();
 
@@ -23,4 +24,9 @@ router.get("/station/:id", stationController.index);
 router.post("/station/:id/addReading", stationController.addReading);
 router.get("/dashboard/deletestation/:id", dashboardController.deleteStation);
 router.get("/station/:stationid/deleteReading/:readingId", stationController.deleteReading);
+router.get("/station/:stationid/editReading/:readingId", readingController.index);
+router.post("/station/:stationid/updateReading/:readingId", readingController.update);
+router.get("/dashboard/editStationName/:id", stationController.editStationParam);
+router.post("/station/updateStationDetails/:id", stationController.updateStationName);
+
 export default router;

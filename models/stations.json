@@ -138,13 +138,33 @@
       "id": "6c27e5bd-38c8-429d-823f-6ae966a299f7",
       "readings": [
         {
-          "date": "8/20/2023, 6:10:33 PM",
-          "code": 300,
+          "date": "8/21/2023, 9:33:44 PM",
+          "code": 400,
           "temperature": 11,
           "windSpeed": 11,
           "pressure": 11,
           "windDirection": 11,
-          "id": "0a0c4f01-fbe4-411e-aeaf-de6faa0c94fa",
+          "id": "d15b3b41-ab79-4ef3-868d-3d5861b865ae",
+          "stationId": "6c27e5bd-38c8-429d-823f-6ae966a299f7"
+        },
+        {
+          "date": "8/21/2023, 9:33:53 PM",
+          "code": 200,
+          "temperature": 12,
+          "windSpeed": 12,
+          "pressure": 12,
+          "windDirection": 12,
+          "id": "099ee5a5-5a48-44d6-8e13-9e1b0205155a",
+          "stationId": "6c27e5bd-38c8-429d-823f-6ae966a299f7"
+        },
+        {
+          "date": "8/21/2023, 9:33:58 PM",
+          "code": "500",
+          "temperature": 13,
+          "windSpeed": 13,
+          "pressure": 13,
+          "windDirection": 13,
+          "id": "4907ea1d-0189-4bc6-a984-5c12ea213bdd",
           "stationId": "6c27e5bd-38c8-429d-823f-6ae966a299f7"
         }
       ]

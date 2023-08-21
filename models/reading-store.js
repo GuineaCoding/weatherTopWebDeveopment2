@@ -397,6 +397,28 @@ export const readingStore = {
     } else {
       console.log(`reading not found`);
     }
-  }
-  
+  },
+
+  async getReadingById(readingId) {
+    await db.read();
+
+    // Loop through all stations and their readings to find the matching reading
+    for (const station of db.data.stations) {
+      const foundReading = station.readings.find((reading) => reading.id === readingId);
+      if (foundReading) {
+        return foundReading;
+      }
+    }
+
+    return null; // Return null if reading is not found
+  },
+  async updateReading(readingId, updatedReading) {
+    const reading = await this.getReadingById(readingId);
+    reading.code = updatedReading.code;
+    reading.temperature = updatedReading.temperature;
+    reading.windSpeed = updatedReading.windSpeed;
+    reading.pressure = updatedReading.pressure;
+    reading.windDirection = updatedReading.windDirection;
+    await db.write();
+  },
 };

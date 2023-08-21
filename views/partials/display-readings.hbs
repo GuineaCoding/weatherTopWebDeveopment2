@@ -20,7 +20,14 @@
         <p title="Pressure">Pressure</p>
       </th>
       <th>
-        <p><title="Delete">Delete</title></p>
+        <p>
+          <title="Delete">Edit</title>
+        </p>
+      </th>
+      <th>
+        <p>
+          <title="Delete">Delete</title>
+        </p>
       </th>
     </tr>
   </thead>
@@ -33,6 +40,7 @@
       <td>{{windSpeed}}</td>
       <td>{{windDirection}}</td>
       <td>{{pressure}}</td>
+      <td> <a href="/station/{{../station.id}}/editReading/{{id}}"><i class="fas fa-edit px-4"></i></a></td>
       <td><a href="/station/{{../station.id}}/deleteReading/{{id}}"><i class="fas fa-trash px-4"></i></a></td>
     </tr>
     {{/each}}
