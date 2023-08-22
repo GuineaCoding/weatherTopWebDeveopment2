@@ -1,7 +1,7 @@
 <h1 class="title">Stations</h1>
 {{#each stations}}
 <div class="box box-link-hover-shadow">
-  <h2 class="title">{{name}}</h2>
+  {{> dashboard-last-reading}}
   <a href="/station/{{id}}"><i class="fas fa-folder"></i></a>
   <a href="/dashboard/deletestation/{{id}}"><i class="fas fa-trash px-4"></i></a>
   <a href="/dashboard/editStationName/{{id}}"><i class="fa-solid fa-pen-to-square px-4"></i></a>

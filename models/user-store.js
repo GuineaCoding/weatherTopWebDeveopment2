@@ -6,12 +6,6 @@ const db = initStore("users");
 
 // Define the userStore object with various functions to interact with user data
 export const userStore = {
-  // Function to retrieve all users
-  async getAllUsers() {
-    await db.read();
-    return db.data.users;
-  },
-
   // Function to add a new user
   async addUser(user) {
     await db.read();
@@ -41,9 +35,10 @@ export const userStore = {
     await db.write(); // Write the updated data to the database
   },
 
-  // Function to delete all users
-  async deleteAll() {
-    db.data.users = []; // Remove all users from the database
-    await db.write(); // Write the updated data to the database
-  },
+  async updateUser(updatedUser) {
+    await db.read();
+    const index = db.data.users.findIndex((user) => user.id === updatedUser.id);
+    db.data.users[index] = updatedUser;
+    await db.write();
+  }
 };

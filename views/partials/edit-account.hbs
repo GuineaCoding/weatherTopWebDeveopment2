@@ -1,0 +1,48 @@
+<section class="section">
+    <h1 class="title">Edit Account</h1>
+    <form action="/updateAccount" method="POST">
+        <div class="field">
+            <label class="label">First Name</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="Enter first name" name="firstName" required value="{{user.firstName}}">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Last Name</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="Enter last name" name="lastName" required value="{{user.lastName}}">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+                <input class="input" type="email" placeholder="Enter email" name="email" required value="{{user.email}}">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">New Password</label>
+            <div class="control">
+                <input class="input" type="password" placeholder="Enter New Password" name="newPassword" required>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Confirm New Password</label>
+            <div class="control">
+                <input class="input" type="password" placeholder="Enter New Password Again" name="confirmNewPassword" required>
+            </div>
+        </div>
+        {{#if errorMessage}}
+        <div id="warning-sign" class="notification is-danger">
+            {{errorMessage}}
+        </div>
+        {{/if}}
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-primary">Update Account</button>
+            </div>
+            <div class="control">
+                <a href="/dashboard" class="button is-danger">Cancel</a>
+            </div>
+        </div>
+    </form>
+</section>

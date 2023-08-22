@@ -36,7 +36,7 @@ export const accountsController = {
   // Controller action to handle user registration
   async register(request, response) {
     const user = request.body; // Extract user data from the request body
-    
+
     // Check if the email is already registered
     const existingUser = await userStore.getUserByEmail(user.email);
     if (existingUser) {
@@ -48,7 +48,7 @@ export const accountsController = {
       response.render("signup-view", viewData);
       return;
     }
-  
+
     // If the email is not registered, add the new user to the database
     await userStore.addUser(user);
     response.redirect("/"); // Redirect to the home page
@@ -58,7 +58,7 @@ export const accountsController = {
   async authenticate(request, response) {
     const { email, password } = request.body;
     const user = await userStore.getUserByEmail(email);
-  
+
     if (user && user.password === password) {
       response.cookie("station", user.email); // Set the "station" cookie
       response.redirect("/dashboard"); // Redirect to the dashboard
@@ -86,4 +86,79 @@ export const accountsController = {
     }
     response.redirect("/login"); // Redirect to the login page if not authenticated
   },
+
+  // Controller action to render the user's account page
+  async accountPage(request, response) {
+    // Get the currently logged-in user
+    const loggedInUser = await accountsController.getLoggedInUser(request);
+
+    // If the user is not logged in, redirect to the login page
+    if (!loggedInUser) {
+      response.redirect("/login");
+      return;
+    }
+
+    const viewData = {
+      title: "Account",
+      user: loggedInUser,
+    };
+
+    // Render the "account-view" template with the viewData
+    response.render("account-view", viewData);
+  },
+
+  // Function to update the user's account information
+  async updateAccount(request, response) {
+    // Get the currently logged-in user
+    const loggedInUser = await accountsController.getLoggedInUser(request);
+
+    // If the user is not logged in, redirect to the login page
+    if (!loggedInUser) {
+      response.redirect("/login");
+      return;
+    }
+
+    // exxtract data from body
+    const { firstName, lastName, email, newPassword, confirmNewPassword } = request.body;
+
+    // check if the new email already exists
+    const existingUserWithEmail = await userStore.getUserByEmail(email);
+    // check if the existing email belongs to a different user
+    if (existingUserWithEmail && existingUserWithEmail.id !== loggedInUser.id) {
+      // If email exist, prepare the view data with an error message
+      const viewData = {
+        title: "Edit Account",
+        errorMessage: "This email is already registered. Please use a different email.",
+        user: loggedInUser, 
+      };
+      // Render the "account-view" template with the error message
+      response.render("account-view", viewData);
+      return;
+    }
+
+    // Check if the password from fields match between them
+    if (newPassword !== confirmNewPassword) {
+      // If not, pass an error message
+      const viewData = {
+        title: "Edit Account",
+        errorMessage: "New passwords do not match.",
+        user: loggedInUser,
+      };
+      // render the "account-view" template with the error message
+      response.render("account-view", viewData);
+      return;
+    }
+
+    // ipdate the user's information with the new data
+    loggedInUser.firstName = firstName;
+    loggedInUser.lastName = lastName;
+    loggedInUser.email = email;
+    loggedInUser.password = newPassword;
+
+    // call the updateUser function to update the user's data in the store
+    await userStore.updateUser(loggedInUser);
+
+    // redirect the user to the dashboard after updating their account
+    response.redirect("/dashboard");
+  }
 };

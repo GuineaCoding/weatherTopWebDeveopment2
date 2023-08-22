@@ -28,5 +28,7 @@ router.get("/station/:stationid/editReading/:readingId", readingController.index
 router.post("/station/:stationid/updateReading/:readingId", readingController.update);
 router.get("/dashboard/editStationName/:id", stationController.editStationParam);
 router.post("/station/updateStationDetails/:id", stationController.updateStationName);
+router.get("/account", accountsController.accountPage);
+router.post("/updateAccount", accountsController.updateAccount);
 
 export default router;

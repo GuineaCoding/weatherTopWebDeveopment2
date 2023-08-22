@@ -16,25 +16,11 @@
       "id": "2b6f0989-7b7f-4a38-ad26-aa06b922d751"
     },
     {
-      "firstName": "Andrian",
-      "lastName": "Barbulat",
+      "firstName": "Andrian1",
+      "lastName": "Barbulat1",
       "email": "andrianwix24@gmail.com",
       "password": "12345",
-      "id": "b9bd364e-3963-46ff-9237-61b5588f4bd9"
-    },
-    {
-      "firstName": "Andrian",
-      "lastName": "Barbulat",
-      "email": "andrianwix241@gmail.com",
-      "password": "12345",
-      "id": "3c1a88de-79ff-49ec-9b97-0a1f5c55e9f7"
-    },
-    {
-      "firstName": "Andrian",
-      "lastName": "Barbulat",
-      "email": "andrianwix111@gmail.com",
-      "password": "11111",
-      "id": "e753a56f-c453-4c92-b2c7-97bdd0bf261a"
+      "id": "27b4ab1e-e3b1-4b8b-a9dd-3ba56d4b159e"
     }
   ]
 }
