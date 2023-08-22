@@ -374,30 +374,30 @@ export const readingStore = {
     return reading;
   },
 
-  async deleteReading(stationId, readingId) {
-    console.log(`Deleting reading with ID: ${readingId}`);
-    await db.read();
-    console.log(`Database read complete`);
-    
-    const station = db.data.stations.find((station) => station.id === stationId);
-    console.log(`Found station: ${JSON.stringify(station)}`);
-    
-    if (!station) {
-      console.log(`station not found`);
-      return;
-    }
-  
-    const index = station.readings.findIndex((reading) => reading.id === readingId);
-    console.log(`Index of reading: ${index}`);
-    
-    if (index !== -1) {
-      station.readings.splice(index, 1);
-      console.log(`test reading deleted`);
-      await db.write();
-    } else {
-      console.log(`reading not found`);
-    }
-  },
+// Delete reading from a station
+async deleteReading(stationId, readingId) {
+  // Load data from the database
+  await db.read();
+
+  // Find the station using its ID
+  const station = db.data.stations.find((station) => station.id === stationId);
+
+  // If station doesn't exist, do nothing
+  if (!station) {
+    return;
+  }
+
+  // Find the index of the reading in the station's readings list
+  const index = station.readings.findIndex((reading) => reading.id === readingId);
+
+  // If the reading is found, remove it and update the database
+  if (index !== -1) {
+    station.readings.splice(index, 1); // remove the reading from the list
+    await db.write(); // save the updated data to the database
+  } else {
+    console.log(`Reading not found`);
+  }
+},
 
   async getReadingById(readingId) {
     await db.read();

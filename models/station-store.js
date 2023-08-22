@@ -29,7 +29,6 @@ export const stationStore = {
   async getStationById(stationId) {
     await db.read();
     const test = db.data.stations.find((station) => station.id === stationId);
-    console.log(test, 'test')
     return test;
   },
   // Add a new station to the database
@@ -46,7 +45,7 @@ export const stationStore = {
       throw new Error("A station with the same name already exists within your account.");
     }
 
-    // Read the database
+    // Reading the database
     await db.read();
 
     // Generate a unique ID for the new station
@@ -64,40 +63,53 @@ export const stationStore = {
     return station;
   },
 
-  async deleteStationById(id) {
-    await db.read();
-    const index = db.data.stations.findIndex((station) => station.id === id);
-    if (index !== -1) {
-      db.data.stations.splice(index, 1);
-      await db.write();
-    }
-  },
+// Delete a station by its ID
+async deleteStationById(id) {
+  // Read data from the database
+  await db.read();
+  
+  // Find the index of the station with the given ID
+  const index = db.data.stations.findIndex((station) => station.id === id);
+  
+  // If the station is found, remove it from the list
+  if (index !== -1) {
+    db.data.stations.splice(index, 1);
+    // Write the updated data back to the database
+    await db.write();
+  }
+},
 
-  async getStationByName(loggedInUserId, name) {
-    await db.read();
-    return db.data.stations.find((station) => station.userId === loggedInUserId && station.name === name);
-  },
+// Get a station by name and user ID
+async getStationByName(loggedInUserId, name) {
+  // Read data from the database
+  await db.read();
+  
+  // Find the station with the given user ID and name (case-insensitive)
+  const station = db.data.stations.find((station) => station.userId === loggedInUserId && station.name.toLowerCase() === name.toLowerCase());
 
-  async updateStationParam(request, stationId, updatedName, response) {
-    try {
-      const loggedInUser = await accountsController.getLoggedInUser(request);
+  // Return the found station
+  return station;
+},
+
+// Update a station's name, latitude, and longitude
+async updateStationParam(stationId, updatedName, updatedLatitude, updatedLongitude) {
+  // Get the station by its ID
+  const station = await this.getStationById(stationId);
+
+  // If the station is not found, throw an error
+  if (!station) {
+    throw new Error("Station not found");
+  }
+
+  // Update the station's name, latitude, and longitude
+  station.name = updatedName;
+  station.latitude = updatedLatitude;
+  station.longitude = updatedLongitude;
+
+  // Save the changes to the database
+  await db.write();
   
-      if (!updatedName) {
-        throw new Error("New station name is missing in the request body.");
-      }
-  
-      const existingStation = await stationStore.getStationByName(loggedInUser.id, updatedName);
-  
-      if (existingStation && existingStation.id !== stationId) {
-        throw new Error("A station with the same name already exists.");
-      }
-  
-      await stationController.updateStationParam(request, stationId, updatedName, response);
-  
-      response.redirect("/station/" + stationId); 
-    } catch (error) {
-      console.error("Error updating station name:", error);
-      response.status(500).send("Internal Server Error");
-    }
-  },
+  // Return the updated station
+  return station;
+},
 };
