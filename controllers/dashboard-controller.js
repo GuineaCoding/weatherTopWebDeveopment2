@@ -15,7 +15,6 @@ export const dashboardController = {
         const stationsWithLastReadings = await Promise.all(
           userStations.map(async (station) => {
             const lastReading = await readingStore.getLastReading(station.id);
-            console.log(lastReading)
             return {
               ...station,
               lastReading,
