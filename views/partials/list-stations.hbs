@@ -2,8 +2,11 @@
 {{#each stations}}
 <div class="box box-link-hover-shadow">
   {{> dashboard-last-reading}}
-  <a href="/station/{{id}}"><i class="fas fa-folder"></i></a>
-  <a href="/dashboard/deletestation/{{id}}"><i class="fas fa-trash px-4"></i></a>
-  <a href="/dashboard/editStationName/{{id}}"><i class="fa-solid fa-pen-to-square px-4"></i></a>
+  
+    <a href="/station/{{id}}" class="button is-primary">Open Station</a>
+ 
+    <a href="/dashboard/editStationName/{{id}}" class="button is-primary">Edit Station</a>
+    <a href="/dashboard/deletestation/{{id}}" class="button is-danger">Delete Station</a>
+ 
 </div>
 {{/each}}

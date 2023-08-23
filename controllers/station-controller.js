@@ -27,8 +27,8 @@ export const stationController = {
 
       // Check if the station is found in the user's stations
       if (!station) {
-        // If the station is not found, send a 404 Not Found response and return from the function
-        response.status(404).send("Station not found");
+        // Redirect to the "station-not-found" page
+        response.redirect("/notFound");
         return;
       }
 
@@ -66,8 +66,8 @@ export const stationController = {
 
       // Check if the station is found
       if (!station) {
-        // If the station is not found, send a 404 Not Found response and return from the function
-        response.status(404).send("Station not found");
+        // Redirect to the "station-not-found" page
+        response.redirect("/notFound");
         return;
       }
 
@@ -185,7 +185,8 @@ export const stationController = {
       const station = await stationStore.getStationById(stationId);
 
       if (!station) {
-        response.status(404).send("Station not found");
+        // Redirect to the "station-not-found" page
+        response.redirect("/notFound");
         return;
       }
 

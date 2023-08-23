@@ -360,7 +360,9 @@ export const readingStore = {
 
     // If the station is not found, log an error message
     if (!station) {
-      console.log("Station not found");
+      // Redirect to the "station-not-found" page
+      response.redirect("/notFound");
+      return;
     }
 
     // If the station's readings array is empty or undefined, initialize it as an empty array

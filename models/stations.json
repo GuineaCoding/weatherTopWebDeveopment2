@@ -164,21 +164,21 @@
       ]
     },
     {
-      "name": "12",
-      "latitude": 12,
-      "longitude": 12,
+      "name": "11",
+      "latitude": 11,
+      "longitude": 11,
       "userId": "27b4ab1e-e3b1-4b8b-a9dd-3ba56d4b159e",
-      "id": "6a069093-416c-4c0c-ac0d-e2a535b88e2a",
+      "id": "26b4713d-bf5e-4fc1-b3aa-79ce72913447",
       "readings": [
         {
-          "date": "8/22/2023, 11:35:41 PM",
-          "code": 300,
+          "date": "8/23/2023, 9:55:26 PM",
+          "code": 400,
           "temperature": 11,
           "windSpeed": 11,
           "pressure": 11,
           "windDirection": 11,
-          "id": "5cec1912-7723-41db-b132-8e767a078783",
-          "stationId": "6a069093-416c-4c0c-ac0d-e2a535b88e2a"
+          "id": "59e0512b-f689-4be6-b8d9-a9b6921e5b3a",
+          "stationId": "26b4713d-bf5e-4fc1-b3aa-79ce72913447"
         }
       ]
     }

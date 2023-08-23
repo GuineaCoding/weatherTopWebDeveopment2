@@ -98,7 +98,9 @@ async updateStationParam(stationId, updatedName, updatedLatitude, updatedLongitu
 
   // If the station is not found, throw an error
   if (!station) {
-    throw new Error("Station not found");
+    // Redirect to the "station-not-found" page
+    response.redirect("/notFound");
+    return;
   }
 
   // Update the station's name, latitude, and longitude

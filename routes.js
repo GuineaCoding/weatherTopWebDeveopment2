@@ -4,6 +4,7 @@ import { dashboardController } from "./controllers/dashboard-controller.js";
 import { aboutController } from "./controllers/about-controller.js";
 import { stationController } from "./controllers/station-controller.js";
 import { readingController } from "./controllers/reading-controller.js";
+import { genericRedirectController } from "./controllers/redirect-controller.js";
 
 export const router = express.Router();
 
@@ -30,5 +31,6 @@ router.get("/dashboard/editStationName/:id", stationController.editStationParam)
 router.post("/station/updateStationDetails/:id", stationController.updateStationName);
 router.get("/account", accountsController.accountPage);
 router.post("/updateAccount", accountsController.updateAccount);
-
+router.get("/notFound", genericRedirectController.index);
+router.get("*", genericRedirectController.index);
 export default router;
