@@ -181,6 +181,25 @@
           "stationId": "26b4713d-bf5e-4fc1-b3aa-79ce72913447"
         }
       ]
+    },
+    {
+      "name": "11",
+      "latitude": 11,
+      "longitude": 11,
+      "userId": "616ac0cf-8543-48ba-a14b-a6e3c6118dd1",
+      "id": "eee4b2a1-e38c-48a9-a3d1-9a3d323e4f44",
+      "readings": [
+        {
+          "date": "8/23/2023, 11:02:02 PM",
+          "code": 300,
+          "temperature": 11,
+          "windSpeed": 11,
+          "pressure": 11,
+          "windDirection": 11,
+          "id": "a97c166f-9de7-4786-9079-11fac60a68a9",
+          "stationId": "eee4b2a1-e38c-48a9-a3d1-9a3d323e4f44"
+        }
+      ]
     }
   ]
 }

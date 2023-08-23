@@ -47,8 +47,8 @@
         <p class="has-text-white-bis is-size-4">Max: {{maxTemperature}}</p>
         <p class="has-text-white-bis is-size-4">Min: {{minTemperature}}</p>
         <div class="temperature-range">
-          {{trendIcon temperatureTrend}}
-          {{temperatureTrend}}
+          <label>{{trendIcon temperatureTrend}}</label>
+          <p class="has-text-white-bis is-size-4">{{temperatureTrend}}</p>
         </div>
         {{else}}
         <p class="has-text-white-bis">No Data</p>
@@ -56,7 +56,6 @@
       </div>
     </div>
   </div>
-
   <div class="column is-3">
     <div class="wind-box">
       <div class="field">
@@ -65,7 +64,7 @@
       <div class="field">
         {{#if lastReading}}
         <div class="weather-icon">
-          {{beaufortIcon beaufortDescription}}
+          <label>{{beaufortIcon beaufortDescription}}</label>
         </div>
         <p class="has-text-white-bis is-size-4">{{beaufortLevel}} Bft</p>
         <p class="has-text-white-bis is-size-4">{{windCompassDirection}}</p>
@@ -74,8 +73,8 @@
         <p class="has-text-white-bis is-size-4">Max: {{maxWindSpeed}}</p>
         <p class="has-text-white-bis is-size-4">Min: {{minWindSpeed}}</p>
         <div class="temperature-range">
-          {{trendIcon windSpeedTrend}}
-           <p>{{windSpeedTrend}}</p>
+          <label>{{trendIcon windSpeedTrend}}</label>
+          <p class="has-text-white-bis is-size-4">{{windSpeedTrend}}</p>
         </div>
         {{else}}
         <p class="has-text-white-bis">No Data</p>
@@ -83,7 +82,6 @@
       </div>
     </div>
   </div>
-
   <div class="column is-2">
     <div class="pressure-box">
       <div class="field">
@@ -99,7 +97,7 @@
         <p class="has-text-white-bis is-size-4">Min: {{minPressure}} </p>
         <div class="temperature-range">
           {{trendIcon pressureTrend}}
-          {{pressureTrend}}
+          <p class="has-text-white-bis is-size-4">{{pressureTrend}}</p>
         </div>
         {{else}}
         <p class="has-text-white-bis">No Data</p>

@@ -21,6 +21,13 @@
       "email": "andrianwix24@gmail.com",
       "password": "123456",
       "id": "27b4ab1e-e3b1-4b8b-a9dd-3ba56d4b159e"
+    },
+    {
+      "firstName": "Andrian",
+      "lastName": "Test",
+      "email": "andrianwix@gmail.com",
+      "password": "12345",
+      "id": "616ac0cf-8543-48ba-a14b-a6e3c6118dd1"
     }
   ]
 }
