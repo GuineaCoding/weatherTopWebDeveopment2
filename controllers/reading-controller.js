@@ -9,9 +9,6 @@ export const readingController = {
     const stationId = request.params.stationid; 
     const readingId = request.params.readingId;
 
-    // log a message indicating which reading is being edited
-    console.log(`Editing Reading ${readingId} from Station ${stationId}`);
-
     // find the station and the reading to edit
     const foundStation = await stationStore.getStationById(stationId);
     const readingToEdit = foundStation.readings.find((reading) => reading.id === readingId);
@@ -46,10 +43,6 @@ export const readingController = {
       pressure: Number(request.body.pressure),
       windDirection: Number(request.body.windDirection),
     };
-
-    // log a message indicating which reading is being updated
-    console.log(`Updating Reading ${readingId} from Station ${stationId}`);
-
     // Update the reading in the reading store
     await readingStore.updateReading(readingId, updatedReading);
 

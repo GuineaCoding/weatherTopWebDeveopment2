@@ -5,7 +5,6 @@ export const aboutController = {
     const viewData = {
       title: "About Us",
     };
-    console.log("about rendering");
     // Render the "about-view" template with the viewData object as context
     response.render("about-view", viewData);
   },

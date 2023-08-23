@@ -97,8 +97,6 @@ export const stationController = {
     const stationId = request.params.stationid;
     const readingId = request.params.readingId;
 
-    console.log(`Deleting Reading ${readingId} from Station ${stationId}`);
-
     // deleting the reading from the reading store
     await readingStore.deleteReading(stationId, readingId);
 
