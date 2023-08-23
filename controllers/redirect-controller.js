@@ -5,7 +5,7 @@ export const genericRedirectController = {
       const viewData = {
         title: "Not Available",
       };
-      // Render the "about-view" template with the viewData object as context
+      // Render the "generic-view" template with the viewData object as context
       response.render("generic-view", viewData);
     },
   };
