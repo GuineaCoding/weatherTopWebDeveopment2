@@ -64,7 +64,18 @@
     },
     {
       "name": "test",
-      "id": "7a975c6f-5d4c-4a14-a42c-134c35f19b2e"
+      "id": "7a975c6f-5d4c-4a14-a42c-134c35f19b2e",
+      "readings": [
+        {
+          "code": 200,
+          "temperature": 11.12,
+          "windSpeed": 11.12,
+          "pressure": 11.12,
+          "windDirection": 334.4,
+          "id": "a04bc13a-90b8-4e55-b463-4c80bc804520",
+          "stationId": "7a975c6f-5d4c-4a14-a42c-134c35f19b2e"
+        }
+      ]
     }
   ]
 }
