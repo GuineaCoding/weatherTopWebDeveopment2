@@ -160,6 +160,16 @@
           "windDirection": 11,
           "id": "2d65bea1-6c45-40c5-816a-33abeb47f795",
           "stationId": "ebe131d3-68a2-494a-abd6-c6a648d9bdc4"
+        },
+        {
+          "date": "8/24/2023, 9:22:59 PM",
+          "code": 300,
+          "temperature": 11.1,
+          "windSpeed": 11.1,
+          "pressure": 11.12,
+          "windDirection": 11.12,
+          "id": "c81bdef7-7174-4217-84e1-c8d05cf287ce",
+          "stationId": "ebe131d3-68a2-494a-abd6-c6a648d9bdc4"
         }
       ]
     },
@@ -200,6 +210,14 @@
           "stationId": "eee4b2a1-e38c-48a9-a3d1-9a3d323e4f44"
         }
       ]
+    },
+    {
+      "name": "Art4",
+      "latitude": 11.131,
+      "longitude": 11.416,
+      "userId": "3ad52697-6d98-4d80-8273-084de55a86c0",
+      "id": "42a2425e-8764-423a-8bdd-75405bc2f6ae",
+      "readings": []
     }
   ]
 }
