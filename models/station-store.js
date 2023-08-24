@@ -13,16 +13,15 @@ export const stationStore = {
   async getStationsByUserId(userId) {
     await db.read();
     const stations = db.data.stations.filter((station) => station.userId === userId);
-  
     const fetchReadingsPromises = stations.map(async (station) => {
       station.readings = await readingStore.getReadingByStationId(station.id);
     });
-  
+    
     await Promise.all(fetchReadingsPromises);
   
     // Sort the stations alphabetically by name
     stations.sort((a, b) => a.name.localeCompare(b.name));
-  
+    console.log(stations, 'stations')
     return stations;
   },
   
