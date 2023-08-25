@@ -1,6 +1,6 @@
 
   // Initialize the map
-  const map = L.map('map').setView([61.505, -0.09], 13); // Set initial coordinates and zoom level
+  const map = L.map('map').setView([51.505, -0.09], 3); // Set initial coordinates and zoom level
 
   // Add a base layer (e.g., OpenStreetMap)
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

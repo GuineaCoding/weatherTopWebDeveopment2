@@ -21,7 +21,6 @@ export const stationStore = {
   
     // Sort the stations alphabetically by name
     stations.sort((a, b) => a.name.localeCompare(b.name));
-    console.log(stations, 'stations')
     return stations;
   },
   
