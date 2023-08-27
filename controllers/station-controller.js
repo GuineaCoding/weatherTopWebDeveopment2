@@ -1,6 +1,7 @@
 import { readingStore } from "../models/reading-store.js";
 import { stationStore } from "../models/station-store.js";
 import { accountsController } from "./accounts-controller.js";
+import { openWeather } from "../models/open-weather-store.js";
 
 // Define the stationController object
 export const stationController = {
@@ -48,6 +49,7 @@ export const stationController = {
         readings: readings,
         loggedInUser: loggedInUser,
       };
+      console.log(viewData)
       response.render("station-view", viewData);
     } catch (error) {
       console.error("Error rendering station:", error);
@@ -91,6 +93,7 @@ export const stationController = {
       response.status(500).send("Internal Server Error");
     }
   },
+  
   // function to delete a reading
   async deleteReading(request, response) {
     // extracting station ID and reading ID from request parameters
@@ -177,7 +180,7 @@ export const stationController = {
 
   async editStationParam(request, response) {
     const stationId = request.params.id;
-
+    console.log(stationId)
     try {
       // Retrieve the station by ID
       const station = await stationStore.getStationById(stationId);
@@ -193,11 +196,25 @@ export const stationController = {
         title: "Edit Station Name",
         station: station,
       };
-
+      console.log('test')
       response.render("edit-station-name", viewData);
     } catch (error) {
       console.error("Error rendering edit station name page:", error);
       response.status(500).send("Internal Server Error");
     }
   },
+
+  async generateReading(request, response) {
+    const id = request.params.id;
+    const station = await stationStore.getStationById(id);
+    console.log(id,'statonId')
+    console.log(station.latitude)
+    const newReading = await openWeather.addAutoReading(
+      station.latitude,
+      station.longitude,
+    );
+
+    await readingStore.addReading(id, newReading);
+    response.redirect("/station/" + id);
+  }
 };

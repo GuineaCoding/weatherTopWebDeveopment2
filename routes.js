@@ -33,4 +33,5 @@ router.get("/account", accountsController.accountPage);
 router.post("/updateAccount", accountsController.updateAccount);
 router.get("/notFound", genericRedirectController.index);
 router.get("*", genericRedirectController.index);
+router.post("/station/:id/generate-reading", stationController.generateReading);
 export default router;

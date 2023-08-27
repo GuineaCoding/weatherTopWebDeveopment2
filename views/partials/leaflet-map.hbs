@@ -1,2 +1,49 @@
-<!-- Map container -->
+<!-- Container for the Map -->
 <div id="map" style="width: 100%; height: 500px;"></div>
+<script>
+// Initialize the map
+const map = L.map('map'); 
+// Set up the map's data source and associate it with the map
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+}).addTo(map); 
+
+// Declare variables for markers, accuracy circle, and zoom state
+let marker, accuracyCircle;
+
+// Initialize the average latitude and longitude to 0
+let calcAverageLatitude = calcAverageLongitude = 0;
+
+// Loop through stations and add markers to the map
+{{#each stations}}
+  // Create a marker for the station's location
+  marker = L.marker([{{latitude}}, {{longitude}}], {title: "{{name}}"});
+  // Add a popup to the marker with station details
+  marker.bindPopup("<h1>Name: {{name}}</h1>" 
+            + "<br>"
+            + "Lat & Lng(" + {{latitude}} + "," 
+            + {{longitude}} + ")"
+            + "<br>" 
+            + "Temp: " + {{lastReading.lastReading.temperature}}
+            + " &#176C, Wind: " + {{lastReading.beaufortLevel}} 
+            + " bft, Pressure: "
+            +  {{lastReading.lastReading.pressure}} + " hPa"
+            + "<br>"
+            + "<a href='/station/{{id}}'>View Station Readings</a>"
+            );
+  // Add the marker to the map
+  marker.addTo(map);
+  // Accumulate latitude and longitude for averaging
+  calcAverageLatitude += {{latitude}};
+  calcAverageLongitude += {{longitude}};
+{{/each}}
+// Calculate the average latitude and longitude
+calcAverageLatitude /= {{stations.length}};
+calcAverageLongitude /= {{stations.length}};
+
+// Set the map view to the average latitude and longitude with a specific zoom level
+map.setView([calcAverageLatitude, calcAverageLongitude], 4);
+map.doubleClickZoom.disable();
+
+</script>
