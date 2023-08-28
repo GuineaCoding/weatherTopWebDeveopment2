@@ -32,7 +32,10 @@ export const stationController = {
         response.redirect("/notFound");
         return;
       }
-
+      const trendingReadings = await openWeather.getWeatherTrendReport(
+        station.latitude,
+        station.longitude,
+      )
       // Fetch the last reading associated with the station using the readingStore's 'getLastReading' function
       const lastReading = await readingStore.getLastReading(stationId);
       const readings = await readingStore.getReadingByStationId(stationId);
@@ -48,8 +51,8 @@ export const stationController = {
         lastReadings: lastReadings,
         readings: readings,
         loggedInUser: loggedInUser,
+        trendingReadings: trendingReadings,
       };
-      console.log(viewData)
       response.render("station-view", viewData);
     } catch (error) {
       console.error("Error rendering station:", error);
@@ -196,7 +199,6 @@ export const stationController = {
         title: "Edit Station Name",
         station: station,
       };
-      console.log('test')
       response.render("edit-station-name", viewData);
     } catch (error) {
       console.error("Error rendering edit station name page:", error);
@@ -207,13 +209,12 @@ export const stationController = {
   async generateReading(request, response) {
     const id = request.params.id;
     const station = await stationStore.getStationById(id);
-    console.log(id,'statonId')
-    console.log(station.latitude)
+    
     const newReading = await openWeather.addAutoReading(
       station.latitude,
-      station.longitude,
+      station.longitude
     );
-
+  
     await readingStore.addReading(id, newReading);
     response.redirect("/station/" + id);
   }

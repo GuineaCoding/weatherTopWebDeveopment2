@@ -1,0 +1,36 @@
+<div id="{{id}}"></div>
+<script>
+  {
+    const data = {
+      labels: [
+        {{#each labels}}
+          "{{this}}",
+        {{/each}}
+      ],
+      datasets: [
+        {
+          name: "{{name}}", type: "line",
+          values: [
+            {{#each values}}
+              {{this}},
+            {{/each}}
+          ]
+        }
+      ],
+       yMarkers: [{ label: "", value: {{yMarker}},type: 'solid' }]
+    }
+
+    const chart = new frappe.Chart("#{{id}}", {
+      title: "{{name}}",
+      data: data,
+      type: 'line',
+      height: 250,
+              lineOptions: {
+            regionFill: 1,
+            hideDots: 1,
+            hideLine: 0,
+        },  
+        colors: ['#064e33'],
+    })
+  }
+</script>

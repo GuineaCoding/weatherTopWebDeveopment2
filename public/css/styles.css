@@ -140,3 +140,12 @@ footer {
 .page-not-found-button-container {
   margin-top: 20px;
 }
+
+.graph-svg-tip {
+  background: rgb(2 61 29 / 80%) !important;
+  color: white !important;
+}
+
+.title {
+  color: white !important;
+}
