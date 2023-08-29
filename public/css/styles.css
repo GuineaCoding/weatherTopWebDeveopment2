@@ -1,40 +1,24 @@
-body {
-  background-color: #cde1de;
-  height: 100vh;
-  margin: 0; 
-  padding: 0; 
-}
-
-.section{
+body, .section, footer {
   background-color: #cde1de;
 }
 
 footer {
-  background-color: #cde1de !important;
+  padding: 3rem 1.5rem;
+  color: white;
+  background: rgb(14, 14, 14) !important;
 }
 
 .navbar {
   background-color: transparent;
 }
-.hero {
-  background: linear-gradient(to right, #026635, #00371b);
-}
 
-.button.is-primary {
+.hero, .button.is-primary {
   background: linear-gradient(to right, #026635, #00371b);
   color: #fff;
   font-weight: bold;
 }
 
-.box {
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.weather-box,
-.temp-box,
-.wind-box,
-.pressure-box {
+ .weather-box {
   background: linear-gradient(to right, #005c27, #002e13);
   color: #fff;
   padding: 1rem;
@@ -44,28 +28,25 @@ footer {
   font-size: 18px;
 }
 
-.table {
+.table, .custom-table {
   background-color: #21692a;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   font-size: 16px;
 }
 
-.table thead th {
+.table thead th, .custom-table thead th {
   color: #fff;
   font-weight: bold;
   font-size: 18px;
   padding: 16px;
-}
-#logo {
-  color: #1b8145;
 }
 
 .table tbody tr {
   background-color: #ffffff;
 }
 
-.table tbody td {
+.table tbody td, .custom-table td {
   color: #333;
   font-weight: bold;
   padding: 12px;
@@ -79,34 +60,14 @@ footer {
   background-color: #cce5ff;
 }
 
-.custom-table {
-  height: 50px;
-  border-bottom: 1px solid #ccc;
-  text-align: center;
+#logo {
+  color: #1b8145;
 }
-
-.custom-table tbody tr:last-child {
-  border-bottom: none;
-}
-
-.custom-table thead th {
-  font-size: 20px;
-}
-
-.custom-table {
-  border-radius: 15px;
-}
-
-.custom-table td {
-  font-size: 18px;
-}
-
 
 #last-readings > div > div {
   height: 100%;
 }
 
-/* Center align the content */
 .center-content {
   display: flex;
   flex-direction: column;
@@ -114,19 +75,16 @@ footer {
   justify-content: center;
 }
 
-/* Style for the heading */
 .page-not-found-title {
   font-size: 24px;
   margin-bottom: 10px;
 }
 
-/* Style for the paragraph */
 .page-not-found-text {
   font-size: 16px;
   margin-bottom: 20px;
 }
 
-/* Style for the button */
 .page-not-found-button {
   padding: 10px 20px;
   background-color: #007BFF;
@@ -136,16 +94,63 @@ footer {
   text-decoration: none;
 }
 
-/* Style for the button container */
 .page-not-found-button-container {
   margin-top: 20px;
 }
 
-.graph-svg-tip {
-  background: rgb(2 61 29 / 80%) !important;
-  color: white !important;
+#login-page {
+  background: linear-gradient(-45deg, #FFB86F, #FFA59E, #B9FFAB, #8EDFFF, #D2A2FD);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  height: 100vh;
 }
 
+@keyframes gradient {
+  0%, 50%, 100% {
+    background-position: 0% 50%;
+  }
+  25%, 75% {
+    background-position: 100% 50%;
+  }
+}
+  
+footer strong, footer a {
+  color: turquoise;
+}
 .title {
-  color: white !important;
+   color: white;
+}
+
+.subtitle {
+  color: white;
+  font-size: 1.2rem;
+}
+
+#parallax-1, #parallax-2, #parallax-3 {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-top: 10px solid;
+  border-color: #002e13;
+}
+
+#parallax-1 {
+  background-image: url(https://source.unsplash.com/featured/?sun);
+  border-color: #95eed0;
+}
+
+#parallax-2 {
+  background-image: url(https://source.unsplash.com/featured/?rain);
+  border-color: #49c496;
+}
+
+#parallax-3 {
+  background-image: url(https://source.unsplash.com/featured/?autumn);
+  border-color: #dba9c2;
+}
+
+.section-background {
+  background-color: #00000059;
+  padding: 20px;
 }
