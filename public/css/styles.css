@@ -3,7 +3,7 @@ body, .section, footer {
 }
 
 footer {
-  padding: 3rem 1.5rem;
+  padding: 3rem 1.5rem 3rem !important;
   color: white;
   background: rgb(14, 14, 14) !important;
 }
@@ -13,9 +13,13 @@ footer {
 }
 
 .hero, .button.is-primary {
-  background: linear-gradient(to right, #026635, #00371b);
+  background-color: #267d0f;
   color: #fff;
   font-weight: bold;
+}
+
+.button.is-primary:hover {
+  background-color: #1ba856;
 }
 
  .weather-box {
@@ -153,4 +157,20 @@ footer strong, footer a {
 .section-background {
   background-color: #00000059;
   padding: 20px;
+}
+
+.green-box {
+  background-color: #002e13 !important;
+}
+
+.light-green {
+  color: #1ba856 !important;
+}
+
+.is-info {
+  background-color: #1b8972 !important;
+}
+
+.is-info:hover {
+  background-color: #2a9b84 !important;
 }

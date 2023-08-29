@@ -5,8 +5,8 @@
       <div class="columns is-centered">
         <div class="column is-5-tablet is-8-desktop is-6-widescreen">
           <h1 class="title">Sign up</h1>
-          <form action="/register" method="POST" class="box">
-            <label class="label">Name</label>
+          <form action="/register" method="POST" class="box green-box">
+            <label class="label has-text-white">Name</label>
             <div class="field is-horizontal">
               <div class="field-body">
                 <div class="field">
@@ -18,11 +18,11 @@
               </div>
             </div>
             <div class="field">
-              <label class="label">Email</label>
+              <label class="label has-text-white">Email</label>
               <input class="input" type="text" placeholder="Enter email" name="email" required>
             </div>
             <div class="field">
-              <label class="label">Password</label>
+              <label class="label has-text-white">Password</label>
               <input class="input" type="password" placeholder="Enter Password" name="password" required>
             </div>
             {{#if errorMessage}}
@@ -31,15 +31,13 @@
             </div>
             {{/if}}
             <div class="field is-grouped">
-
             </div>
-
             <div class="field is-grouped">
               <div class="control">
-                <button class="button is-link">Register</button>
+                <button class="button is-info">Register</button>
               </div>
               <div class="control">
-                <a href="/login" class="button is-success">
+                <a href="/login" class="button is-primary">
                   Sign In
                 </a>
               </div>
