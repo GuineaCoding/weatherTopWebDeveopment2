@@ -118,9 +118,6 @@ body {
   color:  white !important;
   height: unset;
 }
-#logo{
-  max-width: 30%;
-}
 @keyframes gradient {
   0%, 50%, 100% {
     background-position: 0% 50%;
@@ -156,17 +153,17 @@ footer a:hover {
 }
 
 #parallax-1 {
-  background-image: url(https://source.unsplash.com/featured/?sun);
+  background-image: url(https://source.unsplash.com/featured/?weather-earth);
   border-color: #95eed0;
 }
 
 #parallax-2 {
-  background-image: url(https://source.unsplash.com/featured/?rain);
+  background-image: url(https://source.unsplash.com/featured/?weather-data);
   border-color: #49c496;
 }
 
 #parallax-3 {
-  background-image: url(https://source.unsplash.com/featured/?autumn);
+  background-image: url(https://source.unsplash.com/featured/?weather-station);
   border-color: #dba9c2;
 }
 
@@ -189,4 +186,18 @@ footer a:hover {
 
 .is-info:hover {
   background-color: #2a9b84 !important;
+}
+
+.navbar-item img {
+  max-height: 4.75rem;
+}
+#abut-us {
+  background: url('../images/about-page/about-us-photo.jpg');
+  /* height: 100vh; */
+  background-size: cover; 
+  background-position: center center; 
+}
+
+#abut-us > div > div {
+  background-color: #524f4f36;
 }

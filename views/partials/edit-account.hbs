@@ -1,32 +1,32 @@
-<section class="section">
+<section class="section login-signup-page">
     <h1 class="title">Edit Account</h1>
-    <form action="/updateAccount" method="POST">
+    <form action="/updateAccount" method="POST"class="box green-box">
         <div class="field">
-            <label class="label">First Name</label>
+            <label class="label has-text-white">First Name</label>
             <div class="control">
                 <input class="input" type="text" placeholder="Enter first name" name="firstName" required value="{{user.firstName}}">
             </div>
         </div>
         <div class="field">
-            <label class="label">Last Name</label>
+            <label class="label has-text-white">Last Name</label>
             <div class="control">
                 <input class="input" type="text" placeholder="Enter last name" name="lastName" required value="{{user.lastName}}">
             </div>
         </div>
         <div class="field">
-            <label class="label">Email</label>
+            <label class="label has-text-white">Email</label>
             <div class="control">
                 <input class="input" type="email" placeholder="Enter email" name="email" required value="{{user.email}}">
             </div>
         </div>
         <div class="field">
-            <label class="label">New Password</label>
+            <label class="label has-text-white">New Password</label>
             <div class="control">
                 <input class="input" type="password" placeholder="Enter New Password" name="newPassword" required>
             </div>
         </div>
         <div class="field">
-            <label class="label">Confirm New Password</label>
+            <label class="label has-text-white">Confirm New Password</label>
             <div class="control">
                 <input class="input" type="password" placeholder="Enter New Password Again" name="confirmNewPassword" required>
             </div>

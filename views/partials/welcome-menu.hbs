@@ -1,26 +1,24 @@
-<nav class="navbar green-box" role="navigation" aria-label="main navigation">
+<nav class="navbar green-box">
   <div class="navbar-brand">
-    {{> brand}}
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
+    <a class="navbar-item is-size-3" href="/">
+      <img src="../images/logo/logo.png" id="logo">
     </a>
+    <div class="navbar-burger">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </div>
   </div>
-  <div class="navbar-menu" id="navMenu">
-    <div class="navbar-end"> 
+  <div id="" class="navbar-menu">
+    <div class="navbar-end">
       <div class="navbar-item">
-        <div class="buttons is-centered"> 
+        <div class="field is-grouped">
+          <div class="buttons">
           <a class="button is-primary" id="login" href="/login"> Log in </a>
           <a class="button is-primary" id="signup" href="/signup"> Sign up </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </nav>
-<script>
-  document.getElementById("{{active}}").classList.add("is-primary");
-</script>
-
-
-

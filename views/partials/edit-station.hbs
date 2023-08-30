@@ -1,20 +1,21 @@
-<form action="/station/updateStationDetails/{{station.id}}" method="POST">
-  <section class="section">
+<section class="section login-signup-page">
+<form action="/station/updateStationDetails/{{station.id}}" method="POST" class="box green-box">
+
     <h1 class="title">Edit Station</h1>
     <div class="field">
-      <label class="label">Station Name</label>
+      <label class="label has-text-white">Station Name</label>
       <div class="control">
         <input class="input" type="text" placeholder="Station Name" name="name" value="{{station.name}}" required>
       </div>
     </div>
     <div class="field">
-      <label class="label">Latitude</label>
+      <label class="label has-text-white">Latitude</label>
       <div class="control">
         <input class="input" type="number" placeholder="Latitude" name="latitude" value="{{station.latitude}}" required>
       </div>
     </div>
     <div class="field">
-      <label class="label">Longitude</label>
+      <label class="label has-text-white">Longitude</label>
       <div class="control">
         <input class="input" type="number" placeholder="Longitude" name="longitude" value="{{station.longitude}}"
           required>
@@ -33,5 +34,5 @@
       {{errorMessage}}
     </div>
     {{/if}}
-  </section>
 </form>
+</section>

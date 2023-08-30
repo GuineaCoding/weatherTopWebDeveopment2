@@ -60,8 +60,8 @@
     {
       "id": "05",
       "name": "Dunmore",
-      "latitude": 11,
-      "longitude": 11,
+      "latitude": 15,
+      "longitude": 15,
       "userId": "3ad52697-6d98-4d80-8273-084de55a86c0",
       "readings": [
         {
@@ -81,6 +81,16 @@
           "pressure": 1000,
           "windDirection": 102,
           "date": "2021-04-25T07:20:42.138Z"
+        },
+        {
+          "date": "8/30/2023, 7:45:31 PM",
+          "code": 500,
+          "temperature": 26.73,
+          "windSpeed": 3.98,
+          "windDirection": 196,
+          "pressure": 1011,
+          "id": "d4124817-a137-41ac-b1b4-97b5bcd339df",
+          "stationId": "05"
         }
       ]
     },
@@ -368,6 +378,14 @@
           "stationId": "f54b87b9-590a-4c4e-88f1-60400d1f4818"
         }
       ]
+    },
+    {
+      "name": "test",
+      "latitude": 11,
+      "longitude": 11,
+      "userId": "3ad52697-6d98-4d80-8273-084de55a86c0",
+      "id": "0c3854ee-0018-436a-af0f-3ac0c9124032",
+      "readings": []
     }
   ]
 }
