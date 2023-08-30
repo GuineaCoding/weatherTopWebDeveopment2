@@ -7,6 +7,11 @@ footer {
   color: white;
   background: rgb(14, 14, 14) !important;
 }
+body {
+  min-height: 100vh; 
+  margin: 0; 
+  padding: 0; 
+}
 
 .navbar {
   background-color: transparent;
@@ -102,13 +107,20 @@ footer {
   margin-top: 20px;
 }
 
-#login-page {
-  background: linear-gradient(-45deg, #FFB86F, #FFA59E, #B9FFAB, #8EDFFF, #D2A2FD);
+.login-signup-page {
+  background: linear-gradient(-45deg, #82f2ef, #44a85c, #bea51f, #3c819d, #4f47a5);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
   height: 100vh;
 }
 
+.navbar-burger {
+  color:  white !important;
+  height: unset;
+}
+#logo{
+  max-width: 30%;
+}
 @keyframes gradient {
   0%, 50%, 100% {
     background-position: 0% 50%;
@@ -120,6 +132,10 @@ footer {
   
 footer strong, footer a {
   color: turquoise;
+}
+
+footer a:hover {
+  color: white;
 }
 .title {
    color: white;

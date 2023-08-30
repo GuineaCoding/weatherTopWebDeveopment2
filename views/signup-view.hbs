@@ -1,9 +1,9 @@
 {{> welcome-menu active="signup"}}
-<section class="hero is-primary is-fullheight" id="login-page">
+<section class="hero is-primary is-fullheight login-signup-page">
   <div class="hero-body">
     <div class="container">
       <div class="columns is-centered">
-        <div class="column is-5-tablet is-8-desktop is-6-widescreen">
+        <div class="column is-8-tablet is-8-desktop is-8-widescreen">
           <h1 class="title">Sign up</h1>
           <form action="/register" method="POST" class="box green-box">
             <label class="label has-text-white">Name</label>
@@ -30,8 +30,6 @@
               {{errorMessage}}
             </div>
             {{/if}}
-            <div class="field is-grouped">
-            </div>
             <div class="field is-grouped">
               <div class="control">
                 <button class="button is-info">Register</button>

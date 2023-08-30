@@ -51,7 +51,7 @@ export const accountsController = {
 
     // If the email is not registered, add the new user to the database
     await userStore.addUser(user);
-    response.redirect("/"); // Redirect to the home page
+    response.redirect("/login"); // Redirect to the home page
   },
 
   // Controller action to authenticate user login

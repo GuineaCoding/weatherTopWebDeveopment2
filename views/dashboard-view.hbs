@@ -3,5 +3,7 @@
 <section class="section">
   {{> list-stations}}
 </section>
+{{#if stations.length}}
 <section class="section">{{> leaflet-map}}</section>
+{{/if}}
 {{> add-station}}
