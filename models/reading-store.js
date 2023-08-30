@@ -100,21 +100,21 @@ function getWeatherDescription(weatherCode) {
 // Define a Handlebars helper named 'weatherIcon'
 Handlebars.registerHelper('weatherIcon', function (weatherCode) {
   const weatherIcons = {
-    100: 'fa-sun',
-    200: 'fa-cloud-sun',
-    300: 'fa-cloud',
-    400: 'fa-cloud-rain',
-    500: 'fa-cloud-showers-heavy',
-    600: 'fa-cloud-rain',
-    700: 'fa-snowflake',
-    800: 'fa-bolt',
+    100: 'sun',
+    200: 'cloud-sun',
+    300: 'cloud',
+    400: 'cloud-rain',
+    500: 'cloud-showers-heavy',
+    600: 'rain',
+    700: 'snow',
+    800: 'thunder',
   };
 
   // Get the icon class corresponding to the provided weather code
   const iconClass = weatherIcons[weatherCode];
 
   // Create an HTML string containing the Font Awesome icon
-  return new Handlebars.SafeString(`<i class="fa-solid ${iconClass}"></i>`);
+  return new Handlebars.SafeString(`<img class="weather-icon-image" src="../images/weather-images/${iconClass}.png"></img>`);
 });
 
 function calculateTrend(values) {
@@ -166,15 +166,15 @@ function calculateTrend(values) {
 // Handlebars helper function to generate the trend icon based on the trend value
 Handlebars.registerHelper('trendIcon', function (trend) {
   const trendIcons = {
-    'Rising': 'fa-arrow-circle-up',
-    'Falling': 'fa-arrow-circle-down',
-    'Steady': 'fa-equals',
+    'Rising': 'arrow-circle-up',
+    'Falling': 'arrow-circle-down',
+    'Steady': 'steady',
   };
   // Get the corresponding icon class from the mapping based on the provided trend value
   const iconClass = trendIcons[trend];
 
   // Create an HTML string containing the Font Awesome icon
-  return new Handlebars.SafeString(`<i class="fa-solid ${iconClass}"></i>`);
+  return new Handlebars.SafeString(`<img class="weather-icon-image" src="../images/weather-images/${iconClass}.png"></img>`);
 });
 
 

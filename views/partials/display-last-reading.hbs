@@ -1,13 +1,13 @@
 <div id="last-readings" class="columns is-multiline">
   <div class="column is-3">
     <div class="weather-box has-text-white">
-      <div class="field">
+      <div class="field has-text-centered">
         <h3 class="title is-3 has-text-white">{{name}}</h3>
       </div>
-      <div class="field">
+      <div class="field has-text-centered">
         <label class="label has-text-white">Latitude: {{latitude}}</label>
       </div>
-      <div class="field">
+      <div class="field has-text-centered">
         <label class="label has-text-white">Longitude: {{longitude}}</label>
       </div>
     </div>
@@ -15,16 +15,16 @@
   {{#each lastReadings}}
   <div class="column is-2">
     <div class="weather-box">
-      <div class="field">
+      <div class="field has-text-centered">
         <h3 class="title is-3 has-text-white">Weather</h3>
       </div>
       {{#if lastReading}}
-      <div class="field">
+      <div class="field has-text-centered">
         <div class="weather-icon">
           {{weatherIcon lastReading.code}}
         </div>
       </div>
-      <div class="field">
+      <div class="field has-text-centered">
         <label class="label has-text-white">{{weatherDescription}}</label>
       </div>
       {{else}}
@@ -34,10 +34,10 @@
   </div>
   <div class="column is-2">
     <div class="weather-box">
-      <div class="field">
+      <div class="field has-text-centered">
         <h3 class="title is-3 has-text-white">Temperature</h3>
       </div>
-      <div class="field">
+      <div class="field has-text-centered">
         {{#if lastReading}}
         <div class="weather-icon">
           {{temperatureRangeAndIcon lastReading.temperature}}
@@ -58,17 +58,17 @@
   </div>
   <div class="column is-3">
     <div class="weather-box">
-      <div class="field">
+      <div class="field has-text-centered">
         <h3 class="title is-3 has-text-white">Wind Speed</h3>
       </div>
-      <div class="field">
+      <div class="field has-text-centered">
         {{#if lastReading}}
         <div class="weather-icon">
           <label>{{beaufortIcon beaufortDescription}}</label>
         </div>
         <p class="has-text-white-bis is-size-4">{{beaufortLevel}} Bft</p>
         <p class="has-text-white-bis is-size-4">{{windCompassDirection}}</p>
-        <p class="has-text-white-bis is-size-4">Feels Like {{beaufortDescription}}</p>
+        <p class="has-text-white-bis is-size-4">Feels Like: {{beaufortDescription}}</p>
         <p class="has-text-white-bis is-size-4">{{windChill}}</p>
         <p class="has-text-white-bis is-size-4">Max: {{maxWindSpeed}}</p>
         <p class="has-text-white-bis is-size-4">Min: {{minWindSpeed}}</p>
@@ -83,11 +83,11 @@
     </div>
   </div>
   <div class="column is-2">
-    <div class="pressure-box">
-      <div class="field">
+    <div class="weather-box">
+      <div class="field has-text-centered">
         <h3 class="title is-3 has-text-white">Pressure</h3>
       </div>
-      <div class="field">
+      <div class="field has-text-centered">
         {{#if lastReading}}
         <div class="weather-icon">
           <i class="fas fa-tachometer-alt"></i>
