@@ -91,6 +91,16 @@
           "pressure": 1011,
           "id": "d4124817-a137-41ac-b1b4-97b5bcd339df",
           "stationId": "05"
+        },
+        {
+          "date": "8/30/2023, 11:16:10 PM",
+          "code": 400,
+          "temperature": 11,
+          "windSpeed": 11,
+          "pressure": 11,
+          "windDirection": 11,
+          "id": "296d06ed-607e-43e6-a1a2-34c2518be43c",
+          "stationId": "05"
         }
       ]
     },
@@ -378,14 +388,6 @@
           "stationId": "f54b87b9-590a-4c4e-88f1-60400d1f4818"
         }
       ]
-    },
-    {
-      "name": "test",
-      "latitude": 11,
-      "longitude": 11,
-      "userId": "3ad52697-6d98-4d80-8273-084de55a86c0",
-      "id": "0c3854ee-0018-436a-af0f-3ac0c9124032",
-      "readings": []
     }
   ]
 }

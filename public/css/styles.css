@@ -171,7 +171,9 @@ footer a:hover {
   background-color: #00000059;
   padding: 20px;
 }
-
+.section {
+  padding: 1.5rem 3rem;;
+}
 .green-box {
   background-color: #002e13 !important;
 }
@@ -207,4 +209,32 @@ footer a:hover {
 
 .weather-icon-image {
   max-width: 50px;
+}
+
+.fa-size {
+  font-size: 30px;
+}
+
+.fa-gradient {
+  background: linear-gradient(to right, #fff500, #ff0303);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.fa-tachometer-alt {
+  color: #62d4cf;
+}
+
+#temp-chart > div > svg > text {
+  color: #002e13 !important;
+}
+
+.arrow-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: #333; /* Arrow color */
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* Triangle shape */
 }

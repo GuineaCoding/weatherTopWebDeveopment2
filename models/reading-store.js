@@ -229,7 +229,7 @@ Handlebars.registerHelper("beaufortIcon", function (beaufortDescription) {
   const iconName = iconMapping[beaufortDescription];
 
   // Return the generated HTML for the icon using the selected icon name
-  return new Handlebars.SafeString(`<i class="fa-solid ${iconName}"></i>`);
+  return new Handlebars.SafeString(`<i class="fa-size fa-gradient fa-solid ${iconName}"></i>`);
 });
 
 // Helper function to get the temperature range and corresponding Font Awesome icon based on temperature
@@ -248,15 +248,15 @@ Handlebars.registerHelper('temperatureRangeAndIcon', function (temperature) {
   }
 
   const temperatureIcons = {
-    Freezing: 'fa-temperature-empty',
-    Cold: 'fa-temperature-quarter',
-    Moderate: 'fa-solid fa-solid fa-temperature-half',
-    Warm: 'fa-temperature-full',
-    Hot: 'fa-temperature-high',
+    Freezing: 'fa-temperature-empty has-text-link',
+    Cold: 'fa-temperature-quarter has-text-info',
+    Moderate: 'fa-solid fa-solid fa-temperature-half has-text-warning',
+    Warm: 'fa-temperature-full has-text-danger',
+    Hot: 'fa-temperature-high has-text-danger-dark',
   };
 
   const temperatureIcon = temperatureIcons[temperatureRange];
-  return new Handlebars.SafeString(`<i class="fa-solid ${temperatureIcon}"></i>`);
+  return new Handlebars.SafeString(`<i class="fa-size fa-solid ${temperatureIcon}"></i>`);
 });
 
 

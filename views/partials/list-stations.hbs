@@ -3,10 +3,10 @@
 <div class="box box-link-hover-shadow">
   {{> dashboard-last-reading}}
   
-    <a href="/station/{{id}}" class="button is-primary">Open Station</a>
- 
-    <a href="/dashboard/editStationName/{{id}}" class="button is-primary">Edit Station</a>
-    <a href="/dashboard/deletestation/{{id}}" class="button is-danger">Delete Station</a>
- 
+  <div class="buttons is-flex is-flex-direction-column is-align-items-stretch">
+    <a href="/station/{{id}}" class="button is-primary is-fullwidth mb-2">Open Station</a>
+    <a href="/dashboard/editStationName/{{id}}" class="button is-primary is-fullwidth mb-2">Edit Station</a>
+    <a href="/dashboard/deletestation/{{id}}" class="button is-danger is-fullwidth">Delete Station</a>
+  </div>
 </div>
 {{/each}}
