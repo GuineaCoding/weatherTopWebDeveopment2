@@ -1,8 +1,6 @@
 <h1 align="center">Web Development II</h1>
- 
-## About us
 <div class="container">
-    <h2>About</h2>
+    <h2>About the app</h2>
     <h1 align="center">Weather Top</h1>
     <p>We are a forward-thinking company passionate about merging the world of weather science with the realm of technology. With a dedicated team of experts, we've built a strong reputation for delivering innovative solutions that bridge the gap between meteorology and modern technology.
     <p>
