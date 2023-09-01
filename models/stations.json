@@ -412,36 +412,41 @@
       ]
     },
     {
-      "name": "11",
-      "latitude": 11,
-      "longitude": 11,
-      "userId": "3ad52697-6d98-4d80-8273-084de55a86c0",
-      "id": "cbc5415a-9d77-40db-93b0-f6a190100ac2",
-      "readings": []
-    },
-    {
-      "name": "12",
-      "latitude": 11,
-      "longitude": 11,
-      "userId": "3ad52697-6d98-4d80-8273-084de55a86c0",
-      "id": "c7ecd0aa-3fe7-4727-aed7-b3c8b184bd56",
-      "readings": []
-    },
-    {
-      "name": "11",
+      "name": "Galway",
       "latitude": 12,
       "longitude": 12,
       "userId": "3ad52697-6d98-4d80-8273-084de55a86c0",
-      "id": "dae8c50c-751e-4d9c-8feb-474c440ca6d1",
+      "id": "52e2003f-301a-45fc-8949-f37cc4c17b79",
       "readings": []
     },
     {
-      "name": "11",
+      "name": "12345",
       "latitude": 11,
       "longitude": 11,
       "userId": "3ad52697-6d98-4d80-8273-084de55a86c0",
-      "id": "c0ff0ffa-281a-46d4-9697-9f1a1bcc5f64",
-      "readings": []
+      "id": "01949e7d-ce0f-4599-8fa3-dac8f427e6dc",
+      "readings": [
+        {
+          "date": "9/2/2023, 12:26:47 AM",
+          "code": "700",
+          "temperature": 12,
+          "windSpeed": 12,
+          "pressure": 12,
+          "windDirection": 2,
+          "id": "0f92c45a-6632-4831-9d2f-cd9478c7bc70",
+          "stationId": "01949e7d-ce0f-4599-8fa3-dac8f427e6dc"
+        },
+        {
+          "date": "9/2/2023, 12:26:49 AM",
+          "code": 800,
+          "temperature": 23.92,
+          "windSpeed": 4.73,
+          "windDirection": 148,
+          "pressure": 1011,
+          "id": "bedbe8d2-6d30-4dd6-ada2-3ba6175b6795",
+          "stationId": "01949e7d-ce0f-4599-8fa3-dac8f427e6dc"
+        }
+      ]
     }
   ]
 }
