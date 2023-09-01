@@ -1,26 +1,31 @@
-<tbody>
-    <tr>
-        <td class="chart-cell">
-            <div class="chart-container">
-                {{> data-chart-display id="temp-chart" name="Temperature" yMarker=10 values=trendingReadings.temperature
-                labels=trendingReadings.labels}}
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td class="chart-cell">
-            <div class="chart-container ">
-                {{> data-chart-display id="wind-speed-chart" name="Wind Speed" yMarker=15 values=trendingReadings.windSpeed
-                labels=trendingReadings.labels}}
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td class="chart-cell">
-            <div class="chart-container">
-                {{> data-chart-display id="pressure-chart" name="Pressure" yMarker=600 values=trendingReadings.pressure
-                labels=trendingReadings.labels}}
-            </div>
-        </td>
-    </tr>
-</tbody>
+<section class="mt-3 pt-5 graph-data">
+    <tbody>
+        <tr>
+            <td class="chart-cell">
+                <div class="chart-container">
+                    {{> data-chart-display id="temp-chart" name="Temperature" yMarker=10
+                    values=trendingReadings.temperature
+                    labels=trendingReadings.labels}}
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="chart-cell">
+                <div class="chart-container ">
+                    {{> data-chart-display id="wind-speed-chart" name="Wind Speed" yMarker=15
+                    values=trendingReadings.windSpeed
+                    labels=trendingReadings.labels}}
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="chart-cell">
+                <div class="chart-container">
+                    {{> data-chart-display id="pressure-chart" name="Pressure" yMarker=600
+                    values=trendingReadings.pressure
+                    labels=trendingReadings.labels}}
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</section>

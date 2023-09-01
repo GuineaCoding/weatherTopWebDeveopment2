@@ -96,7 +96,7 @@ export const stationController = {
       response.status(500).send("Internal Server Error");
     }
   },
-  
+
   // function to delete a reading
   async deleteReading(request, response) {
     // extracting station ID and reading ID from request parameters
@@ -205,16 +205,18 @@ export const stationController = {
       response.status(500).send("Internal Server Error");
     }
   },
-
+  // Function to generate a new reading for a station via the API via openWeather model
   async generateReading(request, response) {
+    // Get the station ID from the request parameters
     const id = request.params.id;
+    // Retrieve the station information using the provided ID
     const station = await stationStore.getStationById(id);
-    
+    // Generate a new reading using the openWeather module
     const newReading = await openWeather.addAutoReading(
       station.latitude,
       station.longitude
     );
-  
+    // Add the generated reading to the station's readings using the readingStore module
     await readingStore.addReading(id, newReading);
     response.redirect("/station/" + id);
   }

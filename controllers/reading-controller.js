@@ -6,7 +6,7 @@ export const readingController = {
   // controller action to display the editing view for a reading
   async index(request, response) {
     // Extract station ID and reading ID from request parameters
-    const stationId = request.params.stationid; 
+    const stationId = request.params.stationid;
     const readingId = request.params.readingId;
 
     // find the station and the reading to edit
@@ -32,7 +32,7 @@ export const readingController = {
   // controller action to update a reading
   async update(request, response) {
     // Extract station ID and reading ID from request parameters
-    const stationId = request.params.stationid; 
+    const stationId = request.params.stationid;
     const readingId = request.params.readingId;
 
     // create an updated reading object based on the submitted form data

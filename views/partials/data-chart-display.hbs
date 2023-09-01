@@ -1,9 +1,10 @@
 <div id="{{id}}"></div>
 <script>
   {
+    // Data object containing information for the chart
     const data = {
       labels: [
-        {{#each labels}}
+        {{#each labels}} // Loop through labels and add them to the array
           "{{this}}",
         {{/each}}
       ],
@@ -11,26 +12,26 @@
         {
           name: "{{name}}", type: "line",
           values: [
-            {{#each values}}
+            {{#each values}} // Loop through values and add them to the array
               {{this}},
             {{/each}}
           ]
         }
       ],
-       yMarkers: [{ label: "", value: {{yMarker}},type: 'solid' }]
+       yMarkers: [{ label: "", value: {{yMarker}},type: 'solid' }] // Y-axis marker
     }
-
+ // Create a new instance of the Frappe chart using the provided data
     const chart = new frappe.Chart("#{{id}}", {
       title: "{{name}}",
       data: data,
       type: 'line',
       height: 250,
-              lineOptions: {
-            regionFill: 1,
-            hideDots: 1,
-            hideLine: 0,
-        },  
-        colors: ['#064e33'],
+            lineOptions: {
+            regionFill: 1, // Option to fill the region under the line
+            hideDots: 1,  // Option to hide data points (dots)
+            hideLine: 0, // Option to show the line
+        },   
+        colors: ['#064e33'], // Custom color for the chart
     })
   }
 </script>

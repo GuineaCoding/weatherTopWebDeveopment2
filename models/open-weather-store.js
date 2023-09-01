@@ -1,17 +1,20 @@
+// Import the axios library for making HTTP requests
 import axios from "axios";
 
 export const openWeather = {
-
+    // Function to add an automatic reading based on latitude and longitude via the API http request
     async addAutoReading(latitude, longitude) {
+        // Send a GET request to the API using axios
         const requestUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=metric&exclude=minutely,hourly,daily,alerts&appid=eb23fec2f9ae9cce17349beea60ea3f0`;
         const response = await axios.get(requestUrl);
+        // Get the current date and time
         const date = new Date().toLocaleString();
-
+        // Check if the response status is successful (200)
         if (response.status == 200) {
+            // Extract weather data from the API response
             const weatherData = response.data.current;
-            // console.log('weatherData:', weatherData);
             const weatherCode = Number(weatherData.weather[0].id);
-            console.log(weatherCode)
+            // Extract weather code and round it to the nearest code(100-800)
             const roundedCode = Math.round(weatherCode / 100) * 100;
             console.log(roundedCode)
             const newReading = {
@@ -24,25 +27,33 @@ export const openWeather = {
             };
             return newReading;
         }
-
+        // Return null if the API request was not successful
         return null;
     },
+    // Function to get weather trend report data
     async getWeatherTrendReport(latitude, longitude) {
+        // Initialize an empty report object with labels and data arrays
         let report = { labels: [], temperature: [], windSpeed: [], pressure: [] };
+        // Create the request URL for the OpenWeatherMap API
         const requestUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=metric&exclude=minutely,hourly,alerts&appid=eb23fec2f9ae9cce17349beea60ea3f0`;
-
+        // Send a GET request to the API using axios
         const response = await axios.get(requestUrl);
-        
+
+        // Check if the response status is successful (200)     
         if (response.status == 200) {
             const trendData = response.data.daily;
+            // Loop through trendData to populate report arrays
             for (let i = 0; i < trendData.length; i++) {
+                // Convert timestamp to a readable date
                 const date = new Date(trendData[i].dt * 1000);
+                // Push date, temperature, wind speed, and pressure data to report arrays
                 report.labels.push(`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`);
                 report.temperature.push(trendData[i].temp.day);
                 report.windSpeed.push(trendData[i].wind_speed);
                 report.pressure.push(trendData[i].pressure);
             }
         }
+        // Return the populated report object
         return report;
     }
 }

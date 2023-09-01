@@ -34,15 +34,6 @@ export const stationStore = {
     // Get the currently logged-in user
     const loggedInUser = await accountsController.getLoggedInUser(request);
 
-    // Retrieve stations associated with the logged-in user
-    const userStations = await stationStore.getStationsByUserId(loggedInUser.id);
-
-    // Check if a station with the same name already exists
-    const existingStation = userStations.find((s) => s.name === station.name);
-    if (existingStation) {
-      throw new Error("A station with the same name already exists within your account.");
-    }
-
     // Reading the database
     await db.read();
 

@@ -1,5 +1,5 @@
 <section class="section page-gradient">
-<form action="/station/updateStationDetails/{{station.id}}" method="POST" class="box green-box">
+  <form action="/station/updateStationDetails/{{station.id}}" method="POST" class="box green-box">
 
     <h1 class="title">Edit Station</h1>
     <div class="field">
@@ -21,18 +21,18 @@
           required>
       </div>
     </div>
-    
-      <div class="control">
-        <button class="button is-primary is-fullwidth mb-2">Update Station</button>
-      </div>
-      <div class="control">
-        <a href="/dashboard" class="button is-danger is-fullwidth mb-2">Cancel</a>
-      </div>
-   
+
+    <div class="control">
+      <button class="button is-primary is-fullwidth mb-2">Update Station</button>
+    </div>
+    <div class="control">
+      <a href="/dashboard" class="button is-danger is-fullwidth mb-2">Cancel</a>
+    </div>
+
     {{#if errorMessage}}
     <div id="warning-sign" class="notification is-danger">
       {{errorMessage}}
     </div>
     {{/if}}
-</form>
+  </form>
 </section>

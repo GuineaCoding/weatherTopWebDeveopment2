@@ -34,11 +34,11 @@ export const userStore = {
     db.data.users.splice(index, 1); // Remove the user from the database
     await db.write(); // Write the updated data to the database
   },
-
+  //Function to update update user data.
   async updateUser(updatedUser) {
     await db.read();
     const index = db.data.users.findIndex((user) => user.id === updatedUser.id);
     db.data.users[index] = updatedUser;
-    await db.write();
+    await db.write(); // Write the updated data to the database
   }
 };

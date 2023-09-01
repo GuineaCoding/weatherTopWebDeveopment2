@@ -2,7 +2,7 @@
   <div class="column is-3">
     <div class="weather-box has-text-white">
       <div class="field has-text-centered">
-        <h5 class="title is-3 has-text-white">{{name}}</h5>
+        <h5 id="StationDashboardName" class="title is-3 has-text-white">{{name}}</h5>
       </div>
       <div class="field has-text-centered">
         <p class="has-text-white-bis is-size-6">Latitude: {{latitude}}</p>
@@ -22,9 +22,13 @@
         <div class="weather-icon">
           {{weatherIcon lastReading.lastReading.code}}
         </div>
+
       </div>
       <div class="field has-text-centered">
-        <label class="label has-text-white">{{lastReading.weatherDescription}}</label>
+        <p class="is-size-4 label has-text-white">{{lastReading.weatherDescription}}</p>
+        <p class="has-text-white-bis is-size-6">{{lastReading.windCompassDirection}}</p>
+        <i class="is-size-1 fa-gradient wind-arrow fas fa-long-arrow-alt-up"
+          style="transform: rotate({{lastReading.windDirection}}deg);"></i>
       </div>
       {{else}}
       <p class="has-text-centered has-text-white">No Data</p>
@@ -67,14 +71,13 @@
           {{beaufortIcon lastReading.beaufortDescription}}
         </div>
         <p class="has-text-white-bis is-size-6">{{lastReading.beaufortLevel}} Bft</p>
-        <p class="has-text-white-bis is-size-6">{{lastReading.windCompassDirection}}</p>
-        <p class="has-text-white-bis is-size-6">Feels Like {{lastReading.beaufortDescription}}</p>
-        <p class="has-text-white-bis is-size-6">{{windChill}}</p>
+        <p class="has-text-white-bis is-size-6">Feels Like: {{lastReading.beaufortDescription}}</p>
+        <p class="has-text-white-bis is-size-6">{{lastReading.windChill}}</p>
         <p class="has-text-white-bis is-size-6">Max: {{lastReading.maxWindSpeed}}</p>
         <p class="has-text-white-bis is-size-6">Min: {{lastReading.minWindSpeed}}</p>
         <div class="temperature-range">
           {{trendIcon lastReading.windSpeedTrend}}
-           <p class="has-text-white-bis is-size-6"></p>{{lastReading.windSpeedTrend}}</p>
+          <p class="has-text-white-bis is-size-6"></p>{{lastReading.windSpeedTrend}}</p>
         </div>
         {{else}}
         <p class="has-text-white-bis">No Data</p>
@@ -82,7 +85,6 @@
       </div>
     </div>
   </div>
-
   <div class="column is-2">
     <div class="weather-box">
       <div class="field has-text-centered">
@@ -107,3 +109,4 @@
     </div>
   </div>
 </div>
+

@@ -1,34 +1,39 @@
 <section class="section page-gradient">
-    <h1 class="title">Edit Account</h1>
-    <form action="/updateAccount" method="POST"class="box green-box">
+    <h1 class="title green-font">Edit Account</h1>
+    <form action="/updateAccount" method="POST" class="box green-box">
         <div class="field">
             <label class="label has-text-white">First Name</label>
             <div class="control">
-                <input class="input" type="text" placeholder="Enter first name" name="firstName" required value="{{user.firstName}}">
+                <input class="input" type="text" placeholder="Enter first name" name="firstName" required
+                    value="{{user.firstName}}">
             </div>
         </div>
         <div class="field">
             <label class="label has-text-white">Last Name</label>
             <div class="control">
-                <input class="input" type="text" placeholder="Enter last name" name="lastName" required value="{{user.lastName}}">
+                <input class="input" type="text" placeholder="Enter last name" name="lastName" required
+                    value="{{user.lastName}}">
             </div>
         </div>
         <div class="field">
             <label class="label has-text-white">Email</label>
             <div class="control">
-                <input class="input" type="email" placeholder="Enter email" name="email" required value="{{user.email}}">
+                <input class="input" type="email" placeholder="Enter email" name="email" required
+                    value="{{user.email}}">
             </div>
         </div>
         <div class="field">
             <label class="label has-text-white">New Password</label>
             <div class="control">
-                <input class="input" type="password" placeholder="Enter New Password" name="newPassword" minlength="3" required>
+                <input class="input" type="password" placeholder="Enter New Password" name="newPassword" minlength="3"
+                    required>
             </div>
         </div>
         <div class="field">
             <label class="label has-text-white">Confirm New Password</label>
             <div class="control">
-                <input class="input" type="password" placeholder="Enter New Password Again" name="confirmNewPassword" minlength="3" required>
+                <input class="input" type="password" placeholder="Enter New Password Again" name="confirmNewPassword"
+                    minlength="3" required>
             </div>
         </div>
         {{#if errorMessage}}
@@ -36,11 +41,11 @@
             {{errorMessage}}
         </div>
         {{/if}}
-            <div class="control">
-                <button class="button is-primary is-fullwidth mb-2">Update Account</button>
-            </div>
-            <div class="control">
-                <a href="/dashboard" class="button is-danger is-fullwidth mb-2">Cancel</a>
-            </div>
+        <div class="control">
+            <button class="button is-primary is-fullwidth mb-2">Update Account</button>
+        </div>
+        <div class="control">
+            <a href="/dashboard" class="button is-danger is-fullwidth mb-2">Cancel</a>
+        </div>
     </form>
 </section>

@@ -307,9 +307,10 @@ export const readingStore = {
     const temperatureTrendValues = recentReadings.map((reading) => reading.temperature);
     const windSpeedTrendValues = recentReadings.map((reading) => reading.windSpeed);
     const pressureTrendValues = recentReadings.map((reading) => reading.pressure);
-    const temperatureCelsius = lastReading.temperature;
+    const windDirection = lastReading.windDirection;
+    const temperatureCelsius = lastReading.temperature.toFixed(2);
     const weatherDescription = getWeatherDescription(lastReading.code);
-    const temperatureFahrenheit = temperatureCelsius * 9 / 5 + 32;
+    const temperatureFahrenheit = (temperatureCelsius * 9 / 5 + 32).toFixed(2);
     const windSpeed = lastReading.windSpeed;
     const beaufortLevel = getBeaufortLevel(windSpeed);
     const beaufortDescription = getBeaufortLevelDescription(windSpeed);
@@ -324,7 +325,6 @@ export const readingStore = {
     const temperatureTrend = calculateTrend(temperatureTrendValues);
     const windSpeedTrend = calculateTrend(windSpeedTrendValues);
     const pressureTrend = calculateTrend(pressureTrendValues);
-    // Return the prepared object with the last reading and additional data
     return {
       id: foundStation.id,
       name: foundStation.name,
@@ -344,6 +344,7 @@ export const readingStore = {
       temperatureTrend: temperatureTrend,
       windSpeedTrend: windSpeedTrend,
       pressureTrend: pressureTrend,
+      windDirection: windDirection,
     };
   },
 
@@ -376,30 +377,30 @@ export const readingStore = {
     return reading;
   },
 
-// Delete reading from a station
-async deleteReading(stationId, readingId) {
-  // Load data from the database
-  await db.read();
+  // Delete reading from a station
+  async deleteReading(stationId, readingId) {
+    // Load data from the database
+    await db.read();
 
-  // Find the station using its ID
-  const station = db.data.stations.find((station) => station.id === stationId);
+    // Find the station using its ID
+    const station = db.data.stations.find((station) => station.id === stationId);
 
-  // If station doesn't exist, do nothing
-  if (!station) {
-    return;
-  }
+    // If station doesn't exist, do nothing
+    if (!station) {
+      return;
+    }
 
-  // Find the index of the reading in the station's readings list
-  const index = station.readings.findIndex((reading) => reading.id === readingId);
+    // Find the index of the reading in the station's readings list
+    const index = station.readings.findIndex((reading) => reading.id === readingId);
 
-  // If the reading is found, remove it and update the database
-  if (index !== -1) {
-    station.readings.splice(index, 1); // remove the reading from the list
-    await db.write(); // save the updated data to the database
-  } else {
-    console.log(`Reading not found`);
-  }
-},
+    // If the reading is found, remove it and update the database
+    if (index !== -1) {
+      station.readings.splice(index, 1); // remove the reading from the list
+      await db.write(); // save the updated data to the database
+    } else {
+      console.log(`Reading not found`);
+    }
+  },
 
   async getReadingById(readingId) {
     await db.read();
@@ -414,13 +415,17 @@ async deleteReading(stationId, readingId) {
 
     return null; // Return null if reading is not found
   },
+  // function to update a reading with the provided readingId and updatedReading object
   async updateReading(readingId, updatedReading) {
+    // Use the getReadingById function to retrieve the existing reading using readingId
     const reading = await this.getReadingById(readingId);
+    // Update the properties of the existing reading object with values from updatedReading
     reading.code = updatedReading.code;
     reading.temperature = updatedReading.temperature;
     reading.windSpeed = updatedReading.windSpeed;
     reading.pressure = updatedReading.pressure;
     reading.windDirection = updatedReading.windDirection;
+    // write the updated data back to the database
     await db.write();
   },
 };

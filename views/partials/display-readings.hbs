@@ -1,48 +1,52 @@
-<table class="table is-narrow is-hoverable is-fullwidth">
-  <thead>
-    <tr>
-      <th>
-        <p>Time/Date</p>
-      </th>
-      <th>
-        <p title="Code">Code</p>
-      </th>
-      <th>
-        <p title="Temp">Temp</p>
-      </th>
-      <th>
-        <p title="Wind Speed">Wind Speed</p>
-      </th>
-      <th>
-        <p title="Wind Direction">Wind Direction</p>
-      </th>
-      <th>
-        <p title="Pressure">Pressure</p>
-      </th>
-      <th>
-        <p>
-          <title="Delete">Edit</title>
-        </p>
-      </th>
-      <th>
-        <p>
-          <title="Delete">Delete</title>
-        </p>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each station.readings}}
-    <tr>
-      <td>{{date}}</td>
-      <td>{{code}}</td>
-      <td>{{temperature}}</td>
-      <td>{{windSpeed}}</td>
-      <td>{{windDirection}}</td>
-      <td>{{pressure}}</td>
-      <td> <a href="/station/{{../station.id}}/editReading/{{id}}"><i class="fas fa-edit px-4"></i></a></td>
-      <td><a href="/station/{{../station.id}}/deleteReading/{{id}}"><i class="fas fa-trash px-4"></i></a></td>
-    </tr>
-    {{/each}}
-  </tbody>
-</table>
+<div class="table_wrapper">
+  <table class="table is-narrow is-hoverable is-fullwidth is-responsive">
+    <thead>
+      <tr>
+        <th>
+          <p>Time/Date</p>
+        </th>
+        <th>
+          <p title="Code">Code</p>
+        </th>
+        <th>
+          <p title="Temp">Temp</p>
+        </th>
+        <th>
+          <p title="Wind Speed">Wind Speed</p>
+        </th>
+        <th>
+          <p title="Wind Direction">Wind Direction</p>
+        </th>
+        <th>
+          <p title="Pressure">Pressure</p>
+        </th>
+        <th>
+          <p>
+            <title="Delete">Edit</title>
+          </p>
+        </th>
+        <th>
+          <p>
+            <title="Delete">Delete</title>
+          </p>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each station.readings}}
+      <tr>
+        <td>{{date}}</td>
+        <td>{{code}}</td>
+        <td>{{temperature}}</td>
+        <td>{{windSpeed}}</td>
+        <td>{{windDirection}}</td>
+        <td>{{pressure}}</td>
+        <td> <a href="/station/{{../station.id}}/editReading/{{id}}"><i
+              class="has-text-success fas fa-edit px-4"></i></a></td>
+        <td><a href="/station/{{../station.id}}/deleteReading/{{id}}"><i
+              class="has-text-danger fas fa-trash px-4"></i></a></td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

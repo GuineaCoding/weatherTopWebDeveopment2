@@ -1,8 +1,7 @@
-<h1 class="title">Stations</h1>
+<h1 class="title green-font">Stations</h1>
 {{#each stations}}
 <div class="box box-link-hover-shadow">
   {{> dashboard-last-reading}}
-  
   <div class="buttons is-flex is-flex-direction-column is-align-items-stretch">
     <a href="/station/{{id}}" class="button is-primary is-fullwidth mb-2">Open Station</a>
     <a href="/dashboard/editStationName/{{id}}" class="button is-primary is-fullwidth mb-2">Edit Station</a>

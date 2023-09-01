@@ -21,6 +21,7 @@ router.get("/dashboard", dashboardController.index);
 router.post("/dashboard/addStation", accountsController.ensureAuthenticated, dashboardController.addStation);
 
 router.get("/about", aboutController.index);
+router.get("/about-visitor", aboutController.aboutNonLogged);
 router.get("/station/:id", stationController.index);
 router.post("/station/:id/addReading", stationController.addReading);
 router.get("/dashboard/deletestation/:id", dashboardController.deleteStation);

@@ -129,7 +129,7 @@ export const accountsController = {
       const viewData = {
         title: "Edit Account",
         errorMessage: "This email is already registered. Please use a different email.",
-        user: loggedInUser, 
+        user: loggedInUser,
       };
       // Render the "account-view" template with the error message
       response.render("account-view", viewData);

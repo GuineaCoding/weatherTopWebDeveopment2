@@ -8,4 +8,10 @@ export const aboutController = {
     // Render the "about-view" template with the viewData object as context
     response.render("about-view", viewData);
   },
+  aboutNonLogged(request,response){
+    const viewData = {
+      title: "About Us",
+    };
+    response.render("about-view-visitor", viewData);
+  }
 };

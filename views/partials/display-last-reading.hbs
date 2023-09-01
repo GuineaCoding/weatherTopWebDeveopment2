@@ -1,19 +1,19 @@
 <div id="last-readings" class="columns is-multiline">
-  <div class="column is-3">
+  <div class="column is-12-tablet is-3-desktop">
     <div class="weather-box has-text-white">
       <div class="field has-text-centered">
         <h3 class="title is-3 has-text-white">{{name}}</h3>
       </div>
       <div class="field has-text-centered">
-        <label class="label has-text-white">Latitude: {{latitude}}</label>
+        <p class="label has-text-white">Latitude: {{latitude}}</p>
       </div>
       <div class="field has-text-centered">
-        <label class="label has-text-white">Longitude: {{longitude}}</label>
+        <p class="label has-text-white">Longitude: {{longitude}}</p>
       </div>
     </div>
   </div>
   {{#each lastReadings}}
-  <div class="column is-2">
+  <div class="column is-6-tablet is-2-desktop">
     <div class="weather-box">
       <div class="field has-text-centered">
         <h3 class="title is-3 has-text-white">Weather</h3>
@@ -25,15 +25,16 @@
         </div>
       </div>
       <div class="field has-text-centered">
-        <label class="label has-text-white">{{weatherDescription}}</label>
-        
+        <p class="is-size-4 label has-text-white">{{weatherDescription}}</p>
+        <p class="has-text-white-bis is-size-4">Wind Direction: {{windCompassDirection}}</p>
+        <i class="is-size-1 fa-gradient wind-arrow fas fa-long-arrow-alt-up" style="transform: rotate({{windDirection}}deg);"></i>
       </div>
       {{else}}
       <p class="has-text-centered has-text-white">No Data</p>
       {{/if}}
     </div>
   </div>
-  <div class="column is-2">
+  <div class="column is-6-tablet is-2-desktop">
     <div class="weather-box">
       <div class="field has-text-centered">
         <h3 class="title is-3 has-text-white">Temperature</h3>
@@ -57,7 +58,7 @@
       </div>
     </div>
   </div>
-  <div class="column is-3">
+  <div class="column is-6-tablet is-3-desktop">
     <div class="weather-box">
       <div class="field has-text-centered">
         <h3 class="title is-3 has-text-white">Wind Speed</h3>
@@ -68,7 +69,6 @@
           <label>{{beaufortIcon beaufortDescription}}</label>
         </div>
         <p class="has-text-white-bis is-size-4">{{beaufortLevel}} Bft</p>
-        <p class="has-text-white-bis is-size-4">{{windCompassDirection}}</p>
         <p class="has-text-white-bis is-size-4">Feels Like: {{beaufortDescription}}</p>
         <p class="has-text-white-bis is-size-4">{{windChill}}</p>
         <p class="has-text-white-bis is-size-4">Max: {{maxWindSpeed}}</p>
@@ -83,7 +83,7 @@
       </div>
     </div>
   </div>
-  <div class="column is-2">
+  <div class="column is-2 is-6-tablet is-2-desktop">
     <div class="weather-box">
       <div class="field has-text-centered">
         <h3 class="title is-3 has-text-white">Pressure</h3>

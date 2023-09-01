@@ -1,11 +1,11 @@
 <section class="section">
-  <h1 class="title">Add Station</h1>
+  <h1 class="title green-font">Add Station</h1>
   {{#if errorMessage}}
   <div id="warning-sign" class="notification is-danger">
     {{errorMessage}}
   </div>
   {{/if}}
-  <form action="/dashboard/addStation" method="POST" class="box green-box">
+  <form id="addStationForm" action="/dashboard/addStation" method="POST" class="box green-box">
     <div class="field is-horizontal">
       <div class="field-body">
         <div class="field">
@@ -20,11 +20,16 @@
       </div>
     </div>
     <div class="field">
-<button class="button is-primary is-fullwidth mt-2">Add Station</button>
-    
+      <button class="button is-primary is-fullwidth mt-2">Add Station</button>
     </div>
-    </div>
-    </div>
-    </div>
+        <div id="latitudeError" class="notification is-danger" style="display: none;">
+  Latitude must be between -90 and 90 degrees.
+</div>
+<div id="longitudeError" class="notification is-danger" style="display: none;">
+  Longitude must be between -180 and 180 degrees.
+</div>
+<div id="nameErrorBlock" class="notification is-danger" style="display: none;">
+  A station with the same name already exists within your account.
+</div>
   </form>
 </section>

@@ -238,3 +238,23 @@ footer a:hover {
   background-color: #333; /* Arrow color */
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* Triangle shape */
 }
+
+.table_wrapper {
+  overflow-x: auto;
+}
+.graph-data {
+  background-color: white;
+}
+
+.wind-arrow {
+  transform-origin: center; /* Set the rotation origin */
+  margin-top: 10px; /* Add some space between the text and arrow */
+}
+
+.green-font{
+  color: #00431c;
+}
+
+.is-danger {
+  border-color: red;
+}
