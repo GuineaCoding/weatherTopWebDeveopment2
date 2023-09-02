@@ -10,14 +10,13 @@
     <div class="field">
       <label class="label">Latitude</label>
       <div class="control">
-        <input class="input" type="number" placeholder="Latitude" name="latitude" value="{{station.latitude}}" required>
+        <input class="input" type="number" placeholder="Latitude" name="latitude" value="{{station.latitude}}" step="0.000001" min="-90" max="90" required>
       </div>
     </div>
     <div class="field">
       <label class="label">Longitude</label>
       <div class="control">
-        <input class="input" type="number" placeholder="Longitude" name="longitude" value="{{station.longitude}}"
-          required>
+        <input class="input" type="number" placeholder="Longitude" name="longitude" value="{{station.longitude}}" step="0.000001" min="-180" max="180"required>
       </div>
     </div>
     <div class="field is-grouped">

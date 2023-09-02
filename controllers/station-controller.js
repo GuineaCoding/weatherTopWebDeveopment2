@@ -113,31 +113,6 @@ export const stationController = {
     // get the existing station using the ID
     const updatedStation = await stationStore.getStationById(stationId);
     // if the station doesn't exist, show an error
-    if (!updatedStation) {
-      const error = "Station not found";
-      const userStations = await stationStore.getStationsByUserId(updatedStation.userId);
-      const viewData = {
-        title: "Edit Station Name",
-        station: updatedStation,
-        errorMessage: error,
-      };
-      response.render("edit-station-name", viewData);
-      return;
-    }
-    // Get all stations associated with the user
-    const userStations = await stationStore.getStationsByUserId(updatedStation.userId);
-    // Check if a station with the updated name already exists
-    const existingStationWithUpdatedName = userStations.find((s) => s.name.toLowerCase() === updatedName.toLowerCase() && s.id !== stationId);
-    if (existingStationWithUpdatedName) {
-      const error = "A station with the same name already exists within your account.";
-      const viewData = {
-        title: "Edit Station Name",
-        station: updatedStation,
-        errorMessage: error,
-      };
-      response.render("edit-station-name", viewData);
-      return;
-    }
 
     // Convert latitude and longitude to numbers
     const numericLatitude = parseFloat(updatedLatitude);
