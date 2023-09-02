@@ -9,7 +9,7 @@
     <div class="field is-horizontal">
       <div class="field-body">
         <div class="field">
-          <input class="input" type="text" placeholder="Station Name" name="name" required>
+          <input id="stationNameInput" class="input" type="text" placeholder="Station Name" name="name" required>
         </div>
         <div class="field">
           <input class="input" type="number" placeholder="Latitude" name="latitude" step="0.000001" required>
@@ -30,6 +30,9 @@
 </div>
 <div id="nameErrorBlock" class="notification is-danger" style="display: none;">
   A station with the same name already exists within your account.
+</div>
+       <div id="stationNameError" class="notification is-danger" style="display: none;">
+  A station with this name already exists.
 </div>
   </form>
 </section>
