@@ -24,21 +24,21 @@
           </div>
         </div>
         <div class="field">
-          <input class="input" type="number" placeholder="Enter Temperature" name="temperature"
+          <input class="input" type="number" placeholder="Enter Temperature" step="0.01" name="temperature"
             value="{{reading.temperature}}" required>
         </div>
         <div class="field">
-          <input class="input" type="number" placeholder="Enter Wind Speed" name="windSpeed" min="0"
+          <input class="input" type="number" placeholder="Enter Wind Speed" name="windSpeed" step="0.01" min="0"
             value="{{reading.windSpeed}}" required>
         </div>
         <div class="field">
-          <input type="number" class="input" placeholder="Enter Pressure" name="pressure" min="0"
+          <input type="number" class="input" placeholder="Enter Pressure" name="pressure" step="0.01" min="0"
             value="{{reading.pressure}}" required>
         </div>
         <div class="field">
-          <input type="number" class="input" placeholder="Enter Wind Direction" name="windDirection" min="0" max="359"
+          <input type="number" class="input" placeholder="Enter Wind Direction" name="windDirection" step="0.01" min="0" max="359"
             value="{{reading.windDirection}}" required>
-        </div>
+        </div> 
       </div>
     </div>
     <div class="control">

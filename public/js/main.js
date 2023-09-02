@@ -16,85 +16,97 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// Wait for the DOM to be fully loaded before executing this code.
 document.addEventListener("DOMContentLoaded", function () {
+  // Check if the current URL path includes "/dashboard".
   if (window.location.pathname.includes("/dashboard")) {
+    // Get the form and relevant input elements by their IDs.
     const form = document.getElementById("addStationForm");
     const latitudeInput = form.elements.latitude;
     const longitudeInput = form.elements.longitude;
     const latitudeError = document.getElementById("latitudeError");
     const longitudeError = document.getElementById("longitudeError");
 
+    // Add a submit event listener to the form.
     form.addEventListener("submit", function (event) {
+      // Parse the latitude and longitude input values as numbers.
       const numericLatitude = parseFloat(latitudeInput.value);
       const numericLongitude = parseFloat(longitudeInput.value);
 
+      // Check if the latitude is out of the valid range (-90 to 90 degrees).
       if (numericLatitude < -90 || numericLatitude > 90) {
+        // Prevent the form from submitting.
         event.preventDefault();
+        // Add a CSS class to indicate an error.
         latitudeInput.classList.add("is-danger");
+        // Display the latitude error message.
         latitudeError.style.display = "block";
       } else {
+        // Remove the error CSS class and hide the error message if latitude is valid.
         latitudeInput.classList.remove("is-danger");
         latitudeError.style.display = "none";
       }
 
       if (numericLongitude < -180 || numericLongitude > 180) {
+        // Prevent the form from submitting.
         event.preventDefault();
+        // Add a CSS class to indicate an error.
         longitudeInput.classList.add("is-danger");
+        // Display the latitude error message.
         longitudeError.style.display = "block";
       } else {
+        // Remove the error CSS class and hide the error message if latitude is valid.
         longitudeInput.classList.remove("is-danger");
         longitudeError.style.display = "none";
       }
     });
-  }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  if (window.location.pathname.includes("/dashboard")) {
-    const form = document.getElementById("addStationForm");
+    //initialize arrays,
     const stationNames = [];
-    const displayedStations = []; // Declare the array at a higher scope
+    const displayedStations = [];
 
-    // Function to populate the stationNames array
+    // Function to populate station names from the page.
     function populateStationNames() {
-      const stationNameElements = document.querySelectorAll(".title.is-3.has-text-white"); // Update the selector
-
-      stationNames.length = 0; // Clear the array when rendering
-
+      // Find all elements with the ID "StationDashboardName."
+      const stationNameElements = document.querySelectorAll("#StationDashboardName");
+      // Clear the stationNames array before populating it again.
+      stationNames.length = 0;
+      // Iterate through station name elements and add them to the array in lowercase.
       stationNameElements.forEach((element) => {
-        const stationName = element.textContent.trim(); // Trim to remove any leading/trailing spaces
-        stationNames.push(stationName);
+        const stationName = element.textContent.trim();
+        stationNames.push(stationName.toLowerCase());
       });
     }
-    // Function to render stations
+    // Function to render stations, including populating station names.
     function renderStations() {
       populateStationNames();
-      // Now, stationNames array contains all the station names
+
       console.log(stationNames.length, 'station Name Length');
       console.log(stationNames, 'StationNames');
     }
+    // Initially render stations when the page loads.
     renderStations();
+    // Add a submit event listener to the form.
     form.addEventListener("submit", function (event) {
-      const newStationName = document.getElementById("stationNameInput").value.trim(); // Trim to remove any leading/trailing spaces
+      // Get the new station name from the input field and convert it to lowercase.
+      const newStationName = document.getElementById("stationNameInput").value.trim().toLowerCase();
       console.log(newStationName)
+      // Check if the new station name is already in the stationNames array.
       if (stationNames.includes(newStationName)) {
-        event.preventDefault(); 
-        // Display an error message.
+        event.preventDefault();
+        // Display an error message if the station name already exists.
         const errorMessage = document.getElementById("stationNameError");
         errorMessage.style.display = "block";
-        return; // Don't proceed further.
+        return;
       }
-      else{
-      // Add the new station to the displayedStations array.
-      const newStation = { name: newStationName /* other station data */ };
-      displayedStations.push(newStation);
+      else {
+        // If the station name is unique, create a new station object.
+        const newStation = { name: newStationName };
+        displayedStations.push(newStation);
+        // Clear the error message.
+        const errorMessage = document.getElementById("stationNameError");
+        errorMessage.style.display = "none";
 
-      // Clear the error message.
-      const errorMessage = document.getElementById("stationNameError");
-      errorMessage.style.display = "none";
-
-      // Render the updated list of stations.
-      renderStations();
+        renderStations();
       }
     });
   }
