@@ -14,27 +14,6 @@
       "email": "marge@simpson.com",
       "password": "secret",
       "id": "2b6f0989-7b7f-4a38-ad26-aa06b922d751"
-    },
-    {
-      "firstName": "Andrian2",
-      "lastName": "Barbulat2",
-      "email": "andrianwix24@gmail.com",
-      "password": "123456",
-      "id": "27b4ab1e-e3b1-4b8b-a9dd-3ba56d4b159e"
-    },
-    {
-      "firstName": "Andrian",
-      "lastName": "Test",
-      "email": "andrianwix@gmail.com",
-      "password": "12345",
-      "id": "616ac0cf-8543-48ba-a14b-a6e3c6118dd1"
-    },
-    {
-      "firstName": "Andrian",
-      "lastName": "Barbulat",
-      "email": "marge1@simpson.com",
-      "password": "12345",
-      "id": "2fead588-30cd-44de-8e9c-2f4a9e7b7dee"
     }
   ]
 }

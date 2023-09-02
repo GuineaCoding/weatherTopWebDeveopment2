@@ -1,6 +1,19 @@
 // Import the axios library for making HTTP requests
 import axios from "axios";
 
+function matchWeatherCode(code) {
+    if (code === 800) return 100; // Clear
+    if (code >= 801 && code <= 804) return 200; // Partial clouds
+    if (code >= 701 && code <= 781) return 300; // Cloudy (fog, mist, etc.)
+    if (code >= 300 && code <= 321) return 400; // Light Showers (drizzle)
+    if (code >= 500 && code <= 531) return 500; // Heavy Showers (rain)
+    if (code >= 400 && code <= 504) return 600; // Rain
+    if (code >= 600 && code <= 622) return 700; // Snow
+    if (code >= 200 && code <= 232) return 800; // Thunder
+  
+    return "Unknown weather condition";
+  }
+
 export const openWeather = {
     // Function to add an automatic reading based on latitude and longitude via the API http request
     async addAutoReading(latitude, longitude) {
@@ -13,13 +26,12 @@ export const openWeather = {
         if (response.status == 200) {
             // Extract weather data from the API response
             const weatherData = response.data.current;
-            const weatherCode = Number(weatherData.weather[0].id);
+            const weatherCode = Number(matchWeatherCode(weatherData.weather[0].id));
             // Extract weather code and round it to the nearest code(100-800)
-            const roundedCode = Math.round(weatherCode / 100) * 100;
-            console.log(roundedCode)
+            
             const newReading = {
                 date: String(date),
-                code: roundedCode,
+                code: weatherCode,
                 temperature: Number(weatherData.temp),
                 windSpeed: Number(weatherData.wind_speed),
                 windDirection: Number(weatherData.wind_deg),
